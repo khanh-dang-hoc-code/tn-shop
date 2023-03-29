@@ -67,6 +67,10 @@ public class Product {
     @JoinColumn(name = "order_item_id")
     private OrderItems orderItemProduct;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "sale_event_id")
+    private SaleEvent saleEventProduct;
+
     @OneToMany(mappedBy = "imageProduct", cascade = CascadeType.ALL)
     private List<Images> productImages;
 }
