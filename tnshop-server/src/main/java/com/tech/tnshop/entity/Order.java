@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Data
@@ -21,6 +22,9 @@ public class Order {
     @GenericGenerator(name = "uuid", strategy = "uuid")
     @Column(columnDefinition = "CHAR(32)")
     private String id;
+
+    @Column
+    private BigDecimal totalAmount;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
