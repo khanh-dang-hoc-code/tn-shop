@@ -16,12 +16,12 @@
     }
 
     .ant-form-item-label {
-        margin-bottom: 12px;
+        margin-top: 12px;
     }
 
     .ant-form-item-row {
         flex-direction: column;
-        margin-bottom: 24px !important;
+        margin-top: 24px !important;
         padding-bottom: 44px;
     }
 
@@ -35,5 +35,10 @@
 
     .ant-input-password {
         border-radius: 0;
+    }
+
+    .login-form-button {
+        margin-top: 60px !important;
+        position: relative;
     }
 }

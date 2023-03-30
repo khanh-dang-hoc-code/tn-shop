@@ -2,14 +2,22 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Checkbox, Form, Input } from 'antd';
 import './register.scss';
+import { useDispatch } from 'react-redux';
+import { setRegisterData } from '../../store/registerSlice';
 
-const Register = (props) => {
+const Register = () => {
   const [account, setAccount] = useState({
     userName: '',
     password: '',
     firstName: '',
     lastName: ''
   });
+
+  const dispatch = useDispatch();
+
+  const submitRegister = () => {
+    dispatch(setRegisterData(account));
+  };
 
   const onFinish = () => {
     console.log('success');
@@ -38,13 +46,13 @@ const Register = (props) => {
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
           onValuesChange={(e, allvalue) => {
-            console.log(allvalue);
             setAccount((pre) => {
               return {
                 ...pre,
                 userName: allvalue.email,
                 password: allvalue.password,
-                firstName: allvalue.remember
+                firstName: allvalue.firstName,
+                lastName: allvalue.lastName
               };
             });
           }}
@@ -111,9 +119,7 @@ const Register = (props) => {
               className="login-form-button"
               type="primary"
               htmlType="submit"
-              onClick={() => {
-                console.log('submit');
-              }}>
+              onClick={submitRegister}>
               Submit
             </Button>
           </Form.Item>
@@ -122,11 +128,7 @@ const Register = (props) => {
     );
   };
 
-  return <div className="register-container">{props.isRegister && renderRegister()}</div>;
+  return <div className="register-container">{renderRegister()}</div>;
 };
 
 export default Register;
-
-Register.propTypes = {
-  isRegister: PropTypes.bool.isRequired
-};

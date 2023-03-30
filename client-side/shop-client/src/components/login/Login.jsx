@@ -6,7 +6,8 @@ import { useLoginMutation } from '../../services/authService';
 import { useDispatch } from 'react-redux';
 import { setToken } from '../../store/authSlice';
 import { getItemInStorage, saveItemInStorage } from '../../helper/tokenUtils';
-const Login = (props) => {
+import { NavLink } from 'react-router-dom';
+const Login = () => {
   const dispatch = useDispatch();
   const [data, isLoading] = useLoginMutation();
 
@@ -51,12 +52,10 @@ const Login = (props) => {
     });
   }, []);
 
-  console.log(props.isLogin);
-
   const renderLogin = () => {
     return (
       <>
-        <div className="login-heading">SIGN IN</div>
+        <div className="login-heading">LOGIN</div>
         <Form
           className="login-form"
           name="login"
@@ -124,9 +123,9 @@ const Login = (props) => {
           </Form.Item>
 
           <div className="forgot-password">
-            <a href="#">
+            <NavLink to={'/forgot-password'}>
               <span>Forgot password ?</span>
-            </a>
+            </NavLink>
           </div>
 
           <Form.Item>
@@ -139,12 +138,7 @@ const Login = (props) => {
     );
   };
 
-  return <div className="login-container">{props.isLogin && renderLogin()}</div>;
+  return <div className="login-container">{renderLogin()}</div>;
 };
 
 export default Login;
-
-Login.propTypes = {
-  isLogin: PropTypes.bool.isRequired
-  // Other prop types here
-};

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './forgotPassword.scss';
 import { Button, Form, Input } from 'antd';
 
-const ForgotPassword = (props) => {
+const ForgotPassword = () => {
   const [account, setAccount] = useState({
     userName: ''
   });
@@ -22,7 +22,7 @@ const ForgotPassword = (props) => {
       <>
         <div className="forgot-password-heading">Reset your password</div>
         <div className="forgot-password-subheading">
-          We will send you an email to reset your password
+          We will send you OTP to your phone number to reset your password
         </div>
         <Form
           className="forgot-password-form"
@@ -40,22 +40,21 @@ const ForgotPassword = (props) => {
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
           onValuesChange={(e, allvalue) => {
-            console.log(allvalue);
             setAccount((pre) => {
               return {
                 ...pre,
-                userName: allvalue.email
+                userName: allvalue.phoneNumber
               };
             });
           }}
           autoComplete="off">
           <Form.Item
-            label="Email Address"
-            name="email"
+            label="Phone number"
+            name="phoneNumber"
             rules={[
               {
                 required: true,
-                message: 'Please input your email!'
+                message: 'Please input your phone number!'
               },
               {
                 pattern:
@@ -82,15 +81,7 @@ const ForgotPassword = (props) => {
     );
   };
 
-  return (
-    <div className="forgot-password-container">
-      {props.isForgotPassword && renderForgotPassword()}
-    </div>
-  );
+  return <div className="forgot-password-container">{renderForgotPassword()}</div>;
 };
 
 export default ForgotPassword;
-
-ForgotPassword.propTypes = {
-  isForgotPassword: PropTypes.bool.isRequired
-};
