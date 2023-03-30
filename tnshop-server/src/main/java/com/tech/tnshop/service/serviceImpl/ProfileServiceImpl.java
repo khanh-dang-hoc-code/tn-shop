@@ -1,5 +1,7 @@
 package com.tech.tnshop.service.serviceImpl;
 
+import com.tech.tnshop.dto.response.AbstractResponse;
+import com.tech.tnshop.dto.response.MessageResponse;
 import com.tech.tnshop.entity.Profile;
 import com.tech.tnshop.entity.User;
 import com.tech.tnshop.exception.BadRequestException;
@@ -32,7 +34,7 @@ public class ProfileServiceImpl implements IProfileService {
         }
         Profile profile =  profileRepository.getProfileByUser(userId).orElseThrow(() -> new NotFoundException("User" + userId + " not found"));
         ProfileResponse response = ProfileMapper.mapToProfileResponse(profile);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(new AbstractResponse(response));
     }
 
     @Override
@@ -55,7 +57,7 @@ public class ProfileServiceImpl implements IProfileService {
             throw new InternalServerException("Can not query for now");
         }
 
-        return null;
+        return ResponseEntity.ok(new MessageResponse("Updated sucessfully"));
     }
 
     @Override
@@ -63,7 +65,7 @@ public class ProfileServiceImpl implements IProfileService {
         try {
             profile.setUser(user);
             profileRepository.save(profile);
-            return ResponseEntity.ok("success");
+            return ResponseEntity.ok(new MessageResponse("success"));
         } catch (Exception ex) {
             throw new BadRequestException("Invalid profile request");
         }

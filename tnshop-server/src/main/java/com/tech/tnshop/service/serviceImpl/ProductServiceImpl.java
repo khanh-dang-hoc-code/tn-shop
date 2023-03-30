@@ -3,6 +3,8 @@ package com.tech.tnshop.service.serviceImpl;
 import com.tech.tnshop.dto.mapper.ProductMapper;
 import com.tech.tnshop.dto.request.product.AddNewProductRequest;
 import com.tech.tnshop.dto.request.product.UpdateProductRequest;
+import com.tech.tnshop.dto.response.AbstractResponse;
+import com.tech.tnshop.dto.response.MessageResponse;
 import com.tech.tnshop.entity.Brand;
 import com.tech.tnshop.entity.Cart;
 import com.tech.tnshop.entity.Category;
@@ -33,7 +35,7 @@ public class ProductServiceImpl implements IProductService {
     public ResponseEntity<Object> getAllProducts(int index, int limit) {
         Pageable pageable = PageRequest.of(0, 20);
         Page<Product> products = productRepository.findAll(pageable);
-        return ResponseEntity.ok(products.getContent());
+        return ResponseEntity.ok(new AbstractResponse(products.getContent()));
     }
 
     @Override
@@ -44,7 +46,7 @@ public class ProductServiceImpl implements IProductService {
         product.setBrand(brand);
         product.setCategory(category);
         productRepository.save(product);
-        return ResponseEntity.ok("Add new product successfully");
+        return ResponseEntity.ok(new MessageResponse("Add new product successfully"));
     }
 
     @Override
@@ -63,28 +65,25 @@ public class ProductServiceImpl implements IProductService {
             productUpdate.setPriceSold(request.getPriceSold());
         }
         productRepository.save(productUpdate);
-        return ResponseEntity.ok("Update successfully");
+        return ResponseEntity.ok(new MessageResponse("Update successfully"));
     }
 
     @Override
     public ResponseEntity<Object> deleteProduct(String idDelete) {
-        Product productDelete = findProductById(idDelete);
-        productRepository.delete(productDelete);
-        return ResponseEntity.ok("Delete successfully");
+        productRepository.deleteById(idDelete);
+        return ResponseEntity.ok(new MessageResponse("Delete successfully"));
     }
 
     @Override
     public ResponseEntity<Object> removeListProduct(List<String> idsList) {
-            idsList.forEach(id -> {
-                Product productDelete = findProductById(id);
-                productRepository.delete(productDelete);
-            });
-        return ResponseEntity.ok("Delete successfully");
+        productRepository.deleteAllById(idsList);
+
+        return ResponseEntity.ok(new MessageResponse("Delete successfully"));
     }
 
     @Override
     public ResponseEntity<Object> getProduct(String id) {
-        return ResponseEntity.ok(findProductById(id));
+        return ResponseEntity.ok(new AbstractResponse(findProductById(id)));
     }
 
     @Override
@@ -103,6 +102,18 @@ public class ProductServiceImpl implements IProductService {
         carts.remove(cart);
         product.setCarts(carts);
         productRepository.save(product);
+    }
+
+    @Override
+    public ResponseEntity<Object> getListProductByCategory(String categoryId) {
+        List<Product> list = categoryService.findCategoryById(categoryId).getProductList();
+        return ResponseEntity.ok(new AbstractResponse(list));
+    }
+
+    @Override
+    public ResponseEntity<Object> getListProductByBrand(String brandId) {
+        List<Product> list = brandService.findBrandById(brandId).getProductList();
+        return ResponseEntity.ok(new AbstractResponse(list));
     }
 
     public Product findProductById(String id) {

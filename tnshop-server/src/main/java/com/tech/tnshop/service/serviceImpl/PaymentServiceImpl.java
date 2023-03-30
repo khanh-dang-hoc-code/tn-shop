@@ -5,6 +5,7 @@ import com.stripe.model.PaymentIntent;
 import com.stripe.model.checkout.Session;
 import com.stripe.net.RequestOptions;
 import com.stripe.param.checkout.SessionCreateParams;
+import com.tech.tnshop.dto.response.AbstractResponse;
 import com.tech.tnshop.entity.Order;
 import com.tech.tnshop.entity.OrderItems;
 import com.tech.tnshop.entity.Profile;
@@ -86,9 +87,7 @@ public class PaymentServiceImpl implements IPaymentService {
                 .build();
         try {
             Session session = Session.retrieve(paymentSessionId, requestOptions);
-            String paymentIntentId = session.getPaymentIntent();
-            PaymentIntent paymentIntent = PaymentIntent.retrieve(paymentIntentId,requestOptions);
-            return ResponseEntity.ok(paymentIntent.getStatus());
+            return ResponseEntity.ok(new AbstractResponse(session.getUrl()));
         } catch (StripeException e) {
             throw new RuntimeException(e);
         }

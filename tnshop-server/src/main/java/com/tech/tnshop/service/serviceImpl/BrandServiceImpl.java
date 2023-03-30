@@ -3,6 +3,8 @@ package com.tech.tnshop.service.serviceImpl;
 import com.tech.tnshop.dto.mapper.BrandMapper;
 import com.tech.tnshop.dto.request.brand.AddNewBrandRequest;
 import com.tech.tnshop.dto.request.brand.UpdateBrandRequest;
+import com.tech.tnshop.dto.response.AbstractResponse;
+import com.tech.tnshop.dto.response.MessageResponse;
 import com.tech.tnshop.entity.Brand;
 import com.tech.tnshop.exception.NotFoundException;
 import com.tech.tnshop.helper.StringHelper;
@@ -24,17 +26,17 @@ public class BrandServiceImpl implements IBrandService {
     private final IBrandRepository brandRepository;
 
     @Override
-    public ResponseEntity<Object> getAllBrands(int index, int limit) {
+    public ResponseEntity<Object> getAllBrands(int index, int limit ) {
         Pageable pageable = PageRequest.of(index, limit, Sort.by("createDate").descending());
         Page<Brand> brands = brandRepository.findAll(pageable);
-        return ResponseEntity.ok(brands.getContent());
+        return ResponseEntity.ok(new AbstractResponse(brands.getContent()));
     }
 
     @Override
     public ResponseEntity<Object> addNewBrand(AddNewBrandRequest request) {
         Brand brand = BrandMapper.mapToBrand(request);
         brandRepository.save(brand);
-        return ResponseEntity.ok("Add new brand successfully");
+        return ResponseEntity.ok(new MessageResponse("Add new brand successfully"));
     }
 
     @Override
@@ -47,23 +49,19 @@ public class BrandServiceImpl implements IBrandService {
             brand.setDescription(request.getDescription());
         }
         brandRepository.save(brand);
-        return ResponseEntity.ok("update brand successfully");
+        return ResponseEntity.ok(new MessageResponse("Update brand successfully"));
     }
 
     @Override
     public ResponseEntity<Object> deleteBrand(String idDelete) {
-        Brand brandDelete = findBrandById(idDelete);
-        brandRepository.delete(brandDelete);
-        return ResponseEntity.ok("Delete successfully");
+        brandRepository.deleteById(idDelete);
+        return ResponseEntity.ok(new MessageResponse("Delete successfully"));
     }
 
     @Override
     public ResponseEntity<Object> removeListBrand(List<String> idsList) {
-        idsList.forEach(id -> {
-            Brand brandDelete = findBrandById(id);
-            brandRepository.delete(brandDelete);
-        });
-        return ResponseEntity.ok("Delete successfully");
+        brandRepository.deleteAllById(idsList);
+        return ResponseEntity.ok(new MessageResponse("Delete successfully"));
     }
 
     @Override

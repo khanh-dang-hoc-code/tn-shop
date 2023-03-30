@@ -2,6 +2,7 @@ package com.tech.tnshop.service.serviceImpl;
 
 import com.tech.tnshop.dto.request.orderItems.AddNewOrderItemRequest;
 import com.tech.tnshop.dto.request.orderItems.UpdateOrderItemRequest;
+import com.tech.tnshop.dto.response.MessageResponse;
 import com.tech.tnshop.entity.Order;
 import com.tech.tnshop.entity.OrderItems;
 import com.tech.tnshop.exception.NotFoundException;
@@ -31,12 +32,14 @@ public class OrderItemsServiceImpl implements IOrderItemsService {
 
     @Override
     public ResponseEntity<Object> removeOrderItem(String orderItem) {
-        return null;
+        orderItemsRepository.deleteById(orderItem);
+        return ResponseEntity.ok(new MessageResponse("Delete successfully"));
     }
 
     @Override
     public ResponseEntity<Object> removeAllOrderItemInOrder(List<String> orderIds) {
-        return null;
+        orderItemsRepository.deleteAllById(orderIds);
+        return ResponseEntity.ok(new MessageResponse("Delete successfully"));
     }
 
     @Override

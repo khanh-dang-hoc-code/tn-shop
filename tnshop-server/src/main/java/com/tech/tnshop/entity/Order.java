@@ -26,6 +26,9 @@ public class Order {
     @Column
     private BigDecimal totalAmount;
 
+    @Column
+    private String orderStatus;
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")

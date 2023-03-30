@@ -2,6 +2,7 @@ package com.tech.tnshop.service.serviceImpl;
 
 import com.tech.tnshop.dto.request.post.AddNewPostRequest;
 import com.tech.tnshop.dto.request.post.UpdatePostRequest;
+import com.tech.tnshop.dto.response.MessageResponse;
 import com.tech.tnshop.entity.Post;
 import com.tech.tnshop.exception.NotFoundException;
 import com.tech.tnshop.repository.IPostRepository;
@@ -33,9 +34,8 @@ public class PostServiceImpl implements IPostService {
 
     @Override
     public ResponseEntity<Object> deletePost(String postId) {
-        Post postDelete = getPostById(postId);
-        postRepository.delete(postDelete);
-        return ResponseEntity.ok("Delete post " + postId + " successfully");
+        postRepository.deleteById(postId);
+        return ResponseEntity.ok(new MessageResponse("Delete post " + postId + " successfully"));
     }
 
     @Override

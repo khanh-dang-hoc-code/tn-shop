@@ -3,6 +3,7 @@ package com.tech.tnshop.service;
 import com.tech.tnshop.dto.request.product.AddNewProductRequest;
 import com.tech.tnshop.dto.request.product.UpdateProductRequest;
 import com.tech.tnshop.entity.Cart;
+import com.tech.tnshop.entity.Product;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -18,4 +19,7 @@ public interface IProductService {
     ResponseEntity<Object> getProduct(String id);
     void addCartToProduct (Cart cart, String productId);
     void removeCartToProduct (Cart cart, String productId);
+
+    ResponseEntity<Object> getListProductByCategory(String categoryId);
+    ResponseEntity<Object> getListProductByBrand(String brandId);
 }
