@@ -6,18 +6,21 @@ import { useLoginMutation } from '../../services/authService';
 import { useDispatch } from 'react-redux';
 import { setToken } from '../../store/authSlice';
 import { getItemInStorage, saveItemInStorage } from '../../helper/tokenUtils';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 const Login = () => {
   const dispatch = useDispatch();
-  const [data, isLoading] = useLoginMutation();
+  const [login, isLoading] = useLoginMutation();
 
   useEffect(() => {}, []);
 
-  const login = () => {
-    data({ userName: account.userName, password: account.password })
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    login({ userName: account.userName, password: account.password })
       .then((res) => {
         let token = res?.data?.token;
         saveItemInStorage('accessToken', token);
+        navigate('/');
       })
       .catch((err) => console.log(err));
   };
@@ -90,17 +93,16 @@ const Login = () => {
           <Form.Item
             rootClassName="email-input"
             className="login-input"
-            label="Email Address"
+            label="User name"
             name="email"
             rules={[
               {
                 required: true,
-                message: 'Please input your email!'
+                message: 'Please input your user name!'
               },
               {
-                pattern:
-                  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                message: 'Email is not correct'
+                pattern: /^(\+84|0)(3[2-9]|5[6|8|9]|7[0|6-9]|8[1-5|8|9]|9[0-4|6-9])(\d{7})$/,
+                message: 'User name is not valid'
               }
             ]}>
             <Input />
@@ -129,7 +131,11 @@ const Login = () => {
           </div>
 
           <Form.Item>
-            <Button className="login-form-button" type="primary" htmlType="submit" onClick={login}>
+            <Button
+              className="login-form-button"
+              type="primary"
+              htmlType="submit"
+              onClick={handleLogin}>
               Submit
             </Button>
           </Form.Item>
