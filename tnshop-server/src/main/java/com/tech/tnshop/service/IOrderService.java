@@ -9,6 +9,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/*
+ * @created 01/04/2023 - 05:50
+ * @project tn-shop
+ * @author  ngockhanh
+ */
 @Service
 public interface IOrderService {
     ResponseEntity<Object> createNewOrder(CreateNewOrderRequest request);

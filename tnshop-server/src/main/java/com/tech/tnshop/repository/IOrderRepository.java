@@ -11,6 +11,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
+/*
+ * @created 01/04/2023 - 05:50
+ * @project tn-shop
+ * @author  ngockhanh
+ */
 @Repository
 public interface IOrderRepository extends JpaRepository<Order, String> {
     @Query(value = "SELECT * FROM orders WHERE user_id = :userId LIMIT :limit OFFSET :index",

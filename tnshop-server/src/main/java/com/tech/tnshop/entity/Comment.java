@@ -11,6 +11,11 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDate;
 
+/*
+ * @created 01/04/2023 - 05:50
+ * @project tn-shop
+ * @author  ngockhanh
+ */
 @Data
 @Builder
 @AllArgsConstructor

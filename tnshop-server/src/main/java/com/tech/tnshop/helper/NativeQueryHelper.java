@@ -1,5 +1,10 @@
 package com.tech.tnshop.helper;
 
+/*
+ * @created 01/04/2023 - 05:50
+ * @project tn-shop
+ * @author  ngockhanh
+ */
 public class NativeQueryHelper {
     public static String getAllProduct(int index, int limit ,String brandId, String categoryId, String sortByPrice, String sortByCreateDate) {
         StringBuilder sqlNative = new StringBuilder("SELECT * FROM product WHERE ");
