@@ -1,6 +1,6 @@
 package com.tech.tnshop.service.serviceImpl;
 
-import com.tech.tnshop.dto.request.cart.AddNewCartRequest;
+import com.tech.tnshop.dto.response.MessageResponse;
 import com.tech.tnshop.entity.Cart;
 import com.tech.tnshop.entity.Product;
 import com.tech.tnshop.entity.User;
@@ -35,7 +35,7 @@ public class CartServiceImpl implements ICartService {
         products.add(product);
         productService.addCartToProduct(cart, productId);
         cartRepository.save(cart);
-        return ResponseEntity.ok("Add new product successfully");
+        return ResponseEntity.ok(new MessageResponse("Add new product successfully"));
     }
 
     @Override
@@ -46,12 +46,21 @@ public class CartServiceImpl implements ICartService {
         products.remove(product);
         productService.addCartToProduct(cart, productId);
         cartRepository.save(cart);
-        return ResponseEntity.ok("Remove new product successfully");
+        return ResponseEntity.ok(new MessageResponse("Remove new product successfully"));
     }
 
     @Override
     public ResponseEntity<Object> removeListProductCart(HttpServletRequest request, List<String> productId) {
-        return null;
+        Cart cart = getCartByServletRequest(request);
+        List<Product> cartProductList = cart.getProductListCart();
+        productId.forEach(
+                s -> {
+                    cartProductList.stream()
+                            .filter(product -> product.getId().equalsIgnoreCase(s))
+                            .findFirst().ifPresent(deleteProduct -> productService.deleteProduct(s));
+                }
+        );
+        return ResponseEntity.ok(new MessageResponse("Delete successfully"));
     }
 
     public Cart findCartById(String cartId) {

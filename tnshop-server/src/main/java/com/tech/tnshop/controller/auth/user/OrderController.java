@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/force-auth/user/order")
+@RequestMapping("${user-auth}/order")
 @RequiredArgsConstructor
 public class OrderController {
     private final OrderServiceImpl orderService;

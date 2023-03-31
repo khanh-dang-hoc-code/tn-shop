@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/non-auth/resource")
+@RequestMapping("${no-auth}/resource")
 @RequiredArgsConstructor
 public class ImageController {
 

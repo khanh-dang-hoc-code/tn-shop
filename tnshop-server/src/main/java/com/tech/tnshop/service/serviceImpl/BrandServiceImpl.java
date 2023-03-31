@@ -11,6 +11,7 @@ import com.tech.tnshop.helper.StringHelper;
 import com.tech.tnshop.repository.IBrandRepository;
 import com.tech.tnshop.service.IBrandService;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.query.sql.internal.SQLQueryParser;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -26,7 +27,7 @@ public class BrandServiceImpl implements IBrandService {
     private final IBrandRepository brandRepository;
 
     @Override
-    public ResponseEntity<Object> getAllBrands(int index, int limit ) {
+    public ResponseEntity<Object> getAllBrands(int index, int limit) {
         Pageable pageable = PageRequest.of(index, limit, Sort.by("createDate").descending());
         Page<Brand> brands = brandRepository.findAll(pageable);
         return ResponseEntity.ok(new AbstractResponse(brands.getContent()));

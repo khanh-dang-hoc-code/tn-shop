@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/force-auth/admin/brand")
+@RequestMapping("${admin-auth}/brand")
 @RequiredArgsConstructor
 public class BrandAdminController {
 

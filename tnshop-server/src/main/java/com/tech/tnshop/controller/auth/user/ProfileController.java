@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/force-auth/user/profile")
+@RequestMapping("${user-auth}/profile")
 public class ProfileController {
     @GetMapping
     public ResponseEntity<Object> getUserProfile() {

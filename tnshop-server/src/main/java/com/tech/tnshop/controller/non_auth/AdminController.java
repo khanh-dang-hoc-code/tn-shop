@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/non-auth/admin")
+@RequestMapping("${no-auth}/admin")
 @RequiredArgsConstructor
 public class AdminController {
 

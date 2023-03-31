@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/force-auth/admin/sale-event")
+@RequestMapping("${admin-auth}/sale-event")
 @RequiredArgsConstructor
 public class SaleEventController {
     private final SaleEventServiceImpl saleEventService;

@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service
 public interface IProductService {
-    ResponseEntity<Object> getAllProducts(int index, int limit);
+    ResponseEntity<Object> getAllProducts(int index, int limit ,String brandId, String categoryId, String sortByPrice, String sortByCreateDate);
     ResponseEntity<Object> addNewProduct(AddNewProductRequest request);
     ResponseEntity<Object> updateProduct(UpdateProductRequest request);
     ResponseEntity<Object> deleteProduct(String idDelete);

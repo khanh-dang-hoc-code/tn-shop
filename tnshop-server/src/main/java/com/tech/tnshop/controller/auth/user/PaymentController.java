@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/force-auth/user/payment")
+@RequestMapping("${user-auth}/payment")
 @RequiredArgsConstructor
 public class PaymentController {
 
