@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/non-auth/user/")
+@RequestMapping("${no-auth}/user/")
 public class UserController {
 
     private final UserServiceImpl userService;

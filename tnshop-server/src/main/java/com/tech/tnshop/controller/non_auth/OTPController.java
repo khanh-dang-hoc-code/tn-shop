@@ -15,7 +15,7 @@ import java.net.URLDecoder;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/non-auth/notification")
+@RequestMapping("${no-auth}/notification")
 public class OTPController {
 
     private final OTPService otpService;

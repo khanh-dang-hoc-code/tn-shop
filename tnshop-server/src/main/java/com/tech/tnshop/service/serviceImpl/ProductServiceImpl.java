@@ -32,7 +32,7 @@ public class ProductServiceImpl implements IProductService {
 
 
     @Override
-    public ResponseEntity<Object> getAllProducts(int index, int limit) {
+    public ResponseEntity<Object> getAllProducts(int index, int limit, String brandId, String categoryId, String sortByPrice, String sortByCreateDate) {
         Pageable pageable = PageRequest.of(0, 20);
         Page<Product> products = productRepository.findAll(pageable);
         return ResponseEntity.ok(new AbstractResponse(products.getContent()));

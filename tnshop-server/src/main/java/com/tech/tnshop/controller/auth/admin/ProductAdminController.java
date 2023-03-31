@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/force-auth/admin/product")
+@RequestMapping("${admin-auth}/product")
 @RequiredArgsConstructor
 public class ProductAdminController {
 
