@@ -1,31 +1,35 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Footer from './components/footer/Footer';
 import Header from './components/header/Header';
 
 import './app.scss';
 import FooterNavBar from './components/nav-bar/FooterNavbar';
-import Introduce from './pages/introduce/Introduce';
-import Account from './pages/account/Account';
 import { selectToken } from './store/authSlice';
 import { useSelector } from 'react-redux';
-import { useLoginMutation } from './services/authService';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import Login from './components/login/Login';
 import Register from './components/register/Register';
 import ForgotPassword from './components/forgot-password/ForgotPassword';
 
 const App = () => {
+  const accessToken = useSelector(selectToken);
+  const isLogin = accessToken !== null && accessToken.length !== 0;
+  const history = useHistory();
+
+  console.log(location);
+
   return (
     <div id="container">
       <Header />
       <div className="content">
-        {
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-          </Routes>
-        }
+        <Routes>
+          <Route path="/login" element={!isLogin ? <Login /> : <Navigate to={''} />} />
+          <Route path="/register" element={<Register />} />
+          <Route
+            path="/forgot-password"
+            element={isLogin ? <ForgotPassword /> : <Navigate to={'/login'} />}
+          />
+        </Routes>
       </div>
       <Footer />
       <FooterNavBar />

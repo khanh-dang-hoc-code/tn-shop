@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { getItemInStorage } from '../helper/tokenUtils';
 
 const initialState = {
-  token: ''
+  token: getItemInStorage('accessToken') || ''
 };
 
 export const authSlice = createSlice({
