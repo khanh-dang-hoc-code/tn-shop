@@ -36,18 +36,18 @@ public class Brand {
     @Column
     private String description;
 
-    @Column
     @CreationTimestamp
-    private LocalDate createDate;
+    @Column
+    private LocalDate createdAt;
 
     @Column
     @UpdateTimestamp
-    private LocalDate updateDate;
+    private LocalDate updatedAt;
 
 
     @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Product> productList;
 
-    @OneToMany(mappedBy = "brandImage", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "imageUrl", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<BrandImage> brandImageList;
 }

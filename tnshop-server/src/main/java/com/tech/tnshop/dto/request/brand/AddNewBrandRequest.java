@@ -2,9 +2,13 @@ package com.tech.tnshop.dto.request.brand;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.tech.tnshop.dto.request.Image;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
+import java.util.Map;
 
 /*
  * @created 01/04/2023 - 05:50
@@ -22,5 +26,8 @@ public class AddNewBrandRequest{
 
     @JsonProperty
     private String description;
+
+    @JsonProperty
+    private List<Image> imageList;
 
 }

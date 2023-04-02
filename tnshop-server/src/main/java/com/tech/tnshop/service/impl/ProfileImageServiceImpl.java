@@ -1,7 +1,7 @@
-package com.tech.tnshop.service.serviceImpl;
+package com.tech.tnshop.service.impl;
 
 import com.tech.tnshop.dto.request.AddNewImageRequest;
-import com.tech.tnshop.entity.ProductImage;
+import com.tech.tnshop.entity.Profile;
 import com.tech.tnshop.entity.ProfileImage;
 import com.tech.tnshop.repository.IProfileImageRepository;
 import com.tech.tnshop.service.IProfileImageService;
@@ -22,9 +22,10 @@ public class ProfileImageServiceImpl implements IProfileImageService {
     private final IProfileImageRepository repository;
 
     @Override
-    public void saveImageToBrand(AddNewImageRequest request) {
+    public void saveImageToBrand(Profile profile, AddNewImageRequest request) {
         ProfileImage profileImage = ProfileImage.builder()
                 .url(request.getUrl())
+                .imageUrl(profile)
                 .imageName(request.getName())
                 .build();
 
@@ -38,6 +39,6 @@ public class ProfileImageServiceImpl implements IProfileImageService {
 
     @Override
     public List<ProfileImage> getImages(String parentId) {
-        return repository.getAllByProfileImage(parentId);
+        return repository.getAllByProfileId(parentId);
     }
 }

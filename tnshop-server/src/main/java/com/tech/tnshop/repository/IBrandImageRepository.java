@@ -2,10 +2,11 @@ package com.tech.tnshop.repository;
 
 import com.tech.tnshop.entity.BrandImage;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 /*
  * @created 02/04/2023 - 20:11
@@ -15,5 +16,6 @@ import java.util.Optional;
 @Repository
 public interface IBrandImageRepository extends JpaRepository<BrandImage, String> {
     void deleteByImageName(String imageName);
-    List<BrandImage> getAllByBrandImage(String brandId);
+    @Query(value = "SELECT * FROM shop_service.brand_image WHERE brand_id = :brandId", nativeQuery = true)
+    List<BrandImage> getAllByBrandId(@Param("brandId") String brandId);
 }

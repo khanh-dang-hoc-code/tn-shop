@@ -5,8 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /*
@@ -30,6 +33,14 @@ public class Post {
     @Column(columnDefinition = "TEXT")
     private String content;
 
+    @CreationTimestamp
+    @Column
+    private LocalDate createdAt;
+
+    @Column
+    @UpdateTimestamp
+    private LocalDate updatedAt;
+
     @OneToMany(mappedBy = "postComment", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> postCommentList;
 
@@ -37,6 +48,6 @@ public class Post {
     @JoinColumn(name = "user_id")
     private User postUser;
 
-    @OneToMany(mappedBy = "postImage", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "imageUrl", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PostImage> postImageList;
 }

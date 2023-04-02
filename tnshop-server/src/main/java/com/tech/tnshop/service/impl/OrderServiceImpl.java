@@ -1,4 +1,4 @@
-package com.tech.tnshop.service.serviceImpl;
+package com.tech.tnshop.service.impl;
 
 import com.tech.tnshop.dto.mapper.OrderMapper;
 import com.tech.tnshop.dto.request.order.AddNewOrderRequest;
@@ -62,13 +62,12 @@ public class OrderServiceImpl implements IOrderService {
 
     @Override
     public void updateOrderStatus(String orderId, String orderStatus, HttpServletRequest request) {
-        String userId = authenticateService.getUserIdFromToken(request);
-        Order orderUpdate = getOrderById(orderId, userId);
+        Order orderUpdate = getOrderById(orderId);
         orderUpdate.setOrderStatus(orderStatus);
         orderRepository.save(orderUpdate);
     }
 
-    public Order getOrderById(String orderId, String userId) {
+    public Order getOrderById(String orderId) {
         return orderRepository.findById(orderId)
                 .orElseThrow(() -> new NotFoundException("Can not find order " + orderId));
     }

@@ -36,13 +36,13 @@ public class SaleEvent {
     @Column
     private LocalDate endDate;
 
-    @Column
     @CreationTimestamp
-    private LocalDate createDate;
+    @Column
+    private LocalDate createdAt;
 
     @Column
     @UpdateTimestamp
-    private LocalDate updateDate;
+    private LocalDate updatedAt;
 
     @OneToMany(mappedBy = "saleEventProduct", cascade = CascadeType.DETACH)
     private List<Product> listProductSaleEvent;

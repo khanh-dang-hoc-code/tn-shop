@@ -1,7 +1,7 @@
 package com.tech.tnshop.controller.auth.user;
 
 import com.tech.tnshop.dto.request.ProfileRequest;
-import com.tech.tnshop.service.serviceImpl.ProfileServiceImpl;
+import com.tech.tnshop.service.impl.ProfileServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

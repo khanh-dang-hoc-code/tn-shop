@@ -17,4 +17,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SaleEventResponse {
+    private String startDate;
 }

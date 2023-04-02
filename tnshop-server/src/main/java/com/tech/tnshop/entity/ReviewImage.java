@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDate;
 
@@ -35,11 +36,15 @@ public class ReviewImage {
     @Column
     private String imageName;
 
-    @Column
     @CreationTimestamp
-    private LocalDate createDate;
+    @Column
+    private LocalDate createdAt;
+
+    @Column
+    @UpdateTimestamp
+    private LocalDate updatedAt;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "review_id")
-    private Review reviewImage;
+    private Review imageUrl;
 }

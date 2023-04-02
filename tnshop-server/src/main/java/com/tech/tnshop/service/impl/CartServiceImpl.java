@@ -1,4 +1,4 @@
-package com.tech.tnshop.service.serviceImpl;
+package com.tech.tnshop.service.impl;
 
 import com.tech.tnshop.dto.request.orderItems.AddNewOrderItemRequest;
 import com.tech.tnshop.entity.Cart;

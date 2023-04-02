@@ -1,7 +1,7 @@
 package com.tech.tnshop.controller.non_auth;
 
 import com.tech.tnshop.dto.response.AbstractResponse;
-import com.tech.tnshop.service.serviceImpl.ProductServiceImpl;
+import com.tech.tnshop.service.impl.ProductServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

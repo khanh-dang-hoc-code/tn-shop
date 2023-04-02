@@ -2,6 +2,8 @@ package com.tech.tnshop.repository;
 
 import com.tech.tnshop.entity.ProfileImage;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,5 +18,6 @@ public interface IProfileImageRepository extends JpaRepository<ProfileImage, Str
 
     void deleteByImageName(String imageName);
 
-    List<ProfileImage> getAllByProfileImage(String profileImageId);
+    @Query(value = "SELECT * FROM shop_service.profile_image WHERE profile_id = :profileId", nativeQuery = true)
+    List<ProfileImage> getAllByProfileId(@Param("profileId") String profileId);
 }

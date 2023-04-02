@@ -1,5 +1,6 @@
 package com.tech.tnshop.service;
 
+import com.tech.tnshop.entity.Profile;
 import com.tech.tnshop.entity.ProfileImage;
 import com.tech.tnshop.repository.IImageService;
 import org.springframework.stereotype.Service;
@@ -10,5 +11,5 @@ import org.springframework.stereotype.Service;
  * @author  ngockhanh
  */
 @Service
-public interface IProfileImageService extends IImageService<ProfileImage> {
+public interface IProfileImageService extends IImageService<ProfileImage, Profile> {
 }

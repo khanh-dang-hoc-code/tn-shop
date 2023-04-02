@@ -2,7 +2,6 @@ package com.tech.tnshop.dto.mapper;
 
 import com.tech.tnshop.dto.request.brand.AddNewBrandRequest;
 import com.tech.tnshop.entity.Brand;
-import com.tech.tnshop.dto.request.BrandRequest;
 import com.tech.tnshop.dto.response.BrandResponse;
 
 /*
@@ -11,6 +10,11 @@ import com.tech.tnshop.dto.response.BrandResponse;
  * @author  ngockhanh
  */
 public class BrandMapper {
+
+    private BrandMapper(){
+
+    }
+
     public static Brand mapToBrand(AddNewBrandRequest request) {
         return Brand.builder()
                 .name(request.getName())
@@ -23,7 +27,7 @@ public class BrandMapper {
                 .id(brand.getId())
                 .name(brand.getName())
                 .description(brand.getDescription())
-                .createDate(brand.getCreateDate())
+                .createDate(brand.getCreatedAt())
                 .build();
     }
 }

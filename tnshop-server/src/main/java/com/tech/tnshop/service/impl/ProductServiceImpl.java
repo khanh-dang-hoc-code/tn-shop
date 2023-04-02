@@ -1,4 +1,4 @@
-package com.tech.tnshop.service.serviceImpl;
+package com.tech.tnshop.service.impl;
 
 import com.tech.tnshop.dto.mapper.ProductMapper;
 import com.tech.tnshop.dto.request.product.AddNewProductRequest;
@@ -6,7 +6,6 @@ import com.tech.tnshop.dto.request.product.UpdateProductRequest;
 import com.tech.tnshop.dto.response.AbstractResponse;
 import com.tech.tnshop.dto.response.MessageResponse;
 import com.tech.tnshop.entity.Brand;
-import com.tech.tnshop.entity.Cart;
 import com.tech.tnshop.entity.Category;
 import com.tech.tnshop.entity.Product;
 import com.tech.tnshop.exception.NotFoundException;

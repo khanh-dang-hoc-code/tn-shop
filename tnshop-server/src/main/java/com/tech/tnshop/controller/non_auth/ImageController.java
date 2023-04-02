@@ -1,6 +1,6 @@
 package com.tech.tnshop.controller.non_auth;
 
-import com.tech.tnshop.service.serviceImpl.ImageServiceImpl;
+import com.tech.tnshop.service.impl.ImageServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,9 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
-import java.util.List;
 
 /*
  * @created 01/04/2023 - 05:50
@@ -26,7 +23,7 @@ public class ImageController {
 
 
     @PostMapping("/upload-image")
-    public ResponseEntity<Object> uploadImage(@RequestParam("file") MultipartFile file) throws IOException {
+    public ResponseEntity<Object> uploadImage(@RequestParam("file") MultipartFile file) {
         return imageService.uploadImages(file);
     }
 }

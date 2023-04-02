@@ -17,4 +17,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ReviewResponse {
+
+    private String content;
 }

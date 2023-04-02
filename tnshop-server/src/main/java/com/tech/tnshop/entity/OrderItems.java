@@ -11,8 +11,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDate;
 
-import java.util.List;
-
 /*
  * @created 01/04/2023 - 05:50
  * @project tn-shop
@@ -34,13 +32,13 @@ public class OrderItems {
     @Column
     private Integer quantity;
 
-    @Column
     @CreationTimestamp
-    private LocalDate createDate;
+    @Column
+    private LocalDate createdAt;
 
     @Column
     @UpdateTimestamp
-    private LocalDate updateDate;
+    private LocalDate updatedAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")

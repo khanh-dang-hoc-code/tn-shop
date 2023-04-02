@@ -32,12 +32,13 @@ public class Comment {
     @Column
     private String content;
 
-    @Column
     @CreationTimestamp
-    private LocalDate createDate;
+    @Column
+    private LocalDate createdAt;
+
     @Column
     @UpdateTimestamp
-    private LocalDate updateDate;
+    private LocalDate updatedAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
@@ -47,6 +48,6 @@ public class Comment {
     @JoinColumn(name = "post_id")
     private Post postComment;
 
-    @OneToMany(mappedBy = "commentImage", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "imageUrl", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CommentImage> commentImageList;
 }

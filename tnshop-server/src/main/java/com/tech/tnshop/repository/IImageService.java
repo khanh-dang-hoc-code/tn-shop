@@ -12,8 +12,8 @@ import java.util.List;
  * @author  ngockhanh
  */
 @Service
-public interface IImageService<T> {
-    void saveImageToBrand(AddNewImageRequest request);
+public interface IImageService<T, E> {
+    void saveImageToBrand(E t, AddNewImageRequest request);
     void deleteImage(String imageName);
     List<T> getImages(String parentId);
 }

@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -44,9 +45,14 @@ public class User implements UserDetails {
     private String userName;
     @Column
     private String password;
-    @Column(updatable = false)
+
     @CreationTimestamp
-    private LocalDate createdDate;
+    @Column
+    private LocalDate createdAt;
+
+    @Column
+    @UpdateTimestamp
+    private LocalDate updatedAt;
 
     @Column(length = 10)
     private String status;
@@ -55,26 +61,26 @@ public class User implements UserDetails {
     private String role;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Profile profile;
+    private transient Profile profile;
 
 
     @OneToOne(mappedBy = "cartUser", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Cart cartUser;
+    private transient Cart cartUser;
 
     @OneToMany(mappedBy = "userComment",cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Comment> commentList;
+    private transient List<Comment> commentList;
 
     @OneToMany(mappedBy = "postUser", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Post> userPostList;
+    private transient List<Post> userPostList;
 
     @OneToOne(mappedBy = "userReview", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Review review;
+    private transient Review review;
 
     @OneToMany(mappedBy = "userOrder", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Order> userOrderList;
+    private transient List<Order> userOrderList;
 
     @OneToMany(mappedBy = "userReceiveLocation", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ReceiveLocation> userReceiveLocationList;
+    private transient List<ReceiveLocation> userReceiveLocationList;
 
 
     @Override

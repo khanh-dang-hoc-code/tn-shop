@@ -4,7 +4,7 @@ import com.tech.tnshop.dto.request.brand.AddNewBrandRequest;
 import com.tech.tnshop.dto.request.brand.UpdateBrandRequest;
 import com.tech.tnshop.dto.request.product.RemoveListProductRequest;
 import com.tech.tnshop.helper.ShopHelper;
-import com.tech.tnshop.service.serviceImpl.BrandServiceImpl;
+import com.tech.tnshop.service.impl.BrandServiceImpl;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

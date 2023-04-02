@@ -1,19 +1,15 @@
 package com.tech.tnshop.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 /*
- * @created 01/04/2023 - 05:50
+ * @created 03/04/2023 - 04:46
  * @project tn-shop
  * @author  ngockhanh
  */
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ProductRequest {
-    private String name;
+public class AddNewReceiveLocationRequest {
+    private String address;
 }

@@ -1,7 +1,6 @@
-package com.tech.tnshop.service.serviceImpl;
+package com.tech.tnshop.service.impl;
 
 import com.stripe.exception.StripeException;
-import com.stripe.model.PaymentIntent;
 import com.stripe.model.checkout.Session;
 import com.stripe.net.RequestOptions;
 import com.stripe.param.checkout.SessionCreateParams;
@@ -19,10 +18,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /*
  * @created 01/04/2023 - 05:50
@@ -94,7 +93,7 @@ public class PaymentServiceImpl implements IPaymentService {
             Session session = Session.retrieve(paymentSessionId, requestOptions);
             return ResponseEntity.ok(new AbstractResponse(session.getUrl()));
         } catch (StripeException e) {
-            throw new RuntimeException(e);
+            throw new InternalServerException(e.getMessage());
         }
     }
 
@@ -102,6 +101,30 @@ public class PaymentServiceImpl implements IPaymentService {
     public ResponseEntity<Object> refund(String orderId) {
 
         return null;
+    }
+
+    @Override
+    public ResponseEntity<Object> getAllPaymentInDay(HttpServletRequest request) {
+        LocalDate today = LocalDate.now();
+        return ResponseEntity.ok(new AbstractResponse(paymentRepository.findAllByCreatedAtAfter(today)));
+    }
+
+    @Override
+    public ResponseEntity<Object> getAllPaymentInWeek(HttpServletRequest request) {
+        LocalDate thisWeek = LocalDate.now().minusWeeks(1);
+        return ResponseEntity.ok(new AbstractResponse(paymentRepository.findAllByCreatedAtAfter(thisWeek)));
+    }
+
+    @Override
+    public ResponseEntity<Object> getAllPaymentInMonth(HttpServletRequest request) {
+        LocalDate thisMonth = LocalDate.now().minusMonths(1);
+        return ResponseEntity.ok(new AbstractResponse(paymentRepository.findAllByCreatedAtAfter(thisMonth)));
+    }
+
+    @Override
+    public ResponseEntity<Object> getAllPaymentInYear(HttpServletRequest request) {
+        LocalDate thisYear = LocalDate.now().minusYears(1);
+        return ResponseEntity.ok(new AbstractResponse(paymentRepository.findAllByCreatedAtAfter(thisYear)));
     }
 
     private List<SessionCreateParams.LineItem> createListLineItem(Order order) {
@@ -118,6 +141,6 @@ public class PaymentServiceImpl implements IPaymentService {
                             )
                             .build())
                     .build()
-        ).collect(Collectors.toList());
+        ).toList();
     }
 }

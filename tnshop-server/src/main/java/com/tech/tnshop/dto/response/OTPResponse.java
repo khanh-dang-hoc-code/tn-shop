@@ -17,4 +17,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class OTPResponse {
+    private String otpCode;
 }
