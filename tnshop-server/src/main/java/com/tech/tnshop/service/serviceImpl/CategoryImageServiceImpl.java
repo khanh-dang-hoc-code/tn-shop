@@ -2,6 +2,7 @@ package com.tech.tnshop.service.serviceImpl;
 
 import com.tech.tnshop.dto.request.AddNewImageRequest;
 import com.tech.tnshop.entity.BrandImage;
+import com.tech.tnshop.entity.Category;
 import com.tech.tnshop.entity.CategoryImage;
 import com.tech.tnshop.repository.ICategoryImageRepository;
 import com.tech.tnshop.service.ICategoryImageService;
@@ -21,10 +22,11 @@ public class CategoryImageServiceImpl implements ICategoryImageService {
 
     private final ICategoryImageRepository repository;
     @Override
-    public void saveImageToBrand(AddNewImageRequest request) {
+    public void saveImageToBrand(Category category, AddNewImageRequest request) {
         CategoryImage categoryImage = CategoryImage.builder()
                 .url(request.getUrl())
                 .imageName(request.getName())
+                .categoryImage(category)
                 .build();
 
         repository.save(categoryImage);

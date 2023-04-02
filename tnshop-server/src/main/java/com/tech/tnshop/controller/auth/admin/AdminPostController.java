@@ -47,8 +47,8 @@ public class AdminPostController {
         return postService.deletePost(postId);
     }
 
-    @DeleteMapping("/delete")
-    public ResponseEntity<Object> deletePost(@RequestBody RemoveListPostRequest request) {
+    @DeleteMapping("/delete-list")
+    public ResponseEntity<Object> deleteListPost(@RequestBody RemoveListPostRequest request) {
         return postService.deleteListPost(request.getIds());
     }
 }

@@ -1,6 +1,7 @@
 package com.tech.tnshop.service.serviceImpl;
 
 import com.tech.tnshop.dto.mapper.CommentMapper;
+import com.tech.tnshop.dto.request.AddNewImageRequest;
 import com.tech.tnshop.dto.request.comment.AddNewCommentRequest;
 import com.tech.tnshop.dto.request.comment.UpdateCommentRequest;
 import com.tech.tnshop.dto.response.AbstractResponse;
@@ -33,6 +34,8 @@ public class CommentServiceImpl implements ICommentService {
     private final AuthenticateService authenticateService;
     private final PostServiceImpl postService;
 
+    private final CommentImageServiceImpl commentImageService;
+
     @Override
     public ResponseEntity<Object> getAllComment(String postId,int index, int limit) {
         Pageable pageable = PageRequest.of(index, limit, Sort.by("createDate").descending());
@@ -48,6 +51,9 @@ public class CommentServiceImpl implements ICommentService {
         comment.setPostComment(post);
         comment.setUserComment(user);
         commentRepository.save(comment);
+        request.getImageList().forEach(s -> {
+            commentImageService.saveImageToBrand(comment, new AddNewImageRequest("", s.getName(), s.getUrl()));
+        });
         return ResponseEntity.ok(new AbstractResponse(comment));
     }
 

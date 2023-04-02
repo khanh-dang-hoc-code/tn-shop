@@ -1,5 +1,6 @@
 package com.tech.tnshop.service.serviceImpl;
 
+import com.tech.tnshop.dto.request.AddNewImageRequest;
 import com.tech.tnshop.dto.response.AbstractResponse;
 import com.tech.tnshop.dto.response.MessageResponse;
 import com.tech.tnshop.entity.Profile;
@@ -31,6 +32,8 @@ public class ProfileServiceImpl implements IProfileService {
     private final AuthenticateService authenticateService;
     private final IProfileRepository profileRepository;
 
+    private final ProfileImageServiceImpl profileImageService;
+
     @Override
     public ResponseEntity<Object> getProfileInformation(HttpServletRequest request) {
         String userId = authenticateService.getUserIdFromToken(request);
@@ -57,6 +60,9 @@ public class ProfileServiceImpl implements IProfileService {
                     }
                 }
             profileRepository.save(currentProfile);
+            profileRequest.getImageList().forEach(s -> {
+                profileImageService.saveImageToBrand(profileUpdate, new AddNewImageRequest("", s.getName(), s.getUrl()));
+            });
 
         } catch (Exception e) {
             throw new InternalServerException("Can not query for now");

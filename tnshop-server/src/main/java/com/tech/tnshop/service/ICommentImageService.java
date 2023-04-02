@@ -1,5 +1,6 @@
 package com.tech.tnshop.service;
 
+import com.tech.tnshop.entity.Comment;
 import com.tech.tnshop.entity.CommentImage;
 import com.tech.tnshop.repository.IImageService;
 import org.springframework.stereotype.Service;
@@ -10,5 +11,5 @@ import org.springframework.stereotype.Service;
  * @author  ngockhanh
  */
 @Service
-public interface ICommentImageService extends IImageService<CommentImage> {
+public interface ICommentImageService extends IImageService<CommentImage, Comment> {
 }

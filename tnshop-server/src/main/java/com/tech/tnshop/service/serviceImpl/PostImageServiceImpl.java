@@ -1,6 +1,7 @@
 package com.tech.tnshop.service.serviceImpl;
 
 import com.tech.tnshop.dto.request.AddNewImageRequest;
+import com.tech.tnshop.entity.Post;
 import com.tech.tnshop.entity.PostImage;
 import com.tech.tnshop.repository.IPostImageRepository;
 import com.tech.tnshop.service.IPostImageService;
@@ -21,9 +22,10 @@ public class PostImageServiceImpl implements IPostImageService {
     private final IPostImageRepository repository;
 
     @Override
-    public void saveImageToBrand(AddNewImageRequest request) {
+    public void saveImageToBrand(Post post, AddNewImageRequest request) {
         PostImage postImage = PostImage.builder()
                 .url(request.getUrl())
+                .postImage(post)
                 .imageName(request.getName())
                 .build();
 

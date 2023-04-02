@@ -1,5 +1,6 @@
 package com.tech.tnshop.service;
 
+import com.tech.tnshop.entity.Brand;
 import com.tech.tnshop.entity.BrandImage;
 import com.tech.tnshop.repository.IImageService;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,6 @@ import org.springframework.stereotype.Service;
  * @author  ngockhanh
  */
 @Service
-public interface IBrandImageService extends IImageService<BrandImage> {
+public interface IBrandImageService extends IImageService<BrandImage, Brand> {
 
 }

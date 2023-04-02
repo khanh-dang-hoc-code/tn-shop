@@ -1,6 +1,7 @@
 package com.tech.tnshop.service.serviceImpl;
 
 import com.tech.tnshop.dto.request.AddNewImageRequest;
+import com.tech.tnshop.entity.Product;
 import com.tech.tnshop.entity.ProductImage;
 import com.tech.tnshop.repository.IProductImageRepository;
 import com.tech.tnshop.service.IProductImageService;
@@ -22,10 +23,11 @@ public class ProductImageServiceImpl implements IProductImageService {
 
 
     @Override
-    public void saveImageToBrand(AddNewImageRequest request) {
+    public void saveImageToBrand(Product product, AddNewImageRequest request) {
         ProductImage productImage = ProductImage.builder()
                 .imageName(request.getName())
                 .url(request.getUrl())
+                .productImage(product)
                 .build();
 
         repository.save(productImage);

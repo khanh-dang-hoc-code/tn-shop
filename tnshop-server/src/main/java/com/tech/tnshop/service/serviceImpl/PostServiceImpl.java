@@ -1,6 +1,7 @@
 package com.tech.tnshop.service.serviceImpl;
 
 import com.tech.tnshop.dto.mapper.PostMapper;
+import com.tech.tnshop.dto.request.AddNewImageRequest;
 import com.tech.tnshop.dto.request.post.AddNewPostRequest;
 import com.tech.tnshop.dto.request.post.UpdatePostRequest;
 import com.tech.tnshop.dto.response.AbstractResponse;
@@ -27,6 +28,8 @@ public class PostServiceImpl implements IPostService {
 
     private final IPostRepository postRepository;
 
+    private final PostImageServiceImpl postImageService;
+
     public Post findPostById(String id) {
         return postRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Can not find the post " + id));
@@ -41,6 +44,9 @@ public class PostServiceImpl implements IPostService {
     public ResponseEntity<Object> createNewPost(HttpServletRequest servletRequest, AddNewPostRequest request) {
         Post post = PostMapper.mapToPostEntity(request);
         postRepository.save(post);
+        request.getImageList().forEach(s -> {
+            postImageService.saveImageToBrand(post, new AddNewImageRequest("", s.getName(), s.getUrl()));
+        });
         return ResponseEntity.ok(new AbstractResponse(post));
     }
 
