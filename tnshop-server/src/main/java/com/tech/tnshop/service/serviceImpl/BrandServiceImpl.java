@@ -21,6 +21,11 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/*
+ * @created 01/04/2023 - 05:50
+ * @project tn-shop
+ * @author  ngockhanh
+ */
 @Component
 @RequiredArgsConstructor
 public class BrandServiceImpl implements IBrandService {
@@ -37,7 +42,7 @@ public class BrandServiceImpl implements IBrandService {
     public ResponseEntity<Object> addNewBrand(AddNewBrandRequest request) {
         Brand brand = BrandMapper.mapToBrand(request);
         brandRepository.save(brand);
-        return ResponseEntity.ok(new MessageResponse("Add new brand successfully"));
+        return ResponseEntity.ok(new AbstractResponse(brand));
     }
 
     @Override

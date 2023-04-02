@@ -11,6 +11,11 @@ import org.hibernate.annotations.GenericGenerator;
 import java.time.LocalDate;
 import java.util.List;
 
+/*
+ * @created 01/04/2023 - 05:50
+ * @project tn-shop
+ * @author  ngockhanh
+ */
 @Data
 @Builder
 @AllArgsConstructor
@@ -32,6 +37,6 @@ public class Cart {
     @JoinColumn(name = "user_id")
     private User cartUser;
 
-    @ManyToMany(mappedBy = "carts", cascade = CascadeType.DETACH)
-    private List<Product> productListCart;
+    @OneToMany(mappedBy = "cartOrderItem", cascade = CascadeType.ALL)
+    private List<OrderItems> orderItemsListCart;
 }

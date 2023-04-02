@@ -11,6 +11,11 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.LocalDate;
 import java.util.List;
 
+/*
+ * @created 01/04/2023 - 05:50
+ * @project tn-shop
+ * @author  ngockhanh
+ */
 @Table(name = "sale_event")
 @Entity
 @Data

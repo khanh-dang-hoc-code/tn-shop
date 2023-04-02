@@ -1,6 +1,7 @@
 package com.tech.tnshop.service.serviceImpl;
 
-import com.tech.tnshop.dto.request.order.CreateNewOrderRequest;
+import com.tech.tnshop.dto.mapper.OrderMapper;
+import com.tech.tnshop.dto.request.order.AddNewOrderRequest;
 import com.tech.tnshop.dto.request.order.UpdateOrderRequest;
 import com.tech.tnshop.dto.response.AbstractResponse;
 import com.tech.tnshop.dto.response.MessageResponse;
@@ -16,6 +17,11 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/*
+ * @created 01/04/2023 - 05:50
+ * @project tn-shop
+ * @author  ngockhanh
+ */
 @Component
 @RequiredArgsConstructor
 public class OrderServiceImpl implements IOrderService {
@@ -24,8 +30,10 @@ public class OrderServiceImpl implements IOrderService {
     private final AuthenticateService authenticateService;
 
     @Override
-    public ResponseEntity<Object> createNewOrder(CreateNewOrderRequest request) {
-        return null;
+    public ResponseEntity<Object> createNewOrder(AddNewOrderRequest request) {
+        Order order = OrderMapper.mapToOrderEntity(request);
+        orderRepository.save(order);
+        return ResponseEntity.ok(new AbstractResponse(order));
     }
 
     @Override
@@ -42,10 +50,8 @@ public class OrderServiceImpl implements IOrderService {
 
     @Override
     public ResponseEntity<Object> removeOrder(HttpServletRequest servletRequest, String orderId) {
-        String userId = authenticateService.getUserIdFromToken(servletRequest);
-        Order orderUpdate = getOrderById(orderId, userId);
-        orderRepository.delete(orderUpdate);
-        return ResponseEntity.ok(new MessageResponse("Delete success"));
+        orderRepository.deleteById(orderId);
+        return ResponseEntity.ok(new MessageResponse("Delete order " + orderId + " successfully"));
     }
 
     @Override
@@ -63,7 +69,7 @@ public class OrderServiceImpl implements IOrderService {
     }
 
     public Order getOrderById(String orderId, String userId) {
-        return orderRepository.findById(userId, orderId)
+        return orderRepository.findById(orderId)
                 .orElseThrow(() -> new NotFoundException("Can not find order " + orderId));
     }
 }

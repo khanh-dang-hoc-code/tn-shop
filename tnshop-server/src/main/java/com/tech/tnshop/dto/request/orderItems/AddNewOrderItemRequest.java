@@ -6,18 +6,25 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/*
+ * @created 01/04/2023 - 05:50
+ * @project tn-shop
+ * @author  ngockhanh
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AddNewOrderItemRequest {
 
-    @JsonProperty("orderId")
+    @JsonProperty
     private String orderId;
 
-    @JsonProperty("productId")
+    private String cartId;
+
+    @JsonProperty
     private String productId;
     
-    @JsonProperty("quantity")
+    @JsonProperty
     private int quantity;
 }

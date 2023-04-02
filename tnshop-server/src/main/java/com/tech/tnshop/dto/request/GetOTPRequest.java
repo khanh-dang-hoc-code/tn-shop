@@ -7,12 +7,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/*
+ * @created 01/04/2023 - 05:50
+ * @project tn-shop
+ * @author  ngockhanh
+ */
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 public class GetOTPRequest {
-    @JsonProperty("phoneNumber")
+    @JsonProperty
     @NotNull
     private String phoneNumber;
 }

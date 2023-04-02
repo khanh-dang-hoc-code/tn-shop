@@ -7,6 +7,11 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
+/*
+ * @created 01/04/2023 - 05:50
+ * @project tn-shop
+ * @author  ngockhanh
+ */
 public interface IBrandService {
 
     ResponseEntity<Object> getAllBrands(int index, int limit);

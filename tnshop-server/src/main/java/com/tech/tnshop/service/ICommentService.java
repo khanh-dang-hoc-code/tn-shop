@@ -6,6 +6,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+/*
+ * @created 01/04/2023 - 05:50
+ * @project tn-shop
+ * @author  ngockhanh
+ */
 @Service
 public interface ICommentService {
     ResponseEntity<Object> getAllComment(String postId, int index, int limit);

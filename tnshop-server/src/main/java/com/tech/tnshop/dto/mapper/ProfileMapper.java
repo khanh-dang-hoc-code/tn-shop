@@ -5,6 +5,11 @@ import com.tech.tnshop.dto.request.ProfileRequest;
 import com.tech.tnshop.dto.request.RegisterRequest;
 import com.tech.tnshop.dto.response.ProfileResponse;
 
+/*
+ * @created 01/04/2023 - 05:50
+ * @project tn-shop
+ * @author  ngockhanh
+ */
 public class ProfileMapper {
     public static Profile mapToProfileEntity(ProfileRequest profileRequest) {
         return Profile.builder()

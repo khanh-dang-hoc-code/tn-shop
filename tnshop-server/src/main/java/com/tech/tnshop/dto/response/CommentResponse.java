@@ -1,20 +1,20 @@
-package com.tech.tnshop.dto.request.category;
+package com.tech.tnshop.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
-
+/*
+ * @created 02/04/2023 - 18:03
+ * @project tn-shop
+ * @author  ngockhanh
+ */
+@Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class RemoveCategoryRequest {
-
-    @JsonProperty("ids")
-    private List<String> categoriesId;
+public class CommentResponse {
 }

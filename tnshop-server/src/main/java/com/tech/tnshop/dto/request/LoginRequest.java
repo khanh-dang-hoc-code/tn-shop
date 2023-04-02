@@ -8,6 +8,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/*
+ * @created 01/04/2023 - 05:50
+ * @project tn-shop
+ * @author  ngockhanh
+ */
 @Builder
 @Data
 @NoArgsConstructor
@@ -17,9 +22,9 @@ public class LoginRequest {
 
 
     @NotNull(message = "User name can not be null")
-    @JsonProperty("userName")
+    @JsonProperty
     private String userName;
     @NotNull(message = "Password can not be null")
-    @JsonProperty("password")
+    @JsonProperty
     private String password;
 }

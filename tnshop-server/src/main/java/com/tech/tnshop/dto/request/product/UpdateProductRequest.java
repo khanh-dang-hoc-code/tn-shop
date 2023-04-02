@@ -9,6 +9,11 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
+/*
+ * @created 01/04/2023 - 05:50
+ * @project tn-shop
+ * @author  ngockhanh
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,22 +21,22 @@ import java.math.BigDecimal;
 public class UpdateProductRequest {
 
     @NotNull
-    @JsonProperty("id")
+    @JsonProperty
     private String id;
 
-    @JsonProperty("name")
+    @JsonProperty
     private String name;
 
-    @JsonProperty("description")
+    @JsonProperty
     private String description;
 
-    @JsonProperty("quantity")
+    @JsonProperty
     private int quantity;
 
 
-    @JsonProperty("price")
+    @JsonProperty
     private BigDecimal price;
 
-    @JsonProperty("priceSold")
+    @JsonProperty
     private BigDecimal priceSold;
 }

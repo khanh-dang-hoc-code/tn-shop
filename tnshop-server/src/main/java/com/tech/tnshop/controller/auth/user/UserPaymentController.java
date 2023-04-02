@@ -7,10 +7,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/*
+ * @created 01/04/2023 - 05:50
+ * @project tn-shop
+ * @author  ngockhanh
+ */
 @RestController
 @RequestMapping("${user-auth}/payment")
 @RequiredArgsConstructor
-public class PaymentController {
+public class UserPaymentController {
 
     private final PaymentServiceImpl paymentService;
 

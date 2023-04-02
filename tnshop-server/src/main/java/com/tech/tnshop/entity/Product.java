@@ -15,6 +15,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * @created 01/04/2023 - 05:50
+ * @project tn-shop
+ * @author  ngockhanh
+ */
 @Entity
 @Table(name = "product")
 @NoArgsConstructor
@@ -54,18 +59,13 @@ public class Product {
     @JoinColumn(name = "brand_id")
     private Brand brand;
 
-    @ManyToMany
-    @JoinTable(name = "product_cart",
-    joinColumns = @JoinColumn(name = "product_id"),
-    inverseJoinColumns = @JoinColumn(name = "cart_id"))
-    private List<Cart> carts;
-
     @OneToMany(mappedBy = "reviewProduct", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviewProductList;
 
-    @OneToOne
-    @JoinColumn(name = "order_item_id")
+
+    @OneToOne(mappedBy = "productOrderItem", cascade = CascadeType.DETACH)
     private OrderItems orderItemProduct;
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sale_event_id")

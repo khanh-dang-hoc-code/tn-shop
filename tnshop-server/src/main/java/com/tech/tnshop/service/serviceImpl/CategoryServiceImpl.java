@@ -1,8 +1,10 @@
 package com.tech.tnshop.service.serviceImpl;
 
-import com.tech.tnshop.dto.request.category.NewCategoryRequest;
+import com.tech.tnshop.dto.mapper.CategoryMapper;
+import com.tech.tnshop.dto.request.category.AddNewCategoryRequest;
 import com.tech.tnshop.dto.request.category.UpdateCategoryRequest;
-import com.tech.tnshop.entity.Brand;
+import com.tech.tnshop.dto.response.AbstractResponse;
+import com.tech.tnshop.dto.response.MessageResponse;
 import com.tech.tnshop.entity.Category;
 import com.tech.tnshop.exception.NotFoundException;
 import com.tech.tnshop.helper.StringHelper;
@@ -18,6 +20,11 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/*
+ * @created 01/04/2023 - 05:50
+ * @project tn-shop
+ * @author  ngockhanh
+ */
 @Component
 @RequiredArgsConstructor
 public class CategoryServiceImpl implements ICategoryService {
@@ -31,8 +38,10 @@ public class CategoryServiceImpl implements ICategoryService {
     }
 
     @Override
-    public ResponseEntity<Object> createNewCategory(NewCategoryRequest request) {
-        return null;
+    public ResponseEntity<Object> createNewCategory(AddNewCategoryRequest request) {
+        Category category = CategoryMapper.mapToCategoryEntity(request);
+        categoryRepository.save(category);
+        return ResponseEntity.ok(new AbstractResponse(category));
     }
 
     @Override
@@ -51,9 +60,8 @@ public class CategoryServiceImpl implements ICategoryService {
 
     @Override
     public ResponseEntity<Object> deleteCategory(String categoryId) {
-        Category categoryDelete = findCategoryById(categoryId);
-        categoryRepository.delete(categoryDelete);
-        return ResponseEntity.ok("Delete successfully");
+        categoryRepository.deleteById(categoryId);
+        return ResponseEntity.ok("Delete category " + categoryId + " successfully");
     }
 
     @Override
@@ -63,10 +71,7 @@ public class CategoryServiceImpl implements ICategoryService {
 
     @Override
     public ResponseEntity<Object> removeListCategory(List<String> idsList) {
-        idsList.forEach(id -> {
-            Category categoryDelete = findCategoryById(id);
-            categoryRepository.delete(categoryDelete);
-        });
+        categoryRepository.deleteAllById(idsList);
         return ResponseEntity.ok("Delete successfully");
     }
 

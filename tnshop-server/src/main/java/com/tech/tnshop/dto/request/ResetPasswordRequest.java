@@ -8,6 +8,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/*
+ * @created 01/04/2023 - 05:50
+ * @project tn-shop
+ * @author  ngockhanh
+ */
 @Builder
 @Data
 @NoArgsConstructor
@@ -15,7 +20,7 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ResetPasswordRequest {
 
-    @JsonProperty("newPassword")
+    @JsonProperty
     @NotNull(message = "New password can not be null")
     private String newPassword;
 }

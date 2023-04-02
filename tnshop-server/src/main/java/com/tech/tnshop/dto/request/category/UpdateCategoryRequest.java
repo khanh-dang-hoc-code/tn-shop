@@ -7,6 +7,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/*
+ * @created 01/04/2023 - 05:50
+ * @project tn-shop
+ * @author  ngockhanh
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,11 +19,11 @@ import lombok.NoArgsConstructor;
 public class UpdateCategoryRequest {
 
     @NotNull
-    @JsonProperty("brand_id")
+    @JsonProperty
     private String id;
-    @JsonProperty("name")
+    @JsonProperty
     private String name;
-    @JsonProperty("description")
+    @JsonProperty
     private String description;
 
 }

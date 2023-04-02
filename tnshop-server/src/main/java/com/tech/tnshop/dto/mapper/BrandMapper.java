@@ -5,6 +5,11 @@ import com.tech.tnshop.entity.Brand;
 import com.tech.tnshop.dto.request.BrandRequest;
 import com.tech.tnshop.dto.response.BrandResponse;
 
+/*
+ * @created 01/04/2023 - 05:50
+ * @project tn-shop
+ * @author  ngockhanh
+ */
 public class BrandMapper {
     public static Brand mapToBrand(AddNewBrandRequest request) {
         return Brand.builder()

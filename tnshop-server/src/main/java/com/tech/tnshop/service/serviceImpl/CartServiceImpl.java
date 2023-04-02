@@ -1,8 +1,7 @@
 package com.tech.tnshop.service.serviceImpl;
 
-import com.tech.tnshop.dto.response.MessageResponse;
+import com.tech.tnshop.dto.request.orderItems.AddNewOrderItemRequest;
 import com.tech.tnshop.entity.Cart;
-import com.tech.tnshop.entity.Product;
 import com.tech.tnshop.entity.User;
 import com.tech.tnshop.exception.NotFoundException;
 import com.tech.tnshop.repository.ICartRepository;
@@ -14,12 +13,17 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+/*
+ * @created 01/04/2023 - 05:50
+ * @project tn-shop
+ * @author  ngockhanh
+ */
 @Component
 @RequiredArgsConstructor
 public class CartServiceImpl implements ICartService {
     private final ICartRepository cartRepository;
-    private final ProductServiceImpl productService;
     private final AuthenticateService authenticateService;
+    private final OrderItemsServiceImpl orderItemsService;
     @Override
     public void createNewCart(User user) {
         Cart cart = new Cart();
@@ -28,39 +32,20 @@ public class CartServiceImpl implements ICartService {
     }
 
     @Override
-    public ResponseEntity<Object> addProductToCart(HttpServletRequest request, String productId) {
-        Cart cart = getCartByServletRequest(request);
-        Product product = productService.findProductById(productId);
-        List<Product> products =  cart.getProductListCart();
-        products.add(product);
-        productService.addCartToProduct(cart, productId);
-        cartRepository.save(cart);
-        return ResponseEntity.ok(new MessageResponse("Add new product successfully"));
+    public ResponseEntity<Object> addOrderItemToCart(HttpServletRequest servletRequest, AddNewOrderItemRequest request) {
+        Cart cart = getCartByServletRequest(servletRequest);
+        request.setCartId(cart.getId());
+        return orderItemsService.addNewOrderItem(request);
     }
 
     @Override
-    public ResponseEntity<Object> removeProductToCart(HttpServletRequest request, String productId) {
-        Cart cart = getCartByServletRequest(request);
-        Product product = productService.findProductById(productId);
-        List<Product> products =  cart.getProductListCart();
-        products.remove(product);
-        productService.addCartToProduct(cart, productId);
-        cartRepository.save(cart);
-        return ResponseEntity.ok(new MessageResponse("Remove new product successfully"));
+    public ResponseEntity<Object> removeOrderItemToCart(HttpServletRequest request, String orderItemId) {
+        return orderItemsService.removeOrderItem(orderItemId);
     }
 
     @Override
-    public ResponseEntity<Object> removeListProductCart(HttpServletRequest request, List<String> productId) {
-        Cart cart = getCartByServletRequest(request);
-        List<Product> cartProductList = cart.getProductListCart();
-        productId.forEach(
-                s -> {
-                    cartProductList.stream()
-                            .filter(product -> product.getId().equalsIgnoreCase(s))
-                            .findFirst().ifPresent(deleteProduct -> productService.deleteProduct(s));
-                }
-        );
-        return ResponseEntity.ok(new MessageResponse("Delete successfully"));
+    public ResponseEntity<Object> removeListOrderItemCart(HttpServletRequest request, List<String> orderItemsId) {
+        return orderItemsService.removeAllOrderItemInOrder(orderItemsId);
     }
 
     public Cart findCartById(String cartId) {

@@ -10,6 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+/*
+ * @created 01/04/2023 - 05:50
+ * @project tn-shop
+ * @author  ngockhanh
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("${no-auth}/brand")
@@ -17,8 +22,13 @@ public class BrandController {
 
     private final BrandServiceImpl brandService;
 
-    @GetMapping
-    public ResponseEntity<Object> getAllBrand(@RequestParam int index, @RequestParam int limit) {
-        return ResponseEntity.ok(new AbstractResponse(brandService.getAllBrands(index, limit)));
+    @GetMapping("/get")
+    public ResponseEntity<Object> getBrandById(@RequestParam String brandId) {
+        return brandService.getBrand(brandId);
+    }
+
+    @GetMapping("/get-list")
+    public ResponseEntity<Object> getListBrand(@RequestParam int index, @RequestParam int limit) {
+        return brandService.getAllBrands(index, limit);
     }
 }
