@@ -42,7 +42,7 @@ public class BrandServiceImpl implements IBrandService {
     public ResponseEntity<Object> addNewBrand(AddNewBrandRequest request) {
         Brand brand = BrandMapper.mapToBrand(request);
         brandRepository.save(brand);
-        return ResponseEntity.ok(new MessageResponse("Add new brand successfully"));
+        return ResponseEntity.ok(new AbstractResponse(brand));
     }
 
     @Override

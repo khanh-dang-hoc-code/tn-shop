@@ -17,10 +17,10 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AddNewBrandRequest{
 
-    @JsonProperty("name")
+    @JsonProperty
     private String name;
 
-    @JsonProperty("description")
+    @JsonProperty
     private String description;
 
 }

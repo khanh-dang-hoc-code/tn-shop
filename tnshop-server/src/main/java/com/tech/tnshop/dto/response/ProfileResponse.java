@@ -1,5 +1,6 @@
 package com.tech.tnshop.dto.response;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,10 +13,11 @@ import java.time.LocalDate;
  * @project tn-shop
  * @author  ngockhanh
  */
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ProfileResponse {
     private String firstName;
 

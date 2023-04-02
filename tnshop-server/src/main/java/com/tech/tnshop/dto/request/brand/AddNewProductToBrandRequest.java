@@ -18,9 +18,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AddNewProductToBrandRequest {
-    @JsonProperty("id")
+    @JsonProperty
     private String brandId;
 
-    @JsonProperty("product")
+    @JsonProperty
     private ProductRequest productRequest;
 }

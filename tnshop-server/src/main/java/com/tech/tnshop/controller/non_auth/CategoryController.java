@@ -1,8 +1,11 @@
 package com.tech.tnshop.controller.non_auth;
 
+import com.tech.tnshop.service.serviceImpl.CategoryServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /*
@@ -12,10 +15,18 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("${no-auth}/category")
+@RequiredArgsConstructor
 public class CategoryController {
 
-    @GetMapping
-    public ResponseEntity<Object> getAllCategory() {
-        return ResponseEntity.ok("Categories");
+    private final CategoryServiceImpl categoryService;
+
+    @GetMapping("/get")
+    public ResponseEntity<Object> getCategory(@RequestParam String categoryId) {
+        return categoryService.getCategoryByID(categoryId);
+    }
+
+    @GetMapping("/get-list")
+    public ResponseEntity<Object> getListCategory(@RequestParam int index, @RequestParam int limit) {
+        return categoryService.getAllCategory(index, limit);
     }
 }

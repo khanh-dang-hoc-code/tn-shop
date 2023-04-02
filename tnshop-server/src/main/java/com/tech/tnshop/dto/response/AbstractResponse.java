@@ -1,5 +1,6 @@
 package com.tech.tnshop.dto.response;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,10 +12,11 @@ import org.springframework.http.HttpStatusCode;
  * @project tn-shop
  * @author  ngockhanh
  */
+@Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class AbstractResponse  {
     private Object data;
 }

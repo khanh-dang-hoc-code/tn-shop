@@ -51,7 +51,7 @@ public class ProductServiceImpl implements IProductService {
         product.setBrand(brand);
         product.setCategory(category);
         productRepository.save(product);
-        return ResponseEntity.ok(new MessageResponse("Add new product successfully"));
+        return ResponseEntity.ok(new AbstractResponse(product));
     }
 
     @Override
@@ -82,31 +82,12 @@ public class ProductServiceImpl implements IProductService {
     @Override
     public ResponseEntity<Object> removeListProduct(List<String> idsList) {
         productRepository.deleteAllById(idsList);
-
         return ResponseEntity.ok(new MessageResponse("Delete successfully"));
     }
 
     @Override
     public ResponseEntity<Object> getProduct(String id) {
         return ResponseEntity.ok(new AbstractResponse(findProductById(id)));
-    }
-
-    @Override
-    public void addCartToProduct(Cart cart, String productId) {
-        Product product = findProductById(productId);
-        List<Cart> carts = product.getCarts();
-        carts.add(cart);
-        product.setCarts(carts);
-        productRepository.save(product);
-    }
-
-    @Override
-    public void removeCartToProduct(Cart cart, String productId) {
-        Product product = findProductById(productId);
-        List<Cart> carts = product.getCarts();
-        carts.remove(cart);
-        product.setCarts(carts);
-        productRepository.save(product);
     }
 
     @Override

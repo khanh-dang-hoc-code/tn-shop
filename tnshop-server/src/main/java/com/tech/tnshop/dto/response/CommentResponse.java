@@ -1,12 +1,13 @@
 package com.tech.tnshop.dto.response;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /*
- * @created 01/04/2023 - 05:50
+ * @created 02/04/2023 - 18:03
  * @project tn-shop
  * @author  ngockhanh
  */
@@ -14,6 +15,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RoleDto {
-    private String role;
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class CommentResponse {
 }

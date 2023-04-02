@@ -1,6 +1,7 @@
 package com.tech.tnshop.dto.response;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.springframework.http.HttpStatus;
 
@@ -10,10 +11,10 @@ import org.springframework.http.HttpStatus;
  * @author  ngockhanh
  */
 @Builder
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ErrorResponse {
     private HttpStatus statusCode;
     private String message;

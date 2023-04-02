@@ -21,24 +21,24 @@ import java.time.LocalDate;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ProfileRequest {
 
-    @JsonProperty("firstName")
+    @JsonProperty
     private String firstName;
 
-    @JsonProperty("lastName")
+    @JsonProperty
     private String lastName;
-    @JsonProperty("avatarUrl")
+    @JsonProperty
 
     private String avatarUrl;
-    @JsonProperty("telephoneNumber")
+    @JsonProperty
     private String telephoneNumber;
-    @JsonProperty("dateOfBirth")
+    @JsonProperty
     private LocalDate dateOfBirth;
-    @JsonProperty("address1")
+    @JsonProperty
 
     private String address1;
-    @JsonProperty("address2")
+    @JsonProperty
     private String address2;
 
-    @JsonProperty("address3")
+    @JsonProperty
     private String address3;
 }

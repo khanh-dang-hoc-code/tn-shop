@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ResetPasswordRequest {
 
-    @JsonProperty("newPassword")
+    @JsonProperty
     @NotNull(message = "New password can not be null")
     private String newPassword;
 }

@@ -22,8 +22,6 @@ public interface IProductService {
     ResponseEntity<Object> deleteProduct(String idDelete);
     ResponseEntity<Object> removeListProduct(List<String> idsList);
     ResponseEntity<Object> getProduct(String id);
-    void addCartToProduct (Cart cart, String productId);
-    void removeCartToProduct (Cart cart, String productId);
 
     ResponseEntity<Object> getListProductByCategory(String categoryId);
     ResponseEntity<Object> getListProductByBrand(String brandId);

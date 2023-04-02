@@ -22,10 +22,15 @@ public class ProductController {
     private final ProductServiceImpl productService;
 
 
-    @GetMapping
+    @GetMapping("/get-list")
     public ResponseEntity<Object> getAllProduct(@RequestParam int index, @RequestParam int limit,
                                                 @RequestParam String brandId, @RequestParam String categoryId,
                                                 @RequestParam String sortByPrice, @RequestParam String sortByCreateDate) {
         return ResponseEntity.ok(new AbstractResponse(productService.getAllProducts(index, limit, brandId, categoryId, sortByPrice, sortByCreateDate)));
+    }
+
+    @GetMapping("/get")
+    public ResponseEntity<Object> getALlProducts(@RequestParam String productId) {
+        return productService.getProduct(productId);
     }
 }

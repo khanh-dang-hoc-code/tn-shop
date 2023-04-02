@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UpdateOrderItemRequest {
-    @JsonProperty("orderItemId")
+    @JsonProperty
     private String orderItemId;
 
 }

@@ -1,6 +1,7 @@
 package com.tech.tnshop.service;
 
 
+import com.tech.tnshop.dto.request.orderItems.AddNewOrderItemRequest;
 import com.tech.tnshop.entity.User;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +18,8 @@ import java.util.List;
 public interface ICartService {
     void createNewCart(User user);
 
-    ResponseEntity<Object> addProductToCart(HttpServletRequest request, String productId);
-    ResponseEntity<Object> removeProductToCart(HttpServletRequest request, String productId);
-    ResponseEntity<Object> removeListProductCart(HttpServletRequest request, List<String> productId);
+    ResponseEntity<Object> addOrderItemToCart(HttpServletRequest servletRequest, AddNewOrderItemRequest request);
+    ResponseEntity<Object> removeOrderItemToCart(HttpServletRequest request, String orderItemId);
+    ResponseEntity<Object> removeListOrderItemCart(HttpServletRequest request, List<String> orderItemsId);
 
 }

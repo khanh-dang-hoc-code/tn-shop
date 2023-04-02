@@ -17,10 +17,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AddNewCommentRequest {
-    @JsonProperty("post_id")
+    @JsonProperty
     @NotNull
     private String postId;
 
-    @JsonProperty("content")
+    @JsonProperty
     private String content;
 }

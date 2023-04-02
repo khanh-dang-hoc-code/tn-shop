@@ -1,7 +1,9 @@
 package com.tech.tnshop.service.serviceImpl;
 
+import com.tech.tnshop.dto.mapper.OrderItemMapper;
 import com.tech.tnshop.dto.request.orderItems.AddNewOrderItemRequest;
 import com.tech.tnshop.dto.request.orderItems.UpdateOrderItemRequest;
+import com.tech.tnshop.dto.response.AbstractResponse;
 import com.tech.tnshop.dto.response.MessageResponse;
 import com.tech.tnshop.entity.Order;
 import com.tech.tnshop.entity.OrderItems;
@@ -27,7 +29,9 @@ public class OrderItemsServiceImpl implements IOrderItemsService {
 
     @Override
     public ResponseEntity<Object> addNewOrderItem(AddNewOrderItemRequest request) {
-        return null;
+        OrderItems orderItems = OrderItemMapper.mapToOrderItemsEntity(request);
+        orderItemsRepository.save(orderItems);
+        return ResponseEntity.ok(new AbstractResponse(orderItems));
     }
 
     @Override

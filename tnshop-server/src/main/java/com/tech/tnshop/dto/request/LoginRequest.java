@@ -22,9 +22,9 @@ public class LoginRequest {
 
 
     @NotNull(message = "User name can not be null")
-    @JsonProperty("userName")
+    @JsonProperty
     private String userName;
     @NotNull(message = "Password can not be null")
-    @JsonProperty("password")
+    @JsonProperty
     private String password;
 }

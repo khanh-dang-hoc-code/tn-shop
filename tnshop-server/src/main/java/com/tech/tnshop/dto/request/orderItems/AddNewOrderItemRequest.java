@@ -17,12 +17,14 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AddNewOrderItemRequest {
 
-    @JsonProperty("orderId")
+    @JsonProperty
     private String orderId;
 
-    @JsonProperty("productId")
+    private String cartId;
+
+    @JsonProperty
     private String productId;
     
-    @JsonProperty("quantity")
+    @JsonProperty
     private int quantity;
 }

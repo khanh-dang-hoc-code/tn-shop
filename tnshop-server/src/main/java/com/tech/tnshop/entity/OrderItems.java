@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.util.List;
+
 /*
  * @created 01/04/2023 - 05:50
  * @project tn-shop
@@ -29,6 +31,11 @@ public class OrderItems {
     @JoinColumn(name = "order_id")
     private Order orderToOrderItem;
 
-    @OneToOne(mappedBy = "orderItemProduct", cascade = CascadeType.DETACH)
-    private Product productItem;
+    @OneToOne
+    @JoinColumn(name = "product_id")
+    private Product productOrderItem;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "cart_id")
+    private Cart cartOrderItem;
 }

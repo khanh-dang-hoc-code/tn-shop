@@ -18,9 +18,9 @@ import lombok.NoArgsConstructor;
 @Data
 public class VerifyOTPRequest {
     @NotNull
-    @JsonProperty("phoneNumber")
+    @JsonProperty
     private String phoneNumber;
     @NotNull
-    @JsonProperty("OTPCode")
+    @JsonProperty
     private String otpCode;
 }

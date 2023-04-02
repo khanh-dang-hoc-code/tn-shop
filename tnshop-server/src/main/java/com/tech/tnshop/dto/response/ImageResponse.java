@@ -1,6 +1,8 @@
 package com.tech.tnshop.dto.response;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,9 +13,11 @@ import java.util.List;
  * @project tn-shop
  * @author  ngockhanh
  */
+@Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ImageResponse {
     private List<String> imageUrls;
 }

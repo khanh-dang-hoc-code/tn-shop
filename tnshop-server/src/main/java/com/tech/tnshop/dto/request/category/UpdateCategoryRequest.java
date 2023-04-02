@@ -19,11 +19,11 @@ import lombok.NoArgsConstructor;
 public class UpdateCategoryRequest {
 
     @NotNull
-    @JsonProperty("brand_id")
+    @JsonProperty
     private String id;
-    @JsonProperty("name")
+    @JsonProperty
     private String name;
-    @JsonProperty("description")
+    @JsonProperty
     private String description;
 
 }

@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 public class GetOTPRequest {
-    @JsonProperty("phoneNumber")
+    @JsonProperty
     @NotNull
     private String phoneNumber;
 }

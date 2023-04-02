@@ -1,4 +1,4 @@
-package com.tech.tnshop.dto.request.category;
+package com.tech.tnshop.dto.request.orderItems;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -8,9 +8,8 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-
 /*
- * @created 01/04/2023 - 05:50
+ * @created 02/04/2023 - 12:37
  * @project tn-shop
  * @author  ngockhanh
  */
@@ -18,8 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class RemoveCategoryRequest {
-
-    @JsonProperty("ids")
-    private List<String> categoriesId;
+public class RemoveListOrderItemRequest {
+    @JsonProperty
+    private List<String> ids;
 }

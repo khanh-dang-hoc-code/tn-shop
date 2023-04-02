@@ -16,6 +16,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @JsonIgnoreProperties(allowGetters = true)
 public class UpdateOrderRequest {
-    @JsonProperty("id")
+    @JsonProperty
     private String id;
 }

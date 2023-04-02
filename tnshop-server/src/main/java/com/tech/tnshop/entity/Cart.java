@@ -37,6 +37,6 @@ public class Cart {
     @JoinColumn(name = "user_id")
     private User cartUser;
 
-    @ManyToMany(mappedBy = "carts", cascade = CascadeType.DETACH)
-    private List<Product> productListCart;
+    @OneToMany(mappedBy = "cartOrderItem", cascade = CascadeType.ALL)
+    private List<OrderItems> orderItemsListCart;
 }

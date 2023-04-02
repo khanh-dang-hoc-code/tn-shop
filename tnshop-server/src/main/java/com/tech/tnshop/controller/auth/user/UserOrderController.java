@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("${user-auth}/order")
 @RequiredArgsConstructor
-public class OrderController {
+public class UserOrderController {
     private final OrderServiceImpl orderService;
 
     @GetMapping
