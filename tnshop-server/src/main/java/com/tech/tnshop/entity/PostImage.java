@@ -7,14 +7,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDate;
 
-import java.util.List;
-
 /*
- * @created 01/04/2023 - 05:50
+ * @created 02/04/2023 - 19:00
  * @project tn-shop
  * @author  ngockhanh
  */
@@ -23,8 +20,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "order_items")
-public class OrderItems {
+@Table(name = "post_image")
+public class PostImage {
+
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid")
@@ -32,25 +30,16 @@ public class OrderItems {
     private String id;
 
     @Column
-    private Integer quantity;
+    private String url;
+
+    @Column
+    private String imageName;
 
     @Column
     @CreationTimestamp
     private LocalDate createDate;
 
-    @Column
-    @UpdateTimestamp
-    private LocalDate updateDate;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id")
-    private Order orderToOrderItem;
-
-    @OneToOne
-    @JoinColumn(name = "product_id")
-    private Product productOrderItem;
-
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "cart_id")
-    private Cart cartOrderItem;
+    @JoinColumn(name = "post_id")
+    private Post postImage;
 }

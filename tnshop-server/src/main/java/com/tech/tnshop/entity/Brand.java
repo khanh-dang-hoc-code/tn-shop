@@ -47,4 +47,7 @@ public class Brand {
 
     @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Product> productList;
+
+    @OneToMany(mappedBy = "brandImage", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<BrandImage> brandImageList;
 }

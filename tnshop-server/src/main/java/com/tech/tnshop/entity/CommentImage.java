@@ -1,15 +1,17 @@
 package com.tech.tnshop.entity;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.time.LocalDate;
+
 /*
- * @created 01/04/2023 - 05:50
+ * @created 02/04/2023 - 19:00
  * @project tn-shop
  * @author  ngockhanh
  */
@@ -18,15 +20,26 @@ import org.hibernate.annotations.GenericGenerator;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "rate")
-public class Rate {
+@Table(name = "comment_image")
+public class CommentImage {
+
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid")
     @Column(columnDefinition = "CHAR(32)")
     private String id;
 
-    @OneToOne
-    @JoinColumn(name = "review_id")
-    private Review rateReview;
+    @Column
+    private String url;
+
+    @Column
+    private String imageName;
+
+    @Column
+    @CreationTimestamp
+    private LocalDate createDate;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "comment_id")
+    private Comment commentImage;
 }

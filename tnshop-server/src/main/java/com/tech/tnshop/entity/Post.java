@@ -36,4 +36,7 @@ public class Post {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User postUser;
+
+    @OneToMany(mappedBy = "postImage", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PostImage> postImageList;
 }

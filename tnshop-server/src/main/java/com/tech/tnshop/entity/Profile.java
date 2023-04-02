@@ -13,6 +13,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /*
  * @created 01/04/2023 - 05:50
@@ -60,7 +61,7 @@ public class Profile {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToOne(mappedBy = "imageProfile", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Images imageProfile;
+    @OneToMany(mappedBy = "profileImage", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ProfileImage> profileImageList;
 
 }

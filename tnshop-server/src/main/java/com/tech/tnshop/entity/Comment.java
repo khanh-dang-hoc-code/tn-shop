@@ -10,6 +10,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /*
  * @created 01/04/2023 - 05:50
@@ -45,4 +46,7 @@ public class Comment {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")
     private Post postComment;
+
+    @OneToMany(mappedBy = "commentImage", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CommentImage> commentImageList;
 }

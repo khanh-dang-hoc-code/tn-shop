@@ -71,6 +71,6 @@ public class Product {
     @JoinColumn(name = "sale_event_id")
     private SaleEvent saleEventProduct;
 
-    @OneToMany(mappedBy = "imageProduct", cascade = CascadeType.ALL)
-    private List<Images> productImages;
+    @OneToMany(mappedBy = "productImage", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ProductImage> productImageList;
 }
