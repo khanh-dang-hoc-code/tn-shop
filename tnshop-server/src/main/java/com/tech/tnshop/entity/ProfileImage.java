@@ -1,20 +1,28 @@
 package com.tech.tnshop.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity
-@Table(name = "images")
-@NoArgsConstructor
-@AllArgsConstructor
+import java.time.LocalDate;
+
+/*
+ * @created 02/04/2023 - 19:01
+ * @project tn-shop
+ * @author  ngockhanh
+ */
 @Data
 @Builder
-public class Images {
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name = "profile_image")
+public class ProfileImage {
+
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid")
@@ -22,14 +30,16 @@ public class Images {
     private String id;
 
     @Column
-    @NotNull(message = "Url can not be null")
     private String url;
 
-    @OneToOne
-    @JoinColumn(name = "profile_id")
-    private Profile imageProfile;
+    @Column
+    private String imageName;
 
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    private Product imageProduct;
+    @Column
+    @CreationTimestamp
+    private LocalDate createDate;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "profile_id")
+    private Profile profileImage;
 }

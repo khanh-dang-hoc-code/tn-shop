@@ -8,5 +8,7 @@ import java.util.List;
 
 @Service
 public interface ImageService {
-    ResponseEntity<Object> uploadImages(List<MultipartFile> files);
+    ResponseEntity<Object> uploadImages(MultipartFile files);
+
+    ResponseEntity<Object> deleteImages(String imageKey);
 }

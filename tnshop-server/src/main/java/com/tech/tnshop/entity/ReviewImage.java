@@ -1,27 +1,45 @@
 package com.tech.tnshop.entity;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.time.LocalDate;
+
+/*
+ * @created 02/04/2023 - 19:01
+ * @project tn-shop
+ * @author  ngockhanh
+ */
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "rate")
-public class Rate {
+@Table(name = "review_image")
+public class ReviewImage {
+
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid")
     @Column(columnDefinition = "CHAR(32)")
     private String id;
 
-    @OneToOne
+    @Column
+    private  String url;
+
+    @Column
+    private String imageName;
+
+    @Column
+    @CreationTimestamp
+    private LocalDate createDate;
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "review_id")
-    private Review rateReview;
+    private Review reviewImage;
 }

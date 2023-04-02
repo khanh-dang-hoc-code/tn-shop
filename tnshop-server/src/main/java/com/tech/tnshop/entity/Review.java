@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.util.List;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -20,9 +22,6 @@ public class Review {
     @Column(columnDefinition = "CHAR(32)")
     private String id;
 
-    @OneToOne(mappedBy = "rateReview", cascade = CascadeType.ALL)
-    private Rate rate;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
     private Product reviewProduct;
@@ -30,4 +29,7 @@ public class Review {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User userReview;
+
+    @OneToMany(mappedBy = "reviewImage", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ReviewImage> reviewImageList;
 }

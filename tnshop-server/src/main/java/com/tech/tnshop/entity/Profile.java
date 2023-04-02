@@ -13,6 +13,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "profile")
@@ -55,7 +56,7 @@ public class Profile {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToOne(mappedBy = "imageProfile", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Images imageProfile;
+    @OneToMany(mappedBy = "profileImage", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ProfileImage> profileImageList;
 
 }

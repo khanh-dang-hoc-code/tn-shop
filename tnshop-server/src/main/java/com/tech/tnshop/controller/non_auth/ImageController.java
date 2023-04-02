@@ -21,7 +21,7 @@ public class ImageController {
 
 
     @PostMapping("/upload-image")
-    public ResponseEntity<Object> uploadImage(@RequestParam("files") List<MultipartFile> files) throws IOException {
-        return imageService.uploadImages(files);
+    public ResponseEntity<Object> uploadImage(@RequestParam("file") MultipartFile file) throws IOException {
+        return imageService.uploadImages(file);
     }
 }

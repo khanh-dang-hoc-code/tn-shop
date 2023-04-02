@@ -28,6 +28,7 @@ public class SaleEvent {
     @Column
     private LocalDate startDate;
 
+    @Column
     private LocalDate endDate;
 
     @Column
