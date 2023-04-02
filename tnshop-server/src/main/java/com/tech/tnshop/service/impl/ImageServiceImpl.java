@@ -1,4 +1,4 @@
-package com.tech.tnshop.service.serviceImpl;
+package com.tech.tnshop.service.impl;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
@@ -15,8 +15,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 /*
@@ -32,7 +30,7 @@ public class ImageServiceImpl implements ImageService {
     @Value("${cloud.aws.bucket.name}")
     private  String bucketName;
 
-    private final static UUID uuid = UUID.randomUUID();
+    private static final UUID uuid = UUID.randomUUID();
 
     @Override
     public ResponseEntity<Object> uploadImages(MultipartFile file) {

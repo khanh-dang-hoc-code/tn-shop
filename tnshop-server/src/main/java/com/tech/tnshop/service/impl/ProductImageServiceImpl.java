@@ -1,4 +1,4 @@
-package com.tech.tnshop.service.serviceImpl;
+package com.tech.tnshop.service.impl;
 
 import com.tech.tnshop.dto.request.AddNewImageRequest;
 import com.tech.tnshop.entity.Product;
@@ -27,7 +27,7 @@ public class ProductImageServiceImpl implements IProductImageService {
         ProductImage productImage = ProductImage.builder()
                 .imageName(request.getName())
                 .url(request.getUrl())
-                .productImage(product)
+                .imageUrl(product)
                 .build();
 
         repository.save(productImage);
@@ -40,6 +40,6 @@ public class ProductImageServiceImpl implements IProductImageService {
 
     @Override
     public List<ProductImage> getImages(String parentId) {
-        return repository.getAllByProductImage(parentId);
+        return repository.getAllByProductId(parentId);
     }
 }

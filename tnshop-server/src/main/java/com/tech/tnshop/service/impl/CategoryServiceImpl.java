@@ -1,11 +1,10 @@
-package com.tech.tnshop.service.serviceImpl;
+package com.tech.tnshop.service.impl;
 
 import com.tech.tnshop.dto.mapper.CategoryMapper;
 import com.tech.tnshop.dto.request.AddNewImageRequest;
 import com.tech.tnshop.dto.request.category.AddNewCategoryRequest;
 import com.tech.tnshop.dto.request.category.UpdateCategoryRequest;
 import com.tech.tnshop.dto.response.AbstractResponse;
-import com.tech.tnshop.dto.response.MessageResponse;
 import com.tech.tnshop.entity.Category;
 import com.tech.tnshop.exception.NotFoundException;
 import com.tech.tnshop.helper.StringHelper;
@@ -43,9 +42,8 @@ public class CategoryServiceImpl implements ICategoryService {
     public ResponseEntity<Object> createNewCategory(AddNewCategoryRequest request) {
         Category category = CategoryMapper.mapToCategoryEntity(request);
         categoryRepository.save(category);
-        request.getImageList().forEach(s -> {
-            categoryImageService.saveImageToBrand(category, new AddNewImageRequest("", s.getName(), s.getUrl()));
-        });
+        request.getImageList().forEach(s ->
+            categoryImageService.saveImageToBrand(category, new AddNewImageRequest("", s.getName(), s.getUrl())));
         return ResponseEntity.ok(new AbstractResponse(category));
     }
 

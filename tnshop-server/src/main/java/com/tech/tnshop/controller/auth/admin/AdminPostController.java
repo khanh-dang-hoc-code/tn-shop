@@ -9,7 +9,7 @@ package com.tech.tnshop.controller.auth.admin;
 import com.tech.tnshop.dto.request.post.AddNewPostRequest;
 import com.tech.tnshop.dto.request.post.RemoveListPostRequest;
 import com.tech.tnshop.dto.request.post.UpdatePostRequest;
-import com.tech.tnshop.service.serviceImpl.PostServiceImpl;
+import com.tech.tnshop.service.impl.PostServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

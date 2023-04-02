@@ -1,4 +1,4 @@
-package com.tech.tnshop.service.serviceImpl;
+package com.tech.tnshop.service.impl;
 
 import com.tech.tnshop.dto.mapper.PostMapper;
 import com.tech.tnshop.dto.request.AddNewImageRequest;
@@ -44,9 +44,8 @@ public class PostServiceImpl implements IPostService {
     public ResponseEntity<Object> createNewPost(HttpServletRequest servletRequest, AddNewPostRequest request) {
         Post post = PostMapper.mapToPostEntity(request);
         postRepository.save(post);
-        request.getImageList().forEach(s -> {
-            postImageService.saveImageToBrand(post, new AddNewImageRequest("", s.getName(), s.getUrl()));
-        });
+        request.getImageList().forEach(s ->
+            postImageService.saveImageToBrand(post, new AddNewImageRequest("", s.getName(), s.getUrl())));
         return ResponseEntity.ok(new AbstractResponse(post));
     }
 

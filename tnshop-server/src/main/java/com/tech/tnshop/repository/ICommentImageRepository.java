@@ -2,6 +2,8 @@ package com.tech.tnshop.repository;
 
 import com.tech.tnshop.entity.CommentImage;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,5 +17,7 @@ import java.util.List;
 public interface ICommentImageRepository extends JpaRepository<CommentImage, String> {
 
     void deleteByImageName(String imageName);
-    List<CommentImage> getAllByCommentImage(String commentImageId);
+
+    @Query(value = "SELECT * FROM shop_service.comment_image WHERE comment_id = :commentId", nativeQuery = true)
+    List<CommentImage> getAllByCommentId(@Param("commentId") String commentId);
 }

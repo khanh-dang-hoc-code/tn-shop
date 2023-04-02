@@ -3,7 +3,7 @@ package com.tech.tnshop.controller.auth.admin;
 import com.tech.tnshop.dto.request.saleEvent.AddNewSaleEventRequest;
 import com.tech.tnshop.dto.request.saleEvent.RemoveListSaleEventRequest;
 import com.tech.tnshop.dto.request.saleEvent.UpdateSaleEventRequest;
-import com.tech.tnshop.service.serviceImpl.SaleEventServiceImpl;
+import com.tech.tnshop.service.impl.SaleEventServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

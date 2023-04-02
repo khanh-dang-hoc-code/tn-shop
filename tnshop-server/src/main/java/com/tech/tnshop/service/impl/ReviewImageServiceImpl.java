@@ -1,4 +1,4 @@
-package com.tech.tnshop.service.serviceImpl;
+package com.tech.tnshop.service.impl;
 
 import com.tech.tnshop.dto.request.AddNewImageRequest;
 import com.tech.tnshop.entity.Review;
@@ -26,7 +26,7 @@ public class ReviewImageServiceImpl implements IReviewImageService {
         ReviewImage reviewImage = ReviewImage.builder()
                 .url(request.getUrl())
                 .imageName(request.getName())
-                .reviewImage(review)
+                .imageUrl(review)
                 .build();
 
         repository.save(reviewImage);
@@ -39,6 +39,6 @@ public class ReviewImageServiceImpl implements IReviewImageService {
 
     @Override
     public List<ReviewImage> getImages(String parentId) {
-        return repository.getAllByReviewImage(parentId);
+        return repository.getAllByReviewId(parentId);
     }
 }

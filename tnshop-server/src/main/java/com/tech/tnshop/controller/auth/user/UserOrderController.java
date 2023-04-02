@@ -1,6 +1,6 @@
 package com.tech.tnshop.controller.auth.user;
 
-import com.tech.tnshop.service.serviceImpl.OrderServiceImpl;
+import com.tech.tnshop.service.impl.OrderServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

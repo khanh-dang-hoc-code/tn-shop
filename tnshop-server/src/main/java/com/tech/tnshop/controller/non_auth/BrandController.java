@@ -1,8 +1,6 @@
 package com.tech.tnshop.controller.non_auth;
 
-import com.tech.tnshop.dto.response.AbstractResponse;
-import com.tech.tnshop.service.serviceImpl.BrandServiceImpl;
-import com.tech.tnshop.shop_enum.SortEnum;
+import com.tech.tnshop.service.impl.BrandServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

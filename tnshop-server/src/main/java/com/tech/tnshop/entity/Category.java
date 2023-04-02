@@ -1,7 +1,6 @@
 package com.tech.tnshop.entity;
 
 import jakarta.persistence.*;
-import jdk.jfr.Timestamp;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -34,22 +33,23 @@ public class Category {
     @Column
     private String name;
 
-    @Column
-    @CreationTimestamp
-    private LocalDate createDate;
 
     @Column
     private String description;
 
+    @CreationTimestamp
+    @Column
+    private LocalDate createdAt;
+
     @Column
     @UpdateTimestamp
-    private LocalDate updateDate;
+    private LocalDate updatedAt;
 
 
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Product> productList;
 
-    @OneToMany(mappedBy = "categoryImage", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "imageUrl", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CategoryImage> categoryImageList;
 }

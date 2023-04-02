@@ -1,4 +1,4 @@
-package com.tech.tnshop.service.serviceImpl;
+package com.tech.tnshop.service.impl;
 
 
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
@@ -39,9 +39,12 @@ public class OTPService {
     @Value("${twilio.phone.number}")
     private String twilioPhoneNumber;
 
-    public ResponseEntity<Object> sendOtp(String phoneNumber) throws Exception {
+    private static final Random random = new Random();
+
+    public ResponseEntity<Object> sendOtp(String phoneNumber) {
+
         try {
-            String otpCode = String.valueOf(new Random().nextInt(900000) + 100000);
+            String otpCode = String.valueOf(random.nextInt(900000) + 100000);
             String formattedPhoneNumber = convertPhoneNumberToTwillioPhoneNumber(phoneNumber);
             String message = "Thanks you for using TNShop service. Your OTP is : " + otpCode;
 

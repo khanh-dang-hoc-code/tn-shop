@@ -4,7 +4,7 @@ import com.tech.tnshop.dto.request.product.AddNewProductRequest;
 import com.tech.tnshop.dto.request.product.RemoveListProductRequest;
 import com.tech.tnshop.dto.request.product.UpdateProductRequest;
 import com.tech.tnshop.helper.ShopHelper;
-import com.tech.tnshop.service.serviceImpl.ProductServiceImpl;
+import com.tech.tnshop.service.impl.ProductServiceImpl;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

@@ -4,7 +4,7 @@ import com.tech.tnshop.dto.request.LoginRequest;
 import com.tech.tnshop.dto.request.RegisterRequest;
 import com.tech.tnshop.dto.request.ResetPasswordRequest;
 import com.tech.tnshop.helper.ShopHelper;
-import com.tech.tnshop.service.serviceImpl.UserServiceImpl;
+import com.tech.tnshop.service.impl.UserServiceImpl;
 import com.tech.tnshop.shop_enum.RoleEnum;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;

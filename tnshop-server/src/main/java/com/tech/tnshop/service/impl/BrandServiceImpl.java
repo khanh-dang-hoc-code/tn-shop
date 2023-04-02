@@ -1,4 +1,4 @@
-package com.tech.tnshop.service.serviceImpl;
+package com.tech.tnshop.service.impl;
 
 import com.tech.tnshop.dto.mapper.BrandMapper;
 import com.tech.tnshop.dto.request.AddNewImageRequest;
@@ -12,7 +12,6 @@ import com.tech.tnshop.helper.StringHelper;
 import com.tech.tnshop.repository.IBrandRepository;
 import com.tech.tnshop.service.IBrandService;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.query.sql.internal.SQLQueryParser;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -44,9 +43,8 @@ public class BrandServiceImpl implements IBrandService {
     public ResponseEntity<Object> addNewBrand(AddNewBrandRequest request) {
         Brand brand = BrandMapper.mapToBrand(request);
         brandRepository.save(brand);
-        request.getImageList().forEach(s -> {
-            brandImageService.saveImageToBrand(brand, new AddNewImageRequest("", s.getName(), s.getUrl()));
-        });
+        request.getImageList().forEach(s ->
+            brandImageService.saveImageToBrand(brand, new AddNewImageRequest("", s.getName(), s.getUrl())));
         return ResponseEntity.ok(new AbstractResponse(brand));
     }
 

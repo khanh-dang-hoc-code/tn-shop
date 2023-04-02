@@ -1,4 +1,4 @@
-package com.tech.tnshop.service.serviceImpl;
+package com.tech.tnshop.service.impl;
 
 import com.tech.tnshop.dto.request.AddNewImageRequest;
 import com.tech.tnshop.entity.Brand;
@@ -26,7 +26,7 @@ public class BrandImageServiceImpl implements IBrandImageService {
         BrandImage brandImage = BrandImage.builder()
                 .url(request.getUrl())
                 .imageName(request.getName())
-                .brandImage(brand)
+                .imageUrl(brand)
                 .build();
 
         repository.save(brandImage);
@@ -39,6 +39,6 @@ public class BrandImageServiceImpl implements IBrandImageService {
 
     @Override
     public List<BrandImage> getImages(String parentId) {
-        return repository.getAllByBrandImage(parentId);
+        return repository.getAllByBrandId(parentId);
     }
 }

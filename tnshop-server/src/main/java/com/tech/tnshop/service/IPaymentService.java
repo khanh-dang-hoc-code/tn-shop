@@ -14,4 +14,9 @@ import org.springframework.stereotype.Service;
 public interface IPaymentService {
     ResponseEntity<Object> checkoutToPaymentPage(HttpServletRequest request, Order order);
     ResponseEntity<Object> refund(String orderId);
+
+    ResponseEntity<Object> getAllPaymentInDay(HttpServletRequest request);
+    ResponseEntity<Object> getAllPaymentInWeek(HttpServletRequest request);
+    ResponseEntity<Object> getAllPaymentInMonth(HttpServletRequest request);
+    ResponseEntity<Object> getAllPaymentInYear(HttpServletRequest request);
 }

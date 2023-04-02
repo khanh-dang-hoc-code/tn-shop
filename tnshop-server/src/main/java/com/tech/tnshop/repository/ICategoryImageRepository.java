@@ -2,6 +2,8 @@ package com.tech.tnshop.repository;
 
 import com.tech.tnshop.entity.CategoryImage;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,5 +16,6 @@ import java.util.List;
 @Repository
 public interface ICategoryImageRepository extends JpaRepository<CategoryImage, String> {
     void deleteByImageName(String imageName);
-    List<CategoryImage> getAllByCategoryImage(String categoryId);
+    @Query(value = "SELECT * FROM shop_service.category_image WHERE category_id = :categoryId", nativeQuery = true)
+    List<CategoryImage> getAllByCategoryId(@Param("categoryId") String categoryId);
 }

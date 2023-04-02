@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -29,9 +30,13 @@ public class Cart {
     @Column(columnDefinition = "CHAR(32)")
     private String id;
 
-    @Column
     @CreationTimestamp
-    private LocalDate createDate;
+    @Column
+    private LocalDate createdAt;
+
+    @Column
+    @UpdateTimestamp
+    private LocalDate updatedAt;
 
     @OneToOne
     @JoinColumn(name = "user_id")

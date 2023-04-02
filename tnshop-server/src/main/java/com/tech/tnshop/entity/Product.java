@@ -12,7 +12,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -43,13 +42,13 @@ public class Product {
     private BigDecimal price;
     @Column
     private BigDecimal priceSold;
-    @Column
     @CreationTimestamp
-    private LocalDate createDate;
+    @Column
+    private LocalDate createdAt;
 
     @Column
     @UpdateTimestamp
-    private LocalDate updateDate;
+    private LocalDate updatedAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
@@ -71,6 +70,6 @@ public class Product {
     @JoinColumn(name = "sale_event_id")
     private SaleEvent saleEventProduct;
 
-    @OneToMany(mappedBy = "productImage", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "imageUrl", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProductImage> productImageList;
 }

@@ -1,4 +1,4 @@
-package com.tech.tnshop.service.serviceImpl;
+package com.tech.tnshop.service.impl;
 
 import com.tech.tnshop.dto.request.AddNewImageRequest;
 import com.tech.tnshop.entity.Comment;
@@ -26,7 +26,7 @@ public class CommentImageServiceImpl implements ICommentImageService {
         CommentImage commentImage = CommentImage.builder()
                 .url(request.getUrl())
                 .imageName(request.getName())
-                .commentImage(comment)
+                .imageUrl(comment)
                 .build();
 
         repository.save(commentImage);
@@ -39,6 +39,6 @@ public class CommentImageServiceImpl implements ICommentImageService {
 
     @Override
     public List<CommentImage> getImages(String parentId) {
-        return repository.getAllByCommentImage(parentId);
+        return repository.getAllByCommentId(parentId);
     }
 }

@@ -1,4 +1,4 @@
-package com.tech.tnshop.service.serviceImpl;
+package com.tech.tnshop.service.impl;
 
 import com.tech.tnshop.dto.request.AddNewImageRequest;
 import com.tech.tnshop.dto.response.AbstractResponse;
@@ -6,7 +6,6 @@ import com.tech.tnshop.dto.response.MessageResponse;
 import com.tech.tnshop.entity.Profile;
 import com.tech.tnshop.entity.User;
 import com.tech.tnshop.exception.BadRequestException;
-import com.tech.tnshop.exception.InternalServerException;
 import com.tech.tnshop.exception.NotFoundException;
 import com.tech.tnshop.helper.StringHelper;
 import com.tech.tnshop.dto.mapper.ProfileMapper;
@@ -51,22 +50,8 @@ public class ProfileServiceImpl implements IProfileService {
         String userId = authenticateService.getUserIdFromToken(servletRequest);
         Profile currentProfile =  profileRepository.getProfileByUser(userId).orElseThrow(() -> new NotFoundException("User" + userId + " not found"));
 
-        try {
-                Field[] fields = currentProfile.getClass().getDeclaredFields();
-                for (Field field : fields) {
-                    Object value = field.get(profileUpdate);
-                    if (value != null) {
-                        field.set(field.get(currentProfile), value);
-                    }
-                }
             profileRepository.save(currentProfile);
-            profileRequest.getImageList().forEach(s -> {
-                profileImageService.saveImageToBrand(profileUpdate, new AddNewImageRequest("", s.getName(), s.getUrl()));
-            });
-
-        } catch (Exception e) {
-            throw new InternalServerException("Can not query for now");
-        }
+            profileRequest.getImageList().forEach(s -> profileImageService.saveImageToBrand(profileUpdate, new AddNewImageRequest("", s.getName(), s.getUrl())));
 
         return ResponseEntity.ok(new MessageResponse("Updated sucessfully"));
     }

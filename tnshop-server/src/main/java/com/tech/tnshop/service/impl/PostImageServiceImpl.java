@@ -1,4 +1,4 @@
-package com.tech.tnshop.service.serviceImpl;
+package com.tech.tnshop.service.impl;
 
 import com.tech.tnshop.dto.request.AddNewImageRequest;
 import com.tech.tnshop.entity.Post;
@@ -25,7 +25,7 @@ public class PostImageServiceImpl implements IPostImageService {
     public void saveImageToBrand(Post post, AddNewImageRequest request) {
         PostImage postImage = PostImage.builder()
                 .url(request.getUrl())
-                .postImage(post)
+                .imageUrl(post)
                 .imageName(request.getName())
                 .build();
 
@@ -39,6 +39,6 @@ public class PostImageServiceImpl implements IPostImageService {
 
     @Override
     public List<PostImage> getImages(String parentId) {
-        return repository.getAllByPostImage(parentId);
+        return repository.getAllByPostId(parentId);
     }
 }
