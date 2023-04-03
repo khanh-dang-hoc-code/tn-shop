@@ -17,7 +17,7 @@ import java.util.List;
  */
 @Component
 @RequiredArgsConstructor
-public class IBrandImageServiceImpl implements IBrandImageService {
+public class BrandImageServiceImpl implements IBrandImageService {
 
     private final IBrandImageRepository repository;
 

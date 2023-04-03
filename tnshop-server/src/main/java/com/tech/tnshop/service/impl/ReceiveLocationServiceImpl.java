@@ -4,13 +4,17 @@ import com.tech.tnshop.dto.request.AddNewReceiveLocationRequest;
 import com.tech.tnshop.dto.request.UpdateReceiveLocationRequest;
 import com.tech.tnshop.service.IReceiveLocationService;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 
 /*
  * @created 01/04/2023 - 05:50
  * @project tn-shop
  * @author  ngockhanh
  */
+@Component
+@RequiredArgsConstructor
 public class ReceiveLocationServiceImpl implements IReceiveLocationService {
     @Override
     public ResponseEntity<Object> addNewReceiveLocation(HttpServletRequest servletRequest, AddNewReceiveLocationRequest request) {

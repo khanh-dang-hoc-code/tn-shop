@@ -30,7 +30,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BrandServiceImpl implements IBrandService {
     private final IBrandRepository brandRepository;
-    private final IBrandImageServiceImpl brandImageService;
+    private final BrandImageServiceImpl brandImageService;
 
     @Override
     public ResponseEntity<Object> getAllBrands(int index, int limit) {
