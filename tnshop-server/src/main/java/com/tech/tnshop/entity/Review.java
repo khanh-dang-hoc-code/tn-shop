@@ -30,6 +30,9 @@ public class Review {
     private LocalDate createdAt;
 
     @Column
+    private String content;
+
+    @Column
     @UpdateTimestamp
     private LocalDate updatedAt;
 

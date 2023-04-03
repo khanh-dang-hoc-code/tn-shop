@@ -30,6 +30,9 @@ public class Post {
     @Column(columnDefinition = "CHAR(32)")
     private String id;
 
+    @Column
+    private String title;
+
     @Column(columnDefinition = "TEXT")
     private String content;
 

@@ -35,6 +35,9 @@ public class ReceiveLocation {
     private LocalDate createdAt;
 
     @Column
+    private String location;
+
+    @Column
     @UpdateTimestamp
     private LocalDate updatedAt;
 

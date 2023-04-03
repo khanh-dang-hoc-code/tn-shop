@@ -29,6 +29,9 @@ public class Payment {
     @Column(columnDefinition = "CHAR(32)")
     private String id;
 
+    @Column
+    private String paymentStatus;
+
 
     @CreationTimestamp
     @Column
