@@ -2,7 +2,9 @@ package com.tech.tnshop.controller.non_auth;
 
 import com.tech.tnshop.dto.response.AbstractResponse;
 import com.tech.tnshop.service.impl.ProductServiceImpl;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,10 +25,11 @@ public class ProductController {
 
 
     @GetMapping("/get-list")
-    public ResponseEntity<Object> getAllProduct(@RequestParam int index, @RequestParam int limit,
-                                                @RequestParam String brandId, @RequestParam String categoryId,
-                                                @RequestParam String sortByPrice, @RequestParam String sortByCreateDate) {
-        return ResponseEntity.ok(new AbstractResponse(productService.getAllProducts(index, limit, brandId, categoryId, sortByPrice, sortByCreateDate)));
+    public ResponseEntity<Object> getAllProduct(@RequestParam String categoryId, @RequestParam  String brandId,
+                                                @RequestParam @NotNull int index, @RequestParam @NotNull  int limit, @RequestParam  String sortByName,
+                                                @RequestParam  String sortByPrice, @RequestParam  String sortByCreateDate,
+                                                @RequestParam  String saleEventId, @RequestParam  String color, @RequestParam  String size ) {
+        return ResponseEntity.ok(new AbstractResponse(productService.getAllProducts(categoryId, brandId, index, limit, sortByName, sortByPrice, sortByCreateDate, saleEventId,color, size)));
     }
 
     @GetMapping("/get")

@@ -36,10 +36,10 @@ public class ProductServiceImpl implements IProductService {
 
 
     @Override
-    public ResponseEntity<Object> getAllProducts(int index, int limit, String brandId, String categoryId, String sortByPrice, String sortByCreateDate) {
-        Pageable pageable = PageRequest.of(0, 20);
-        Page<Product> products = productRepository.findAll(pageable);
-        return ResponseEntity.ok(new AbstractResponse(products.getContent()));
+    public ResponseEntity<Object> getAllProducts(String categoryId, String brandId, int index, int limit,String sortByName,
+                                                 String sortByPrice, String sortByCreateDate, String saleEventId, String color, String size) {
+        List<Product> products = productRepository.pagenation(categoryId, brandId, index, limit, sortByName, sortByPrice, sortByCreateDate, saleEventId, color, size);
+        return ResponseEntity.ok(new AbstractResponse(products));
     }
 
     @Override

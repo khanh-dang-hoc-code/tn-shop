@@ -23,8 +23,11 @@ public class AdminProductController {
     private final ProductServiceImpl productService;
 
     @GetMapping("/get-list")
-    public ResponseEntity<Object> getALlProducts(@RequestParam @NotNull int index, @RequestParam @NotNull int limit) {
-        return productService.getAllProducts(index, limit, null, null, null, null);
+    public ResponseEntity<Object> getALlProducts(@RequestParam String categoryId, @RequestParam  String brandId,
+                                                 @RequestParam @NotNull int index, @RequestParam @NotNull  int limit, @RequestParam  String sortByName,
+                                                 @RequestParam  String sortByPrice, @RequestParam  String sortByCreateDate,
+                                                 @RequestParam  String saleEventId, @RequestParam  String color, @RequestParam  String size ) {
+        return productService.getAllProducts(categoryId, brandId, index, limit, sortByName, sortByPrice, sortByCreateDate, saleEventId, color, size);
     }
 
     @GetMapping("/get")

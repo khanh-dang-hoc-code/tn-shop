@@ -32,16 +32,28 @@ public class Product {
     @GenericGenerator(name = "uuid", strategy = "uuid")
     @Column(columnDefinition = "CHAR(32)")
     private String id;
+
     @Column
     private String name;
+
     @Column(columnDefinition = "TEXT")
     private String description;
+
     @Column
     private int quantity;
+
     @Column
     private BigDecimal price;
+
     @Column
     private BigDecimal priceSold;
+
+    @Column
+    private String color;
+
+    @Column
+    private String size;
+
     @CreationTimestamp
     @Column
     private LocalDate createdAt;
