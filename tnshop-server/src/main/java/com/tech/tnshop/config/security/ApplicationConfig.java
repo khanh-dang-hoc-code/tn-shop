@@ -26,10 +26,10 @@ public class ApplicationConfig {
         return new BCryptPasswordEncoder();
     }
 
-    private final IUserRepository IUserRepository;
+    private final IUserRepository iUserRepository;
     @Bean
     public UserDetailsService userDetailsService() {
-        return username -> IUserRepository.findUserByUserName(username)
+        return username -> iUserRepository.findUserByUserName(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User Not Found"));
     }
 
@@ -46,8 +46,4 @@ public class ApplicationConfig {
         return config.getAuthenticationManager();
     }
 
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Footer from './components/footer/Footer';
 import Header from './components/header/Header';
 
@@ -6,7 +6,7 @@ import './app.scss';
 import FooterNavBar from './components/nav-bar/FooterNavbar';
 import { selectToken } from './store/authSlice';
 import { useSelector } from 'react-redux';
-import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import Login from './components/login/Login';
 import Register from './components/register/Register';
 import ForgotPassword from './components/forgot-password/ForgotPassword';
@@ -14,9 +14,23 @@ import ForgotPassword from './components/forgot-password/ForgotPassword';
 const App = () => {
   const accessToken = useSelector(selectToken);
   const isLogin = accessToken !== null && accessToken.length !== 0;
-  const history = useHistory();
 
-  console.log(location);
+  useEffect(() => {
+    const handleWindowFocus = () => {
+      document.title = 'TN Shop';
+    };
+    const handleWindowBlur = () => {
+      document.title = 'Come back ~~~';
+    };
+
+    window.addEventListener('focus', handleWindowFocus);
+    window.addEventListener('blur', handleWindowBlur);
+
+    return () => {
+      window.removeEventListener('focus', handleWindowFocus);
+      window.removeEventListener('blur', handleWindowBlur);
+    };
+  }, []);
 
   return (
     <div id="container">

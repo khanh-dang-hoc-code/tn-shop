@@ -2,8 +2,6 @@ package com.tech.tnshop.service;
 
 import com.tech.tnshop.dto.request.product.AddNewProductRequest;
 import com.tech.tnshop.dto.request.product.UpdateProductRequest;
-import com.tech.tnshop.entity.Cart;
-import com.tech.tnshop.entity.Product;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 

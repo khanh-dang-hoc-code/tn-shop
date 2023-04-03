@@ -9,6 +9,9 @@ import com.tech.tnshop.entity.Product;
  * @author  ngockhanh
  */
 public class ProductMapper {
+    private ProductMapper () {
+
+    }
     public static Product mapToProduct(AddNewProductRequest request) {
         return Product.builder()
                 .name(request.getName())

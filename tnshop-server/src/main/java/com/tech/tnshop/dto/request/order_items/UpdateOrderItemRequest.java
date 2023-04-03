@@ -1,4 +1,4 @@
-package com.tech.tnshop.dto.request.orderItems;
+package com.tech.tnshop.dto.request.order_items;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

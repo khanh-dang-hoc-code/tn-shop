@@ -6,6 +6,11 @@ package com.tech.tnshop.helper;
  * @author  ngockhanh
  */
 public class NativeQueryHelper {
+
+    private NativeQueryHelper() {
+
+    }
+
     public static String getAllProduct(int index, int limit ,String brandId, String categoryId, String sortByPrice, String sortByCreateDate) {
         StringBuilder sqlNative = new StringBuilder("SELECT * FROM product WHERE ");
         if (StringHelper.isNotEmpty(brandId)) {

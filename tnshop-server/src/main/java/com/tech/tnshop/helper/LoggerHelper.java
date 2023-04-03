@@ -10,6 +10,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class LoggerHelper {
 
+    private LoggerHelper () {
+
+    }
+
     private void loggError(String message) {
         log.error(message);
     }

@@ -54,7 +54,7 @@ public class OTPService {
                 otp =  otpOptional.get();
                 otp.setVerify(false);
                 otp.setTimeSend(System.currentTimeMillis());
-                otp.setOTPCode(otpCode);
+                otp.setOtpCode(otpCode);
 
             } else {
                  otp = new OTP(formattedPhoneNumber, otpCode);
@@ -78,7 +78,7 @@ public class OTPService {
 
         OTP otp = getOTPByPhoneNumber(formattedPhoneNumber);
 
-        if (otpCode.equalsIgnoreCase(otp.getOTPCode()) && otp.getTimeSend() >= System.currentTimeMillis() - timeExpiredOTPCode) {
+        if (otpCode.equalsIgnoreCase(otp.getOtpCode()) && otp.getTimeSend() >= System.currentTimeMillis() - timeExpiredOTPCode) {
             otp.setVerify(true);
             otpRepository.save(otp);
                 return ResponseEntity.ok("Your otp code is successfully");

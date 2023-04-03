@@ -11,6 +11,9 @@ import com.tech.tnshop.dto.response.ProfileResponse;
  * @author  ngockhanh
  */
 public class ProfileMapper {
+    private ProfileMapper () {
+
+    }
     public static Profile mapToProfileEntity(ProfileRequest profileRequest) {
         return Profile.builder()
                 .firstName(profileRequest.getFirstName())

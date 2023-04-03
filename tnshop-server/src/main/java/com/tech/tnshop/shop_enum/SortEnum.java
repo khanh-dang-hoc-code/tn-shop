@@ -18,7 +18,4 @@ public enum SortEnum {
         return sortType;
     }
 
-    public void setSortType(String sortType) {
-        this.sortType = sortType;
-    }
 }

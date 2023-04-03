@@ -9,6 +9,9 @@ import com.tech.tnshop.entity.Post;
  * @author  ngockhanh
  */
 public class PostMapper {
+    private PostMapper () {
+
+    }
     public static Post mapToPostEntity(AddNewPostRequest request) {
         return Post.builder()
 

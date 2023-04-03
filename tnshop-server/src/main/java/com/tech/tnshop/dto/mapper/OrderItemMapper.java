@@ -1,6 +1,6 @@
 package com.tech.tnshop.dto.mapper;
 
-import com.tech.tnshop.dto.request.orderItems.AddNewOrderItemRequest;
+import com.tech.tnshop.dto.request.order_items.AddNewOrderItemRequest;
 import com.tech.tnshop.entity.OrderItems;
 
 /*
@@ -9,6 +9,9 @@ import com.tech.tnshop.entity.OrderItems;
  * @author  ngockhanh
  */
 public class OrderItemMapper {
+    private OrderItemMapper () {
+
+    }
     public static OrderItems mapToOrderItemsEntity(AddNewOrderItemRequest request) {
         return OrderItems.builder()
                 .build();

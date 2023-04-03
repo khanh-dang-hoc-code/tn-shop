@@ -11,7 +11,7 @@ public enum UserStatusEnum {
     PENDING("pending"),
     DISABLE("disable");
 
-    public String status;
+    private final String status;
 
     UserStatusEnum(String status) {
         this.status = status;

@@ -16,6 +16,7 @@ import org.springframework.web.context.request.WebRequest;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 /*
  * @created 01/04/2023 - 05:50
@@ -73,12 +74,12 @@ public class ExceptionHandlerController {
     public ResponseEntity<Object> processValidateError(MethodArgumentNotValidException ex) {
         BindingResult result = ex.getBindingResult();
         List<FieldError> fieldErrors = result.getFieldErrors();
-        String message = "";
+        StringBuilder message = new StringBuilder();
         for (FieldError error : fieldErrors) {
             String temp = processFieldError(error);
-            message += temp + " ; ";
+            message.append(temp).append(" ; ");
         }
-        ErrorResponse error = new ErrorResponse(HttpStatus.BAD_REQUEST, message);
+        ErrorResponse error = new ErrorResponse(HttpStatus.BAD_REQUEST, message.toString());
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 
@@ -88,7 +89,7 @@ public class ExceptionHandlerController {
         if (error != null) {
             Locale currentLocale = LocaleContextHolder.getLocale();
             try {
-                msg = msgSource.getMessage(error.getDefaultMessage(), null, currentLocale);
+                msg = msgSource.getMessage(Objects.requireNonNull(error.getDefaultMessage()), null, currentLocale);
             } catch (Exception e) {
                 msg = error.getDefaultMessage();
             }

@@ -9,6 +9,9 @@ import com.tech.tnshop.entity.Comment;
  * @author  ngockhanh
  */
 public class CommentMapper {
+    private CommentMapper() {
+
+    }
     public static Comment mapCommentRequestToEntity(AddNewCommentRequest request) {
         return Comment.builder()
                 .content(request.getContent())

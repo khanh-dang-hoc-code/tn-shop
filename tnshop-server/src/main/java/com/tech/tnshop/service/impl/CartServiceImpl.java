@@ -1,6 +1,6 @@
 package com.tech.tnshop.service.impl;
 
-import com.tech.tnshop.dto.request.orderItems.AddNewOrderItemRequest;
+import com.tech.tnshop.dto.request.order_items.AddNewOrderItemRequest;
 import com.tech.tnshop.entity.Cart;
 import com.tech.tnshop.entity.User;
 import com.tech.tnshop.exception.NotFoundException;

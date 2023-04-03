@@ -1,8 +1,8 @@
 package com.tech.tnshop.service.impl;
 
 import com.tech.tnshop.dto.mapper.OrderItemMapper;
-import com.tech.tnshop.dto.request.orderItems.AddNewOrderItemRequest;
-import com.tech.tnshop.dto.request.orderItems.UpdateOrderItemRequest;
+import com.tech.tnshop.dto.request.order_items.AddNewOrderItemRequest;
+import com.tech.tnshop.dto.request.order_items.UpdateOrderItemRequest;
 import com.tech.tnshop.dto.response.AbstractResponse;
 import com.tech.tnshop.dto.response.MessageResponse;
 import com.tech.tnshop.entity.Order;

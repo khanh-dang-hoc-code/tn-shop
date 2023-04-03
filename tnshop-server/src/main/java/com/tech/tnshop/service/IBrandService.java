@@ -2,7 +2,6 @@ package com.tech.tnshop.service;
 
 import com.tech.tnshop.dto.request.brand.AddNewBrandRequest;
 import com.tech.tnshop.dto.request.brand.UpdateBrandRequest;
-import com.tech.tnshop.entity.Product;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;

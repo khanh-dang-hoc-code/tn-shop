@@ -11,9 +11,13 @@ public enum RoleEnum {
     ADMIN_ROLE("ADMIN"),
     ANONYMOUS_ROLE("anonymous_role");
 
-    public String name;
+    public final String role;
 
-    RoleEnum(String name) {
-        this.name = name;
+    RoleEnum(String role) {
+        this.role = role;
+    }
+
+    public String getRole() {
+        return role;
     }
 }

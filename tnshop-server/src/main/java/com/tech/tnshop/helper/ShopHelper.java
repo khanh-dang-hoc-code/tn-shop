@@ -22,6 +22,10 @@ import java.util.Set;
  */
 public class ShopHelper {
 
+    private ShopHelper() {
+
+    }
+
 
     static ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
 
@@ -51,23 +55,30 @@ public class ShopHelper {
             Annotation[] annotations = field.getDeclaredAnnotations();
             try {
                 for (Annotation annotation : annotations) {
-                    field.setAccessible(true);
-                    if (annotation.annotationType() == NotNull.class) {
-                        NotNull notNullAnnotation = (NotNull) annotation;
-                        if (field.get(object) == null) {
-                            throw new BadRequestException(notNullAnnotation.message());
-                        }
-                    }
-                    if (annotation.annotationType() == Pattern.class) {
-                        Pattern patternAnnotation = field.getDeclaredAnnotation(Pattern.class);
-                        String fieldValue = field.get(object).toString();
-                        if (fieldValue != null && !fieldValue.matches(patternAnnotation.regexp())) {
-                            throw new BadRequestException(patternAnnotation.message());
-                        }
-                    }
+                    caseNull(field, annotation, object);
+                    caseRegex(field, annotation, object);
                 }
             } catch (IllegalAccessException exception) {
                 throw new InternalServerException("Server Error");
+            }
+        }
+    }
+
+    public static <T> void caseNull(Field field, Annotation annotation, T object) throws IllegalAccessException {
+        if (annotation.annotationType() == NotNull.class) {
+            NotNull notNullAnnotation = (NotNull) annotation;
+            if (field.get(object) == null) {
+                throw new BadRequestException(notNullAnnotation.message());
+            }
+        }
+    }
+
+    public static <T> void caseRegex(Field field, Annotation annotation, T object) throws IllegalAccessException {
+        if (annotation.annotationType() == Pattern.class) {
+            Pattern patternAnnotation = field.getDeclaredAnnotation(Pattern.class);
+            String fieldValue = field.get(object).toString();
+            if (fieldValue != null && !fieldValue.matches(patternAnnotation.regexp())) {
+                throw new BadRequestException(patternAnnotation.message());
             }
         }
     }

@@ -24,8 +24,8 @@ import java.util.function.Function;
 @RequiredArgsConstructor
 public class JwtService {
 
-    private final String SECRET_KEY = "3979244226452948404D6351655468576D5A7134743777217A25432A462D4A61";
-    private final long allowedClockSkewMillis = 300000;
+    private static final  String SECRET_KEY = "3979244226452948404D6351655468576D5A7134743777217A25432A462D4A61";
+    private static final  long ALLOWED_CLOCK_SKEW_MILLIS = 300000;
 
 
     public String extractUsername(String jwtToken) {
@@ -70,7 +70,7 @@ public class JwtService {
 
     private Claims extractAllClaims(String token) {
         return Jwts.parserBuilder()
-                .setAllowedClockSkewSeconds(allowedClockSkewMillis / 1000)
+                .setAllowedClockSkewSeconds(ALLOWED_CLOCK_SKEW_MILLIS / 1000)
                 .setSigningKey(getSignKey())
                 .build()
                 .parseClaimsJws(token)

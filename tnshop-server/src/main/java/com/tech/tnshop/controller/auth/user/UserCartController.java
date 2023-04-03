@@ -1,7 +1,7 @@
 package com.tech.tnshop.controller.auth.user;
 
-import com.tech.tnshop.dto.request.orderItems.AddNewOrderItemRequest;
-import com.tech.tnshop.dto.request.orderItems.RemoveListOrderItemRequest;
+import com.tech.tnshop.dto.request.order_items.AddNewOrderItemRequest;
+import com.tech.tnshop.dto.request.order_items.RemoveListOrderItemRequest;
 import com.tech.tnshop.service.impl.CartServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;

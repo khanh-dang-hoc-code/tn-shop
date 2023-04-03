@@ -1,4 +1,4 @@
-package com.tech.tnshop.dto.request.saleEvent;
+package com.tech.tnshop.dto.request.sale_event;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -6,10 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 /*
- * @created 02/04/2023 - 17:40
+ * @created 02/04/2023 - 17:30
  * @project tn-shop
  * @author  ngockhanh
  */
@@ -17,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class RemoveListSaleEventRequest {
+public class UpdateSaleEventRequest {
     @JsonProperty
-    private List<String> ids;
+    private String id;
 }

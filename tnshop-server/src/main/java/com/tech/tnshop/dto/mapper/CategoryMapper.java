@@ -10,6 +10,9 @@ import com.tech.tnshop.dto.request.category.AddNewCategoryRequest;
 import com.tech.tnshop.entity.Category;
 
 public class CategoryMapper {
+    private CategoryMapper() {
+
+    }
     public static Category mapToCategoryEntity(AddNewCategoryRequest request) {
         return Category.builder()
 

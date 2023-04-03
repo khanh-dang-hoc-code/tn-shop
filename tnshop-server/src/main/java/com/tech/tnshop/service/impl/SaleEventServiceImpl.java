@@ -1,8 +1,8 @@
 package com.tech.tnshop.service.impl;
 
 import com.tech.tnshop.dto.mapper.SaleEventMapper;
-import com.tech.tnshop.dto.request.saleEvent.AddNewSaleEventRequest;
-import com.tech.tnshop.dto.request.saleEvent.UpdateSaleEventRequest;
+import com.tech.tnshop.dto.request.sale_event.AddNewSaleEventRequest;
+import com.tech.tnshop.dto.request.sale_event.UpdateSaleEventRequest;
 import com.tech.tnshop.dto.response.AbstractResponse;
 import com.tech.tnshop.dto.response.MessageResponse;
 import com.tech.tnshop.entity.SaleEvent;

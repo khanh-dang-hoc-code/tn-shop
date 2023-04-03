@@ -1,6 +1,6 @@
 package com.tech.tnshop.dto.mapper;
 
-import com.tech.tnshop.dto.request.saleEvent.AddNewSaleEventRequest;
+import com.tech.tnshop.dto.request.sale_event.AddNewSaleEventRequest;
 import com.tech.tnshop.entity.SaleEvent;
 
 /*
@@ -9,6 +9,9 @@ import com.tech.tnshop.entity.SaleEvent;
  * @author  ngockhanh
  */
 public class SaleEventMapper {
+    private SaleEventMapper () {
+
+    }
 
     public static SaleEvent mapToSaleEventEntity(AddNewSaleEventRequest request) {
         return SaleEvent.builder()

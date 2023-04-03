@@ -9,6 +9,9 @@ import com.tech.tnshop.entity.Order;
  * @author  ngockhanh
  */
 public class OrderMapper {
+    private OrderMapper () {
+
+    }
     public static Order mapToOrderEntity(AddNewOrderRequest request) {
         return Order.builder()
                 .build();

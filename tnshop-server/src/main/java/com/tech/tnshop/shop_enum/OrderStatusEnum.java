@@ -1,7 +1,6 @@
 package com.tech.tnshop.shop_enum;
 
 import com.tech.tnshop.exception.BadRequestException;
-import lombok.Data;
 
 import java.util.Arrays;
 
@@ -17,7 +16,7 @@ public enum OrderStatusEnum {
     DELIVERED("delivered"),
     CANCELLED("canceled");
 
-    public String name;
+    public final String status;
 
     public static boolean validateOrderStatus(String orderStatus) {
         return Arrays.stream(values())
@@ -27,6 +26,6 @@ public enum OrderStatusEnum {
     }
 
     OrderStatusEnum(String name) {
-        this.name = name;
+        this.status = name;
     }
 }

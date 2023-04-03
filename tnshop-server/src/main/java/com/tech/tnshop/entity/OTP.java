@@ -30,7 +30,7 @@ public class OTP {
     private String phoneNumber;
 
     @Column
-    private String OTPCode;
+    private String otpCode;
 
     @Column
     private boolean isVerify;
@@ -40,7 +40,7 @@ public class OTP {
 
     public OTP(String formattedPhoneNumber, String otpCode) {
         phoneNumber = formattedPhoneNumber;
-        OTPCode = otpCode;
+        this.otpCode = otpCode;
         isVerify = false;
         timeSend = System.currentTimeMillis();
     }

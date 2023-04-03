@@ -1,8 +1,8 @@
 package com.tech.tnshop.controller.auth.admin;
 
-import com.tech.tnshop.dto.request.saleEvent.AddNewSaleEventRequest;
-import com.tech.tnshop.dto.request.saleEvent.RemoveListSaleEventRequest;
-import com.tech.tnshop.dto.request.saleEvent.UpdateSaleEventRequest;
+import com.tech.tnshop.dto.request.sale_event.AddNewSaleEventRequest;
+import com.tech.tnshop.dto.request.sale_event.RemoveListSaleEventRequest;
+import com.tech.tnshop.dto.request.sale_event.UpdateSaleEventRequest;
 import com.tech.tnshop.service.impl.SaleEventServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

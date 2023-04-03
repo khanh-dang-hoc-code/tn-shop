@@ -1,4 +1,4 @@
-package com.tech.tnshop.dto.request.saleEvent;
+package com.tech.tnshop.dto.request.sale_event;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

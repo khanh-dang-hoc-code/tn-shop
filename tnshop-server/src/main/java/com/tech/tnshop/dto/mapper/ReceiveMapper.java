@@ -6,4 +6,7 @@ package com.tech.tnshop.dto.mapper;
  * @author  ngockhanh
  */
 public class ReceiveMapper {
+    private ReceiveMapper () {
+
+    }
 }

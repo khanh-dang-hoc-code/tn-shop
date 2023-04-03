@@ -1,7 +1,7 @@
 package com.tech.tnshop.service;
 
-import com.tech.tnshop.dto.request.saleEvent.AddNewSaleEventRequest;
-import com.tech.tnshop.dto.request.saleEvent.UpdateSaleEventRequest;
+import com.tech.tnshop.dto.request.sale_event.AddNewSaleEventRequest;
+import com.tech.tnshop.dto.request.sale_event.UpdateSaleEventRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 

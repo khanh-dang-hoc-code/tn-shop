@@ -1,7 +1,7 @@
 package com.tech.tnshop.service;
 
 
-import com.tech.tnshop.dto.request.orderItems.AddNewOrderItemRequest;
+import com.tech.tnshop.dto.request.order_items.AddNewOrderItemRequest;
 import com.tech.tnshop.entity.User;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
