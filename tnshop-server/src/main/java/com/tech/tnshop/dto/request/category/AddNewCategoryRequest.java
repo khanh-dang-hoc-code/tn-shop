@@ -24,5 +24,8 @@ public class AddNewCategoryRequest {
     private String name;
 
     @JsonProperty
+    private String description;
+
+    @JsonProperty
     private List<Image> imageList;
 }

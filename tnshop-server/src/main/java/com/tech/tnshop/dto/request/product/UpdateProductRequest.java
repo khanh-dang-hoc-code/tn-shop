@@ -41,8 +41,8 @@ public class UpdateProductRequest {
 
 
     @JsonProperty
-    private BigDecimal price;
+    private String price;
 
     @JsonProperty
-    private BigDecimal priceSold;
+    private String priceSold;
 }

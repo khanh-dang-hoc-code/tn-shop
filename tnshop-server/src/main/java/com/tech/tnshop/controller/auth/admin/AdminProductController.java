@@ -9,7 +9,9 @@ import com.tech.tnshop.helper.StringHelper;
 import com.tech.tnshop.service.impl.ProductServiceImpl;
 import com.tech.tnshop.shop_enum.ColorEnum;
 import com.tech.tnshop.shop_enum.SizeEnum;
+import com.tech.tnshop.shop_enum.SortEnum;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Null;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,10 +29,25 @@ public class AdminProductController {
     private final ProductServiceImpl productService;
 
     @GetMapping("/get-list")
-    public ResponseEntity<Object> getALlProducts(@RequestParam String categoryId, @RequestParam  String brandId,
-                                                 @RequestParam @NotNull int index, @RequestParam @NotNull  int limit, @RequestParam  String sortByName,
-                                                 @RequestParam  String sortByPrice, @RequestParam  String sortByCreateDate,
-                                                 @RequestParam  String saleEventId, @RequestParam  String color, @RequestParam  String size ) {
+    public ResponseEntity<Object> getALlProducts(@RequestParam(required = false) String categoryId, @RequestParam(required = false)  String brandId,
+                                                 @RequestParam int index, @RequestParam  int limit, @RequestParam(required = false)  String sortByName,
+                                                 @RequestParam(required = false) String sortByPrice, @RequestParam(required = false)  String sortByCreateDate,
+                                                 @RequestParam(required = false)  String saleEventId, @RequestParam(required = false)  String color, @RequestParam(required = false)  String size ) {
+        if (StringHelper.isNotEmpty(sortByCreateDate) && !SortEnum.validateSortType(sortByCreateDate)) {
+            throw new BadRequestException("sortByCreateDate params is not valid");
+        }
+        if (StringHelper.isNotEmpty(color) && !ColorEnum.validateColor(color)) {
+            throw new BadRequestException("color params is not valid");
+        }
+        if (StringHelper.isNotEmpty(size) && !SizeEnum.validateSize(size)) {
+            throw new BadRequestException("size params is not valid");
+        }
+        if (StringHelper.isNotEmpty(sortByPrice) && !SortEnum.validateSortType(sortByPrice)) {
+            throw new BadRequestException("sortByPrice params is not valid");
+        }
+        if (StringHelper.isNotEmpty(sortByName) && !SortEnum.validateSortType(sortByName)) {
+            throw new BadRequestException("sortByName params is not valid");
+        }
         return productService.getAllProducts(categoryId, brandId, index, limit, sortByName, sortByPrice, sortByCreateDate, saleEventId, color, size);
     }
 
@@ -51,8 +68,8 @@ public class AdminProductController {
     @PutMapping("/update")
     public ResponseEntity<Object> updateProduct(@RequestBody UpdateProductRequest request) {
         ShopHelper.validateObjectRequiredFields(request);
-        if (StringHelper.isEmpty(request.getSize()) && !SizeEnum.validateSize(request.getSize())
-                || StringHelper.isEmpty(request.getColor()) && !ColorEnum.validateColor(request.getColor())) {
+        if (StringHelper.isNotEmpty(request.getSize()) && !SizeEnum.validateSize(request.getSize())
+                || StringHelper.isNotEmpty(request.getColor()) && !ColorEnum.validateColor(request.getColor())) {
             throw new BadRequestException("Color or size params is not valid");
         }
         return productService.updateProduct(request);

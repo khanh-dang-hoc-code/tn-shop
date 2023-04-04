@@ -17,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /*
@@ -72,8 +73,11 @@ public class ProductServiceImpl implements IProductService {
         if (request.getQuantity() >= 0) {
             productUpdate.setQuantity(request.getQuantity());
         }
+        if (StringHelper.isNotEmpty(request.getPrice())) {
+            productUpdate.setPrice(new BigDecimal(request.getPrice()));
+        }
         if (request.getPriceSold() != null) {
-            productUpdate.setPriceSold(request.getPriceSold());
+            productUpdate.setPriceSold(new BigDecimal(request.getPriceSold()));
         }
         productRepository.save(productUpdate);
         return ResponseEntity.ok(new MessageResponse("Update successfully"));

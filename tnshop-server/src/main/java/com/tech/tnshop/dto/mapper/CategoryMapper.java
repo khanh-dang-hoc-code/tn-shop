@@ -15,7 +15,8 @@ public class CategoryMapper {
     }
     public static Category mapToCategoryEntity(AddNewCategoryRequest request) {
         return Category.builder()
-
+                .name(request.getName())
+                .description(request.getDescription())
                 .build();
     }
 }
