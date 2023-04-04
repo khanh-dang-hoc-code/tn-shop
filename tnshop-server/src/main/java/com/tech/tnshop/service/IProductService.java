@@ -2,7 +2,6 @@ package com.tech.tnshop.service;
 
 import com.tech.tnshop.dto.request.product.AddNewProductRequest;
 import com.tech.tnshop.dto.request.product.UpdateProductRequest;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 

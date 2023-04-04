@@ -33,6 +33,7 @@ import java.util.List;
 public class PaymentServiceImpl implements IPaymentService {
     private final IPaymentRepository paymentRepository;
     private final AuthenticateService authenticateService;
+    private final OrderServiceImpl orderService;
 
     @Value("${stripe.api.key}")
     private String stripeApiKey;
@@ -44,8 +45,10 @@ public class PaymentServiceImpl implements IPaymentService {
     private String cancelUrl;
 
     @Override
-    public ResponseEntity<Object> checkoutToPaymentPage(HttpServletRequest request, Order order) {
+    public ResponseEntity<Object> checkoutToPaymentPage(HttpServletRequest request, String orderId) {
+
         Profile userProfile  =  authenticateService.getUserFromToken(request).getProfile();
+        Order order = orderService.getOrderById(orderId);
 
         Order order1 = new Order();
         List<OrderItems> list = new ArrayList<>();

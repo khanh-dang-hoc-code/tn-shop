@@ -52,7 +52,11 @@ public class ImageServiceImpl implements ImageService {
 
     @Override
     public ResponseEntity<Object> deleteImages(String imageKey) {
-        amazonS3.deleteObject(bucketName, imageKey);
+        try {
+            amazonS3.deleteObject(bucketName, imageKey);
+        } catch (Exception ex) {
+            throw new InternalServerException("Dont exits image " + imageKey);
+        }
         return ResponseEntity.ok(new MessageResponse("Delete image " + imageKey + " from aws bucket successfully"));
     }
 }

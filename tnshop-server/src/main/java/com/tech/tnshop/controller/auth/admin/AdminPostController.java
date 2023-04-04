@@ -22,12 +22,12 @@ public class AdminPostController {
     private final PostServiceImpl postService;
 
     @GetMapping("/get")
-    public ResponseEntity<Object> getCategory(@RequestParam String categoryId) {
-        return postService.getPostById(categoryId);
+    public ResponseEntity<Object> getPost(@RequestParam String postId) {
+        return postService.getPostById(postId);
     }
 
     @GetMapping("/get-list")
-    public ResponseEntity<Object> getListCategory(@RequestParam int index, @RequestParam int limit) {
+    public ResponseEntity<Object> getListPost(@RequestParam int index, @RequestParam int limit) {
         return postService.getAllPost(index, limit);
     }
 
