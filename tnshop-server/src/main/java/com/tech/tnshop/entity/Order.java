@@ -1,5 +1,7 @@
 package com.tech.tnshop.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -48,11 +50,14 @@ public class Order {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
+    @JsonBackReference
     private User userOrder;
 
     @OneToMany(mappedBy = "orderToOrderItem", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<OrderItems> orderItemsList;
 
     @OneToOne(mappedBy = "orderPayment", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private Payment paymentOrder;
 }

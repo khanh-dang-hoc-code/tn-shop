@@ -1,5 +1,6 @@
 package com.tech.tnshop.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -46,5 +47,6 @@ public class CommentImage {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "comment_id")
+    @JsonBackReference
     private Comment imageUrl;
 }

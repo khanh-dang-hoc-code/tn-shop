@@ -1,5 +1,6 @@
 package com.tech.tnshop.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.tech.tnshop.shop_enum.UserStatusEnum;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -61,25 +62,32 @@ public class User implements UserDetails {
     private String role;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private transient Profile profile;
 
 
     @OneToOne(mappedBy = "cartUser", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private transient Cart cartUser;
 
     @OneToMany(mappedBy = "userComment",cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private transient List<Comment> commentList;
 
     @OneToMany(mappedBy = "postUser", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private transient List<Post> userPostList;
 
     @OneToOne(mappedBy = "userReview", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private transient Review review;
 
     @OneToMany(mappedBy = "userOrder", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private transient List<Order> userOrderList;
 
     @OneToMany(mappedBy = "userReceiveLocation", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private transient List<ReceiveLocation> userReceiveLocationList;
 
 

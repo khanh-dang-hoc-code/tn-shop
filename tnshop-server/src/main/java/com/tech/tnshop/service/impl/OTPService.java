@@ -60,10 +60,10 @@ public class OTPService {
                  otp = new OTP(formattedPhoneNumber, otpCode);
             }
             otpRepository.save(otp);
-            Message.creator(
-                    new PhoneNumber(formattedPhoneNumber),
-                    new PhoneNumber(twilioPhoneNumber),
-                    message).create(twilioRestClient);
+//            Message.creator(
+//                    new PhoneNumber(formattedPhoneNumber),
+//                    new PhoneNumber(twilioPhoneNumber),
+//                    message).create(twilioRestClient);
 
 
             return ResponseEntity.ok("send otp successfully");

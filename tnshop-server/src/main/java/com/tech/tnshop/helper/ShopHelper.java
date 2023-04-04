@@ -54,6 +54,7 @@ public class ShopHelper {
             Annotation[] annotations = field.getDeclaredAnnotations();
             try {
                 for (Annotation annotation : annotations) {
+                    field.setAccessible(true);
                     caseNull(field, annotation, object);
                     caseRegex(field, annotation, object);
                 }

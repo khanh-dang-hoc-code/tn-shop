@@ -46,7 +46,7 @@ public class ProductServiceImpl implements IProductService {
         Brand brand = brandService.findBrandById(request.getBrandId());
         Category category = categoryService.findCategoryById(request.getCategoryId());
         product.setBrand(brand);
-        product.setCategory(category);
+        product.setCategoryProduct(category);
         productRepository.save(product);
         request.getImageList().forEach(s -> imageService.saveImageToBrand(product, new AddNewImageRequest("", s.getName(), s.getUrl())));
         return ResponseEntity.ok(new AbstractResponse(product));

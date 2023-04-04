@@ -4,6 +4,7 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.tech.tnshop.dto.request.Image;
 import com.tech.tnshop.dto.response.AbstractResponse;
 import com.tech.tnshop.dto.response.MessageResponse;
 import com.tech.tnshop.exception.InternalServerException;
@@ -44,7 +45,7 @@ public class ImageServiceImpl implements ImageService {
                         .withCannedAcl(CannedAccessControlList.PublicRead));
                 String imageUrl = amazonS3.getUrl(bucketName, uniqueKey).toString();
 
-            return ResponseEntity.ok(new AbstractResponse(imageUrl));
+            return ResponseEntity.ok(new AbstractResponse(new Image(uniqueKey, imageUrl)));
         } catch (IOException ex) {
             throw new InternalServerException("Error when upload image " + ex.getMessage());
         }

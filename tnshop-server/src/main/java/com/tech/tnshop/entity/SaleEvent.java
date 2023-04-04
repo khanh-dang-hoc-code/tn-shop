@@ -1,5 +1,6 @@
 package com.tech.tnshop.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -48,5 +49,6 @@ public class SaleEvent {
     private LocalDate updatedAt;
 
     @OneToMany(mappedBy = "saleEventProduct", cascade = CascadeType.DETACH)
+    @JsonManagedReference
     private List<Product> listProductSaleEvent;
 }

@@ -1,5 +1,6 @@
 package com.tech.tnshop.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -44,5 +45,6 @@ public class Payment {
 
     @OneToOne
     @JoinColumn(name = "order_id")
+    @JsonBackReference
     private Order orderPayment;
 }
