@@ -1,0 +1,11 @@
+#container {
+  position: relative;
+  min-height: 100vh;
+
+  .content {
+    // height: auto;
+    padding-bottom: 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
