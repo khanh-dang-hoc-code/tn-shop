@@ -1,8 +1,6 @@
 package com.tech.tnshop.repository;
 
 import com.tech.tnshop.entity.Product;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -43,4 +41,9 @@ public interface IProductRepository extends JpaRepository<Product, String> {
                              @Param("sortByPrice") String sortByPrice, @Param("sortByCreateAt") String sortByCreateDate,
                              @Param("saleEventId") String saleEventId, @Param("color") String color, @Param("size") String size);
 
+    @Query(value = "SELECT * FROM shop_service.product WHERE category_id = :categoryId", nativeQuery = true)
+    List<Product> getListByCategory(@Param("categoryId") String categoryId);
+
+    @Query(value = "SELECT * FROM shop_service.product WHERE brand_id = :brandId", nativeQuery = true)
+    List<Product> getListByBrandId(@Param("brandId") String brandId);
 }

@@ -34,6 +34,9 @@ public class SaleEvent {
     private LocalDate startDate;
 
     @Column
+    private int saleOffValue;
+
+    @Column
     private LocalDate endDate;
 
     @CreationTimestamp

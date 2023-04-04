@@ -25,6 +25,11 @@ public class UserCartController {
         return cartService.addOrderItemToCart(request, orderItemRequest);
     }
 
+    @GetMapping("/get")
+    public ResponseEntity<Object> addProductToCart(HttpServletRequest request) {
+        return cartService.getAllOrderItemsInCard(request);
+    }
+
     @DeleteMapping("/delete")
     public ResponseEntity<Object> removeProductFromCart(HttpServletRequest request, @RequestParam String orderItemId) {
         return cartService.removeOrderItemToCart(request, orderItemId);

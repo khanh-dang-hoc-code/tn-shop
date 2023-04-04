@@ -33,6 +33,12 @@ public class UpdateProductRequest {
     @JsonProperty
     private int quantity;
 
+    @JsonProperty
+    private String size;
+
+    @JsonProperty
+    private String color;
+
 
     @JsonProperty
     private BigDecimal price;

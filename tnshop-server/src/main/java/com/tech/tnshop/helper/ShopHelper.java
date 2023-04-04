@@ -26,7 +26,6 @@ public class ShopHelper {
 
     }
 
-
     static ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
 
     // create a validator instance

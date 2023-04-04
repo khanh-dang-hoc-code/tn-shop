@@ -34,7 +34,7 @@ public class BrandServiceImpl implements IBrandService {
 
     @Override
     public ResponseEntity<Object> getAllBrands(int index, int limit) {
-        Pageable pageable = PageRequest.of(index, limit, Sort.by("createDate").descending());
+        Pageable pageable = PageRequest.of(index, limit, Sort.by("createdAt").descending());
         Page<Brand> brands = brandRepository.findAll(pageable);
         return ResponseEntity.ok(new AbstractResponse(brands.getContent()));
     }
@@ -75,7 +75,7 @@ public class BrandServiceImpl implements IBrandService {
 
     @Override
     public ResponseEntity<Object> getBrand(String id) {
-        return ResponseEntity.ok(findBrandById(id));
+        return ResponseEntity.ok(new AbstractResponse(findBrandById(id)));
     }
 
     public Brand findBrandById(String id) {

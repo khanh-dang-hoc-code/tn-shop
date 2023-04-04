@@ -38,7 +38,7 @@ public class CommentServiceImpl implements ICommentService {
 
     @Override
     public ResponseEntity<Object> getAllComment(String postId,int index, int limit) {
-        Pageable pageable = PageRequest.of(index, limit, Sort.by("createDate").descending());
+        Pageable pageable = PageRequest.of(index, limit, Sort.by("create_at").descending());
         List<Comment> commentList =  commentRepository.findCommentByPostCommentIdOrderByCreatedAtDesc(postId, pageable).getContent();
         return ResponseEntity.ok(commentList);
     }

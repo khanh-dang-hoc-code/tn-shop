@@ -22,4 +22,6 @@ public interface ICartService {
     ResponseEntity<Object> removeOrderItemToCart(HttpServletRequest request, String orderItemId);
     ResponseEntity<Object> removeListOrderItemCart(HttpServletRequest request, List<String> orderItemsId);
 
+    ResponseEntity<Object> getAllOrderItemsInCard(HttpServletRequest request);
+
 }

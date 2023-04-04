@@ -2,7 +2,6 @@ package com.tech.tnshop.service;
 
 import com.tech.tnshop.dto.request.order_items.AddNewOrderItemRequest;
 import com.tech.tnshop.dto.request.order_items.UpdateOrderItemRequest;
-import com.tech.tnshop.entity.Order;
 import com.tech.tnshop.entity.OrderItems;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -22,5 +21,6 @@ public interface IOrderItemsService {
     ResponseEntity<Object> updateOrderItem(UpdateOrderItemRequest request);
     ResponseEntity<Object> removeOrderItem(String orderItem);
     ResponseEntity<Object> removeAllOrderItemInOrder(List<String> orderIds);
-    List<OrderItems> getAllOrderItemsInOrder(Order order);
+    List<OrderItems> getAllOrderItemsInOrder(String orderId);
+    List<OrderItems> getAllOrderItemsInCart(String cartId);
 }

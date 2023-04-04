@@ -9,6 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 /*
@@ -31,6 +32,9 @@ public class OrderItems {
 
     @Column
     private Integer quantity;
+
+    @Column
+    private BigDecimal amount;
 
     @CreationTimestamp
     @Column

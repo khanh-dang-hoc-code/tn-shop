@@ -8,6 +8,7 @@ import com.tech.tnshop.dto.response.AbstractResponse;
 import com.tech.tnshop.dto.response.MessageResponse;
 import com.tech.tnshop.entity.Post;
 import com.tech.tnshop.exception.NotFoundException;
+import com.tech.tnshop.helper.StringHelper;
 import com.tech.tnshop.repository.IPostRepository;
 import com.tech.tnshop.service.IPostService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -51,6 +52,16 @@ public class PostServiceImpl implements IPostService {
 
     @Override
     public ResponseEntity<Object> updatePost(UpdatePostRequest request) {
+        Post postUpdate = findPostById(request.getPostId());
+
+        if (StringHelper.isNotEmpty(request.getTitle())) {
+            postUpdate.setTitle(request.getTitle());
+        }
+
+        if (StringHelper.isNotEmpty(request.getContent())) {
+            postUpdate.setContent(request.getContent());
+        }
+
         return null;
     }
 

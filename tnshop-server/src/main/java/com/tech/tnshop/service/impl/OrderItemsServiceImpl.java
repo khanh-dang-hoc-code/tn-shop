@@ -7,6 +7,7 @@ import com.tech.tnshop.dto.response.AbstractResponse;
 import com.tech.tnshop.dto.response.MessageResponse;
 import com.tech.tnshop.entity.Order;
 import com.tech.tnshop.entity.OrderItems;
+import com.tech.tnshop.entity.Product;
 import com.tech.tnshop.exception.NotFoundException;
 import com.tech.tnshop.repository.IOrderItemsRepository;
 import com.tech.tnshop.service.IOrderItemsService;
@@ -14,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /*
@@ -26,17 +28,24 @@ import java.util.List;
 public class OrderItemsServiceImpl implements IOrderItemsService {
 
     private final IOrderItemsRepository orderItemsRepository;
+    private final ProductServiceImpl productService;
 
     @Override
     public ResponseEntity<Object> addNewOrderItem(AddNewOrderItemRequest request) {
         OrderItems orderItems = OrderItemMapper.mapToOrderItemsEntity(request);
+        Product product = productService.findProductById(request.getProductId());
+        orderItems.setProductOrderItem(product);
+        orderItems.setAmount(product.getPriceSold().multiply(new BigDecimal(request.getQuantity())));
         orderItemsRepository.save(orderItems);
         return ResponseEntity.ok(new AbstractResponse(orderItems));
     }
 
     @Override
     public ResponseEntity<Object> updateOrderItem(UpdateOrderItemRequest request) {
-        return null;
+        OrderItems orderItemsUpdate = orderItemsRepository.getReferenceById(request.getOrderItemId());
+        orderItemsUpdate.setQuantity(request.getQuantity());
+        orderItemsRepository.save(orderItemsUpdate);
+        return ResponseEntity.ok(new MessageResponse("Update orderItems " + request.getOrderItemId() + " successfully"));
     }
 
     @Override
@@ -52,8 +61,13 @@ public class OrderItemsServiceImpl implements IOrderItemsService {
     }
 
     @Override
-    public List<OrderItems> getAllOrderItemsInOrder(Order order) {
-        return order.getOrderItemsList();
+    public List<OrderItems> getAllOrderItemsInOrder(String orderId) {
+        return orderItemsRepository.getALlOrderItemsInOrder(orderId);
+    }
+
+    @Override
+    public List<OrderItems> getAllOrderItemsInCart(String cartId) {
+        return orderItemsRepository.getALlOrderItemsInCart(cartId);
     }
 
     public OrderItems getOrderItemById(String orderItemId) {

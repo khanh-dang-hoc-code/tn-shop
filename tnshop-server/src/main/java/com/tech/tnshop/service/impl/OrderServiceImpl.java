@@ -6,6 +6,7 @@ import com.tech.tnshop.dto.request.order.UpdateOrderRequest;
 import com.tech.tnshop.dto.response.AbstractResponse;
 import com.tech.tnshop.dto.response.MessageResponse;
 import com.tech.tnshop.entity.Order;
+import com.tech.tnshop.entity.OrderItems;
 import com.tech.tnshop.entity.User;
 import com.tech.tnshop.exception.NotFoundException;
 import com.tech.tnshop.repository.IOrderRepository;
@@ -15,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -28,17 +30,29 @@ public class OrderServiceImpl implements IOrderService {
 
     private final IOrderRepository orderRepository;
     private final AuthenticateService authenticateService;
+    private final OrderItemsServiceImpl orderItemsService;
+
 
     @Override
     public ResponseEntity<Object> createNewOrder(AddNewOrderRequest request) {
         Order order = OrderMapper.mapToOrderEntity(request);
+        List<OrderItems> orderItems = request.getOrderItemsIds().stream()
+                .map(orderItemsService::getOrderItemById)
+                .toList();
+        order.setOrderItemsList(orderItems);
         orderRepository.save(order);
         return ResponseEntity.ok(new AbstractResponse(order));
     }
 
     @Override
     public ResponseEntity<Object> update(UpdateOrderRequest request) {
-        return null;
+        Order orderUpdate = getOrderById(request.getId());
+        List<OrderItems> listOrderItems = request.getOrderItemsIds().stream()
+                                                 .map(orderItemsService::getOrderItemById)
+                                                 .toList();
+        orderUpdate.setOrderItemsList(listOrderItems);
+        orderRepository.save(orderUpdate);
+        return ResponseEntity.ok(new MessageResponse("Update order " + request.getId() + " successfully"));
     }
 
     @Override
@@ -61,10 +75,19 @@ public class OrderServiceImpl implements IOrderService {
     }
 
     @Override
+    public ResponseEntity<Object> getAllOrderItemsInOrder(String orderId) {
+        return ResponseEntity.ok(new AbstractResponse(orderItemsService.getAllOrderItemsInOrder(orderId)));
+    }
+
+    @Override
     public void updateOrderStatus(String orderId, String orderStatus, HttpServletRequest request) {
         Order orderUpdate = getOrderById(orderId);
         orderUpdate.setOrderStatus(orderStatus);
         orderRepository.save(orderUpdate);
+    }
+
+    public ResponseEntity<Object> findOrderById(String orderId) {
+        return ResponseEntity.ok(new AbstractResponse(getOrderById(orderId)));
     }
 
     public Order getOrderById(String orderId) {

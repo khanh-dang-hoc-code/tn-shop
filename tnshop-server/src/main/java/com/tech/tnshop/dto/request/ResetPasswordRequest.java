@@ -21,6 +21,10 @@ import lombok.NoArgsConstructor;
 public class ResetPasswordRequest {
 
     @JsonProperty
+    @NotNull(message = "Phone number can not be null")
+    private String phoneNumber;
+
+    @JsonProperty
     @NotNull(message = "New password can not be null")
     private String newPassword;
 }

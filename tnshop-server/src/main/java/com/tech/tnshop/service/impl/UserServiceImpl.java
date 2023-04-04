@@ -81,13 +81,13 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public ResponseEntity<Object> resetPassword(ResetPasswordRequest resetPasswordRequest, HttpServletRequest servletRequest) {
-        User user = authenticateService.getUserFromToken(servletRequest);
+    public ResponseEntity<Object> resetPassword(ResetPasswordRequest resetPasswordRequest) {
+        User user = userRepository.findUserByUserName(resetPasswordRequest.getPhoneNumber())
+                .orElseThrow(() -> new NotFoundException("Can not find user " + resetPasswordRequest.getPhoneNumber()));
         OTP otp = otpService.getOTPByPhoneNumber(user.getUsername());
         if (!otp.isVerify()) {
             throw new UnauthorizedException("Please pass OTP verify before reset password");
         }
-
         user.setPassword(passwordEncoder.encode(resetPasswordRequest.getNewPassword()));
         userRepository.save(user);
         otpService.resetOTPState(user.getUsername());

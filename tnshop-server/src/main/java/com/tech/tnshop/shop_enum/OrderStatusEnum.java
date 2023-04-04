@@ -20,12 +20,16 @@ public enum OrderStatusEnum {
 
     public static boolean validateOrderStatus(String orderStatus) {
         return Arrays.stream(values())
-                .filter(s -> s.name().equalsIgnoreCase(orderStatus))
+                .filter(s -> s.status.equalsIgnoreCase(orderStatus))
                 .findFirst()
                 .orElseThrow(() -> new BadRequestException("Order status " + orderStatus + " is not valid")) != null;
     }
 
     OrderStatusEnum(String name) {
         this.status = name;
+    }
+
+    public String getStatus() {
+        return status;
     }
 }

@@ -1,6 +1,7 @@
 package com.tech.tnshop.service.impl;
 
 import com.tech.tnshop.dto.mapper.ProductMapper;
+import com.tech.tnshop.dto.request.AddNewImageRequest;
 import com.tech.tnshop.dto.request.product.AddNewProductRequest;
 import com.tech.tnshop.dto.request.product.UpdateProductRequest;
 import com.tech.tnshop.dto.response.AbstractResponse;
@@ -13,9 +14,6 @@ import com.tech.tnshop.helper.StringHelper;
 import com.tech.tnshop.repository.IProductRepository;
 import com.tech.tnshop.service.IProductService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
@@ -30,9 +28,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductServiceImpl implements IProductService {
     private final IProductRepository productRepository;
-
     private final BrandServiceImpl brandService;
     private final CategoryServiceImpl categoryService;
+    private final ProductImageServiceImpl imageService;
 
 
     @Override
@@ -50,12 +48,21 @@ public class ProductServiceImpl implements IProductService {
         product.setBrand(brand);
         product.setCategory(category);
         productRepository.save(product);
+        request.getImageList().forEach(s -> imageService.saveImageToBrand(product, new AddNewImageRequest("", s.getName(), s.getUrl())));
         return ResponseEntity.ok(new AbstractResponse(product));
     }
 
     @Override
     public ResponseEntity<Object> updateProduct(UpdateProductRequest request) {
         Product productUpdate = findProductById(request.getId());
+        if (StringHelper.isNotEmpty(request.getColor())) {
+            productUpdate.setColor(request.getColor());
+        }
+
+        if(StringHelper.isNotEmpty(request.getSize())) {
+            productUpdate.setSize(request.getSize());
+        }
+
         if (StringHelper.isEmpty(request.getName())) {
             productUpdate.setName(request.getName());
         }
@@ -91,13 +98,13 @@ public class ProductServiceImpl implements IProductService {
 
     @Override
     public ResponseEntity<Object> getListProductByCategory(String categoryId) {
-        List<Product> list = categoryService.findCategoryById(categoryId).getProductList();
+        List<Product> list = productRepository.getListByCategory(categoryId);
         return ResponseEntity.ok(new AbstractResponse(list));
     }
 
     @Override
     public ResponseEntity<Object> getListProductByBrand(String brandId) {
-        List<Product> list = brandService.findBrandById(brandId).getProductList();
+        List<Product> list = productRepository.getListByBrandId(brandId);
         return ResponseEntity.ok(new AbstractResponse(list));
     }
 

@@ -1,6 +1,5 @@
 package com.tech.tnshop.controller.auth.user;
 
-import com.tech.tnshop.entity.Order;
 import com.tech.tnshop.service.impl.PaymentServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -19,19 +18,8 @@ public class UserPaymentController {
 
     private final PaymentServiceImpl paymentService;
 
-    @PostMapping("redirect")
-    ResponseEntity<Object> createPaymentOrder(HttpServletRequest request) {
-        Order order = new Order();
-        return paymentService.checkoutToPaymentPage(request, order);
-    }
-
-    @GetMapping("/status")
-    ResponseEntity<Object> updatePaymentAction(@RequestParam String sessionId) {
-        return paymentService.updatePaymentAction(sessionId);
-    }
-
-    @PostMapping("refund")
-    ResponseEntity<Object> refundOrderPayment(HttpServletRequest request) {
-        return paymentService.refund( "");
+    @PostMapping("/redirect")
+    ResponseEntity<Object> createPaymentOrder(HttpServletRequest request,@RequestParam String orderId) {
+        return paymentService.checkoutToPaymentPage(request, orderId);
     }
 }

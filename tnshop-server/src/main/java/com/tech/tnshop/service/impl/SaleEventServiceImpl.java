@@ -7,12 +7,14 @@ import com.tech.tnshop.dto.response.AbstractResponse;
 import com.tech.tnshop.dto.response.MessageResponse;
 import com.tech.tnshop.entity.SaleEvent;
 import com.tech.tnshop.exception.NotFoundException;
+import com.tech.tnshop.helper.StringHelper;
 import com.tech.tnshop.repository.ISaleEventRepository;
 import com.tech.tnshop.service.ISaleEventService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /*
@@ -39,7 +41,22 @@ public class SaleEventServiceImpl implements ISaleEventService {
 
     @Override
     public ResponseEntity<Object> updateSaleEvent(UpdateSaleEventRequest request) {
-        return null;
+        SaleEvent saleEventUpdate = findSaleEventById(request.getId());
+
+        if (StringHelper.isNotEmpty(request.getStartDate())) {
+            saleEventUpdate.setStartDate(LocalDate.parse(request.getStartDate()));
+        }
+
+        if (StringHelper.isNotEmpty(request.getEndDate())) {
+            saleEventUpdate.setEndDate(LocalDate.parse(request.getEndDate()));
+        }
+
+        if (request.getSaleOffValue() > 0) {
+            saleEventUpdate.setSaleOffValue(request.getSaleOffValue());
+        }
+
+        repository.save(saleEventUpdate);
+        return ResponseEntity.ok(new MessageResponse("Update sale event " + request.getId() + " successfully"));
     }
 
     @Override

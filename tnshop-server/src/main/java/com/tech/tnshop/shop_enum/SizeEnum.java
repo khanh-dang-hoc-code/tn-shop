@@ -1,5 +1,9 @@
 package com.tech.tnshop.shop_enum;
 
+import com.tech.tnshop.exception.BadRequestException;
+
+import java.util.Arrays;
+
 public enum SizeEnum {
     S("s"),
     L("l"),
@@ -16,6 +20,13 @@ public enum SizeEnum {
     SIZE_46("46");
 
     private final String size;
+
+    public static boolean validateSize(String size) {
+        return Arrays.stream(values())
+                .filter(s -> s.size.equalsIgnoreCase(size))
+                .findFirst()
+                .orElseThrow(() -> new BadRequestException("Order status " + size + " is not valid")) != null;
+    }
 
     SizeEnum(String size) {
         this.size = size;

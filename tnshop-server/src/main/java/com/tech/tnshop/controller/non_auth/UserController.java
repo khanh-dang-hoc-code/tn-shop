@@ -37,9 +37,9 @@ public class UserController {
     }
 
     @PostMapping(value = "/reset-password")
-    public ResponseEntity<Object> resetPassword(@RequestBody ResetPasswordRequest resetPasswordRequest, HttpServletRequest servletRequest) {
+    public ResponseEntity<Object> resetPassword(@RequestBody ResetPasswordRequest resetPasswordRequest ) {
         ShopHelper.validateObjectRequiredFields(resetPasswordRequest);
-        return userService.resetPassword(resetPasswordRequest, servletRequest);
+        return userService.resetPassword(resetPasswordRequest);
     }
 
     @GetMapping(value = "/logout")

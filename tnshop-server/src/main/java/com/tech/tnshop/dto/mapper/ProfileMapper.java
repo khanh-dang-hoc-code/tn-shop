@@ -5,6 +5,8 @@ import com.tech.tnshop.dto.request.ProfileRequest;
 import com.tech.tnshop.dto.request.RegisterRequest;
 import com.tech.tnshop.dto.response.ProfileResponse;
 
+import java.time.LocalDate;
+
 /*
  * @created 01/04/2023 - 05:50
  * @project tn-shop
@@ -21,7 +23,7 @@ public class ProfileMapper {
                 .address1(profileRequest.getAddress1())
                 .address2(profileRequest.getAddress2())
                 .address3(profileRequest.getAddress3())
-                .dateOfBirth(profileRequest.getDateOfBirth())
+                .dateOfBirth(LocalDate.parse(profileRequest.getDateOfBirth()))
                 .telephoneNumber(profileRequest.getTelephoneNumber())
                 .build();
     }

@@ -3,8 +3,12 @@ package com.tech.tnshop.controller.auth.admin;
 import com.tech.tnshop.dto.request.product.AddNewProductRequest;
 import com.tech.tnshop.dto.request.product.RemoveListProductRequest;
 import com.tech.tnshop.dto.request.product.UpdateProductRequest;
+import com.tech.tnshop.exception.BadRequestException;
 import com.tech.tnshop.helper.ShopHelper;
+import com.tech.tnshop.helper.StringHelper;
 import com.tech.tnshop.service.impl.ProductServiceImpl;
+import com.tech.tnshop.shop_enum.ColorEnum;
+import com.tech.tnshop.shop_enum.SizeEnum;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -38,12 +42,19 @@ public class AdminProductController {
     @PostMapping("/add")
     public ResponseEntity<Object> addNewProduct(@RequestBody AddNewProductRequest request) {
         ShopHelper.validateObjectRequiredFields(request);
+        if (!SizeEnum.validateSize(request.getSize()) || !ColorEnum.validateColor(request.getColor())) {
+            throw new BadRequestException("Color or size params is not valid");
+        }
         return productService.addNewProduct(request);
     }
 
     @PutMapping("/update")
     public ResponseEntity<Object> updateProduct(@RequestBody UpdateProductRequest request) {
         ShopHelper.validateObjectRequiredFields(request);
+        if (StringHelper.isEmpty(request.getSize()) && !SizeEnum.validateSize(request.getSize())
+                || StringHelper.isEmpty(request.getColor()) && !ColorEnum.validateColor(request.getColor())) {
+            throw new BadRequestException("Color or size params is not valid");
+        }
         return productService.updateProduct(request);
     }
 

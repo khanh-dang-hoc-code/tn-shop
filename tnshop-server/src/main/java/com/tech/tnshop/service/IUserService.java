@@ -18,7 +18,7 @@ public interface IUserService {
 
      ResponseEntity<Object> createNewAccount(RegisterRequest registerRequest, String role);
      ResponseEntity<Object> login (LoginRequest loginRequest);
-     ResponseEntity<Object> resetPassword(ResetPasswordRequest resetPasswordRequest, HttpServletRequest servletRequest);
+     ResponseEntity<Object> resetPassword(ResetPasswordRequest resetPasswordRequest);
 
      User findUserById(String userId);
      User findUserByUserName(String userName);

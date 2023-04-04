@@ -5,6 +5,7 @@ import com.tech.tnshop.dto.request.AddNewImageRequest;
 import com.tech.tnshop.dto.request.category.AddNewCategoryRequest;
 import com.tech.tnshop.dto.request.category.UpdateCategoryRequest;
 import com.tech.tnshop.dto.response.AbstractResponse;
+import com.tech.tnshop.dto.response.MessageResponse;
 import com.tech.tnshop.entity.Category;
 import com.tech.tnshop.exception.NotFoundException;
 import com.tech.tnshop.helper.StringHelper;
@@ -33,9 +34,9 @@ public class CategoryServiceImpl implements ICategoryService {
 
     @Override
     public ResponseEntity<Object> getAllCategory(int index, int limit) {
-        Pageable pageable = PageRequest.of(index, limit, Sort.by("createDate").descending());
+        Pageable pageable = PageRequest.of(index, limit, Sort.by("createdAt").descending());
         Page<Category> categoryPages = categoryRepository.findAll(pageable);
-        return ResponseEntity.ok(categoryPages.getContent());
+        return ResponseEntity.ok(new AbstractResponse(categoryPages.getContent()));
     }
 
     @Override
@@ -58,24 +59,24 @@ public class CategoryServiceImpl implements ICategoryService {
             categoryUpdate.setDescription(request.getDescription());
         }
         categoryRepository.save(categoryUpdate);
-        return ResponseEntity.ok("Category updated successfully");
+        return ResponseEntity.ok(new MessageResponse("Category updated successfully"));
     }
 
     @Override
     public ResponseEntity<Object> deleteCategory(String categoryId) {
         categoryRepository.deleteById(categoryId);
-        return ResponseEntity.ok("Delete category " + categoryId + " successfully");
+        return ResponseEntity.ok(new MessageResponse("Delete category " + categoryId + " successfully"));
     }
 
     @Override
     public ResponseEntity<Object> getCategoryByID(String categoryId) {
-        return ResponseEntity.ok(findCategoryById(categoryId));
+        return ResponseEntity.ok( new AbstractResponse(findCategoryById(categoryId)));
     }
 
     @Override
     public ResponseEntity<Object> removeListCategory(List<String> idsList) {
         categoryRepository.deleteAllById(idsList);
-        return ResponseEntity.ok("Delete successfully");
+        return ResponseEntity.ok(new MessageResponse("Delete successfully"));
     }
 
     public Category findCategoryById(String categoryId) {

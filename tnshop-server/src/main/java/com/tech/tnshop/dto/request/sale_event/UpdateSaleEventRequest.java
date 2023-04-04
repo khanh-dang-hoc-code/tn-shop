@@ -18,4 +18,13 @@ import lombok.NoArgsConstructor;
 public class UpdateSaleEventRequest {
     @JsonProperty
     private String id;
+
+    @JsonProperty
+    private String startDate;
+
+    @JsonProperty
+    private String endDate;
+
+    @JsonProperty
+    private int saleOffValue;
 }

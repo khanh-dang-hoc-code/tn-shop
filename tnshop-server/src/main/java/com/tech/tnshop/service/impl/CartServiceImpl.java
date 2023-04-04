@@ -1,6 +1,7 @@
 package com.tech.tnshop.service.impl;
 
 import com.tech.tnshop.dto.request.order_items.AddNewOrderItemRequest;
+import com.tech.tnshop.dto.response.AbstractResponse;
 import com.tech.tnshop.entity.Cart;
 import com.tech.tnshop.entity.User;
 import com.tech.tnshop.exception.NotFoundException;
@@ -46,6 +47,12 @@ public class CartServiceImpl implements ICartService {
     @Override
     public ResponseEntity<Object> removeListOrderItemCart(HttpServletRequest request, List<String> orderItemsId) {
         return orderItemsService.removeAllOrderItemInOrder(orderItemsId);
+    }
+
+    @Override
+    public ResponseEntity<Object> getAllOrderItemsInCard(HttpServletRequest request) {
+        String cartId = getCartByServletRequest(request).getId();
+        return ResponseEntity.ok(new AbstractResponse(orderItemsService.getAllOrderItemsInCart(cartId)));
     }
 
     public Cart findCartById(String cartId) {

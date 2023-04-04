@@ -21,5 +21,7 @@ public interface IOrderService {
     ResponseEntity<Object> removeOrder(HttpServletRequest servletRequest, String orderId);
     ResponseEntity<Object> removeAllOrder(HttpServletRequest servletRequest, List<String> orderId);
 
+    ResponseEntity<Object> getAllOrderItemsInOrder(String orderId);
+
     void updateOrderStatus(String orderId, String orderStatus, HttpServletRequest request);
 }

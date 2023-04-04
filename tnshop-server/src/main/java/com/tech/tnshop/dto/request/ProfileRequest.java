@@ -7,7 +7,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 import java.util.List;
 
 /*
@@ -33,7 +32,7 @@ public class ProfileRequest {
     @JsonProperty
     private String telephoneNumber;
     @JsonProperty
-    private LocalDate dateOfBirth;
+    private String dateOfBirth;
     @JsonProperty
 
     private String address1;

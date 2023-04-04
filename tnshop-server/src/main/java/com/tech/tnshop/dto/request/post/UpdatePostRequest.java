@@ -2,6 +2,7 @@ package com.tech.tnshop.dto.request.post;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,5 +19,12 @@ import lombok.NoArgsConstructor;
 public class UpdatePostRequest {
 
     @JsonProperty
+    @NotNull
     private String postId;
+
+    @JsonProperty
+    private String title;
+
+    @JsonProperty
+    private String content;
 }
