@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 public interface IUserService {
 
      ResponseEntity<Object> createNewAccount(RegisterRequest registerRequest, String role);
-     ResponseEntity<Object> login (LoginRequest loginRequest);
+     ResponseEntity<Object> login (LoginRequest loginRequest, String role);
      ResponseEntity<Object> resetPassword(ResetPasswordRequest resetPasswordRequest);
 
      User findUserById(String userId);

@@ -33,7 +33,7 @@ public class AdminController {
     @PostMapping(value = "/login")
     public ResponseEntity<Object> login(@RequestBody LoginRequest loginRequest) {
         ShopHelper.validateObjectRequiredFields(loginRequest);
-        return userService.login(loginRequest);
+        return userService.login(loginRequest, RoleEnum.ADMIN_ROLE.getRole());
     }
 
     @PutMapping(value = "/reset-password")

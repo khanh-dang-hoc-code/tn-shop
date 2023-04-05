@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { getItemInStorage } from '../helper/tokenUtils';
 
 const initialState = {
-  token: getItemInStorage('accessToken') || ''
+  token: getItemInStorage('crm-tnshop-token') || ''
 };
 
 export const authSlice = createSlice({

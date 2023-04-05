@@ -53,7 +53,7 @@ public class UserServiceImpl implements IUserService {
             throw new UnauthorizedException("Please pass OTP verify before register");
         }
         Profile profile = ProfileMapper.mapFromRegisterRequest(registerRequest);
-        user.setRole(RoleEnum.USER_ROLE.name());
+        user.setRole(role);
         user.setStatus(UserStatusEnum.ACTIVE.name());
         try {
             userRepository.save(user);
@@ -72,8 +72,8 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public ResponseEntity<Object> login(LoginRequest loginRequest) {
-        String jwtToken = authenticateService.getTokenFromLoginInformation(loginRequest);
+    public ResponseEntity<Object> login(LoginRequest loginRequest, String role) {
+        String jwtToken = authenticateService.getTokenFromLoginInformation(loginRequest, role);
             return ResponseEntity.ok(AuthenticationResponse.builder()
                     .token(jwtToken)
                     .expiredTime(String.valueOf(SecurityConstants.EXPIRATION_TIME))
