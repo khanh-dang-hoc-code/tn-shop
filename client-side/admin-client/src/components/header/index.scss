@@ -1,0 +1,168 @@
+@import "../../variable.scss";
+.header {
+    height: 70px;
+    background-color: #556ee6;
+    width: 100%;
+    color: #ccc;
+
+    .cursor-pointer {
+        cursor: pointer;
+    }
+
+    .header-content {
+        max-width: 85%;
+        margin: 0 auto;
+
+        .header-left {
+            div {
+                padding: 0 12px;
+            }
+            .menu-icon {
+            }
+        }
+
+        .header-right {
+            div {
+                padding: 0 12px;
+            }
+
+            .grid-icon {
+                position: relative;
+                &:hover > .grid-sub-group {
+                    display: flex;
+                }
+
+                .grid-sub-group {
+                    list-style-type: none;
+                    width: 318px;
+                    height: 188px;
+                    padding: 8px 0;
+                    border: 1px solid #a6b0cf;
+                    border-top: none;
+                    position: absolute;
+                    top: 70px;
+                    font-size: 13px;
+                    right: 0;
+                    flex-direction: column;
+                    background-color: #2a3042;
+                    display: none;
+                    animation: dropDownAnimation 0.5s alternate;
+
+                    .row {
+                        flex: 1;
+                    }
+
+                    .grid-sub-item {
+                        display: flex;
+
+                        a {
+                            color: $text-color;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: space-between;
+                            align-items: center;
+                            text-decoration: none;
+                        }
+
+                        .image-custom {
+                            width: 50%;
+                            aspect-ratio: 3/2;
+                            object-fit: contain;
+                        }
+
+                        span {
+                            margin-top: 12px;
+                        }
+                    }
+                }
+            }
+
+            .full-screen-icon {
+            }
+
+            .notification-icon {
+                .notification-header-icon {
+                    animation: notification-shake 0.25s infinite ease-in-out;
+                }
+            }
+
+            .user-group {
+                font-size: 12px;
+                position: relative;
+
+                &:hover > .user-sub-group {
+                    display: block;
+                }
+
+                .user-main-group {
+                    .header-user-image {
+                        aspect-ratio: 1/1;
+                        width: 70px;
+                        object-fit: contain;
+                    }
+                }
+
+                .user-sub-group {
+                    display: none;
+                    position: absolute;
+                    top: 70px;
+                    min-width: 158px;
+                    min-height: 170px;
+                    padding: 8px 0;
+                    border: 1px solid $text-color;
+                    border-top: none;
+                    font-size: 13px;
+                    list-style-type: none;
+                    background-color: #2a3042;
+                    border-radius: 3px;
+                    animation: dropDownAnimation 0.5s alternate;
+
+                    .sub-group-item {
+                        &:hover {
+                            background-color: #818181;
+                        }
+
+                        a {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            padding: 4px 0;
+                            text-decoration: none;
+
+                            svg {
+                                flex: 5;
+                                color: $text-color;
+                            }
+
+                            span {
+                                color: $text-color;
+                                flex: 7;
+                                text-align: left;
+                            }
+                        }
+                    }
+
+                    .logout-divider {
+                        margin: 8px 0;
+                        background-color: $text-color;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@keyframes notification-shake {
+    0% {
+        transform: rotate(0deg);
+    }
+    33% {
+        transform: rotate(20deg);
+    }
+    66% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(-20deg);
+    }
+}

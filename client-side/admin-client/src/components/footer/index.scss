@@ -1,0 +1,20 @@
+@import "../../variable.scss";
+.footer {
+    width: 100%;
+    padding: 20px 18px;
+    height: 20px;
+    background-color: #262b3c;
+    position: absolute;
+    bottom: 0;
+
+    .footer-content {
+        max-width: 85%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        color: $text-color;
+        font-size: 13px;
+    }
+}
