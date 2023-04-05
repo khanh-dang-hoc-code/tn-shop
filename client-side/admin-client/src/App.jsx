@@ -1,15 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import Footer from './components/footer/Footer';
-import Header from './components/header/Header';
-
-import './app.scss';
-import FooterNavBar from './components/nav-bar/FooterNavbar';
+import React, { useEffect } from 'react';
 import { selectToken } from './store/authSlice';
 import { useSelector } from 'react-redux';
-import { Navigate, Route, Routes } from 'react-router-dom';
-import Login from './components/login/Login';
-import Register from './components/register/Register';
-import ForgotPassword from './components/forgot-password/ForgotPassword';
+import AppDrawer from './components/app-drawer/AppDrawer';
+import './app.scss';
+import Header from './components/header/Header';
+import Navbar from './components/navbar/Navbar';
+import Footer from './components/footer/Footer';
 
 const App = () => {
   const accessToken = useSelector(selectToken);
@@ -35,18 +31,12 @@ const App = () => {
   return (
     <div id="container">
       <Header />
-      <div className="content">
-        <Routes>
-          <Route path="/login" element={!isLogin ? <Login /> : <Navigate to={''} />} />
-          <Route path="/register" element={<Register />} />
-          <Route
-            path="/forgot-password"
-            element={isLogin ? <ForgotPassword /> : <Navigate to={'/login'} />}
-          />
-        </Routes>
-      </div>
+      <Navbar />
+      {/* <div className="container-left">
+        <AppDrawer isOpen={false} />
+      </div> */}
+      <div className="container-right"></div>
       <Footer />
-      <FooterNavBar />
     </div>
   );
 };

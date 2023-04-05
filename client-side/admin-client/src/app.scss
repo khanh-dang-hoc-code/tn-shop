@@ -1,11 +1,35 @@
 #container {
   position: relative;
-  min-height: 100vh;
+  min-height: 300vh;
 
-  .content {
-    // height: auto;
-    padding-bottom: 80px;
-    max-width: 1200px;
-    margin: 0 auto;
+  //common class
+
+  .flex-h100 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+  }
+
+  .flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  //end common class
+
+  .container-left {
+    display: none;
+    position: sticky;
+    top: 0;
+    height: 100%;
+    width: auto;
+    background-color: red;
+  }
+
+  .container-right {
+    min-height: 100vh;
+    position: relative;
   }
 }
