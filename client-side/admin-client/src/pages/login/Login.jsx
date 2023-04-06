@@ -5,12 +5,16 @@ import { TextField, Button } from '@material-ui/core';
 import { useLoginMutation } from '../../services/authService';
 import { saveItemInStorage } from '../../helper/tokenUtils';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setToken } from '../../store/authSlice';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const [login, isLoading] = useLoginMutation();
+
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
@@ -34,8 +38,15 @@ const Login = () => {
       password: password
     })
       .then((res) => {
-        saveItemInStorage('crm-tnshop-token', res?.data?.token);
-        navigate('/admin');
+        // @ts-ignore
+        let token = res?.data?.token;
+        if (token) {
+          saveItemInStorage('crm-tnshop-token', token);
+          dispatch(setToken(token));
+        }
+      })
+      .then(() => {
+        navigate('/admin/dash-board');
       })
       .catch((err) => {
         console.log(err);

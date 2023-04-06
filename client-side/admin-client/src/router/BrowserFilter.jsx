@@ -28,13 +28,23 @@ const BrowserFilter = () => {
     };
   }, []);
 
+  useEffect(() => {
+    console.log('is login', isLogin);
+  }, [isLogin]);
+
   return (
     <div>
       <Routes>
         <Route path="/admin/*" element={isLogin ? <App /> : <Navigate to={'/login'} />} />
         <Route
           path="/login"
-          element={isLogin ? <Navigate to={location.state?.from || '/admin'} replace /> : <Login />}
+          element={
+            isLogin ? (
+              <Navigate to={location.state?.from || '/admin/dash-board'} replace />
+            ) : (
+              <Login />
+            )
+          }
         />
         <Route path="/*" element={<NotFoundPage />} />
       </Routes>

@@ -1,6 +1,4 @@
 import { fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { baseUrl } from '../common/constant';
-import { getItemInStorage } from '../helper/tokenUtils';
 
 export const baseQuery = fetchBaseQuery({
   baseUrl: 'http://localhost:8080/',
@@ -9,10 +7,10 @@ export const baseQuery = fetchBaseQuery({
     // Mark requests as XMLHttpRequest
     headers.set('Content-Type', 'application/json');
     // Add authorization token to header if exists
-    const token = getItemInStorage('crm-tnshop-token');
-    if (token) {
-      headers.set('Authorization', `Bearer ${token}`);
-    }
+    // const token = getItemInStorage('crm-tnshop-token');
+    // if (token) {
+    //   headers.set('Authorization', `Bearer ${token}`);
+    // }
 
     return headers;
   }

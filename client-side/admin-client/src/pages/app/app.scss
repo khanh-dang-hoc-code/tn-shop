@@ -1,6 +1,7 @@
 #container {
   position: relative;
-  min-height: 300vh;
+  min-height: 100vh;
+  background-color: #222736;
 
   //common class
 
@@ -15,6 +16,80 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: calc(24px * -0.5);
+    margin-right: calc(24px * -0.5);
+    margin-top: calc(0px * -1);
+  }
+
+  .card {
+    background-color: #2a3042;
+    border-radius: 6px;
+    margin-bottom: 24px;
+  }
+
+  .col-12 {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
+  .col-11 {
+    flex: 0 0 auto;
+    width: 91.6666666667%;
+  }
+
+  .col-10 {
+    flex: 0 0 auto;
+    width: 83.3333333333%;
+  }
+
+  .col-9 {
+    flex: 0 0 auto;
+    width: 75%;
+  }
+
+  .col-8 {
+    flex: 0 0 auto;
+    width: 66.6666666667%;
+  }
+
+  .col-7 {
+    flex: 0 0 auto;
+    width: 58.3333333333%;
+  }
+
+  .col-6 {
+    flex: 0 0 auto;
+    width: 50%;
+  }
+
+  .col-5 {
+    flex: 0 0 auto;
+    width: 41.6666666667%;
+  }
+
+  .col-4 {
+    flex: 0 0 auto;
+    width: 33.33333333%;
+  }
+
+  .col-3 {
+    flex: 0 0 auto;
+    width: 25%;
+  }
+
+  .col-2 {
+    flex: 0 0 auto;
+    width: 16.6666666667%;
+  }
+
+  .col-1 {
+    flex: 0 0 auto;
+    width: 8.33333333333%;
   }
 
   //end common class
@@ -34,5 +109,8 @@
   // }
 
   .content {
+    max-width: 85%;
+    margin: 0 auto;
+    height: auto;
   }
 }
