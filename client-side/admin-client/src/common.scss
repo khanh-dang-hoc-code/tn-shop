@@ -1,0 +1,118 @@
+.flex {
+    display: flex;
+}
+
+.flex-1 {
+    flex: 1 1;
+}
+
+.h-full {
+    height: 100%;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.mx-auto {
+    margin: 0 auto;
+}
+
+.shadow-xl {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.img-asb {
+    aspect-ratio: 3/2;
+}
+
+.rounded-lg {
+    border-radius: 0.5rem;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.min-h-screen {
+    height: 100vh;
+}
+
+.mb-24 {
+    margin-bottom: 1.5rem;
+}
+.fz-24 {
+    font-size: 1.5rem;
+}
+
+.fw-600 {
+    font-weight: 600;
+}
+
+.p-48 {
+    padding: 3rem;
+}
+
+.p-24 {
+    padding: 1.5rem;
+}
+
+.col-12 {
+    flex: 0 0 auto;
+    width: 100%;
+}
+
+.col-11 {
+    flex: 0 0 auto;
+    width: 91.6666666667%;
+}
+
+.col-10 {
+    flex: 0 0 auto;
+    width: 83.3333333333%;
+}
+
+.col-9 {
+    flex: 0 0 auto;
+    width: 75%;
+}
+
+.col-8 {
+    flex: 0 0 auto;
+    width: 66.6666666667%;
+}
+
+.col-7 {
+    flex: 0 0 auto;
+    width: 58.3333333333%;
+}
+
+.col-6 {
+    flex: 0 0 auto;
+    width: 50%;
+}
+
+.col-5 {
+    flex: 0 0 auto;
+    width: 41.6666666667%;
+}
+
+.col-4 {
+    flex: 0 0 auto;
+    width: 33.33333333%;
+}
+
+.col-3 {
+    flex: 0 0 auto;
+    width: 25%;
+}
+
+.col-2 {
+    flex: 0 0 auto;
+    width: 16.6666666667%;
+}
+
+.col-1 {
+    flex: 0 0 auto;
+    width: 8.33333333333%;
+}
