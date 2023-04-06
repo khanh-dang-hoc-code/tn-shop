@@ -19,17 +19,20 @@
 
   //end common class
 
-  .container-left {
-    display: none;
-    position: sticky;
-    top: 0;
-    height: 100%;
-    width: auto;
-    background-color: red;
-  }
+  // .container-left {
+  //   display: none;
+  //   position: sticky;
+  //   top: 0;
+  //   height: 100%;
+  //   width: auto;
+  //   background-color: red;
+  // }
 
-  .container-right {
-    min-height: 100vh;
-    position: relative;
+  // .container-right {
+  //   min-height: 100vh;
+  //   position: relative;
+  // }
+
+  .content {
   }
 }

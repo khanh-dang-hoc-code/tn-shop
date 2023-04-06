@@ -3,6 +3,7 @@ import './index.scss';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import HomeIcon from '@mui/icons-material/Home';
 import GridViewIcon from '@mui/icons-material/GridView';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
@@ -16,10 +17,10 @@ const Navbar = () => {
           </div>
           <ul className="dash-board-sub-group">
             <li className="subgroup-item">
-              <a href="">Default</a>
+              <Link to={'/admin/dash-board'}>Default</Link>
             </li>
             <li className="subgroup-item">
-              <a href="">Saas</a>
+              <Link to={'/admin/ecommerce'}>Saas</Link>
             </li>
             <li className="subgroup-item">
               <a href="">Blog</a>

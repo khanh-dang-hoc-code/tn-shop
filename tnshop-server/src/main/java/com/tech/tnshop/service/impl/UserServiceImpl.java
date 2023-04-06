@@ -25,6 +25,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 /*
  * @created 01/04/2023 - 05:50
@@ -46,6 +47,7 @@ public class UserServiceImpl implements IUserService {
     private final OTPService otpService;
 
     @Override
+    @Transactional
     public ResponseEntity<Object> createNewAccount(RegisterRequest registerRequest, String role) {
         User user = UserMapper.mapToUserEntity(registerRequest);
         OTP otp = otpService.getOTPByPhoneNumber(user.getUsername());

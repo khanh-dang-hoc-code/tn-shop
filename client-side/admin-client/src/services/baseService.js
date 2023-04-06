@@ -3,13 +3,13 @@ import { baseUrl } from '../common/constant';
 import { getItemInStorage } from '../helper/tokenUtils';
 
 export const baseQuery = fetchBaseQuery({
-  baseUrl: baseUrl,
+  baseUrl: 'http://localhost:8080/',
 
   prepareHeaders: (headers, { getState }) => {
     // Mark requests as XMLHttpRequest
     headers.set('Content-Type', 'application/json');
     // Add authorization token to header if exists
-    const token = getItemInStorage('accessToken');
+    const token = getItemInStorage('crm-tnshop-token');
     if (token) {
       headers.set('Authorization', `Bearer ${token}`);
     }

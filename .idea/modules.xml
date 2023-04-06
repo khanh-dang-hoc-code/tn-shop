@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/tn-shop.iml" filepath="$PROJECT_DIR$/.idea/tn-shop.iml" />
-      <module fileurl="file://$PROJECT_DIR$/tnshop-server/tnshop.iml" filepath="$PROJECT_DIR$/tnshop-server/tnshop.iml" />
     </modules>
   </component>
 </project>

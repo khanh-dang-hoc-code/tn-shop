@@ -32,6 +32,8 @@ public class AdminController {
 
     @PostMapping(value = "/login")
     public ResponseEntity<Object> login(@RequestBody LoginRequest loginRequest) {
+        System.out.println(loginRequest.getUserName());
+        System.out.println(loginRequest.getPassword());
         ShopHelper.validateObjectRequiredFields(loginRequest);
         return userService.login(loginRequest, RoleEnum.ADMIN_ROLE.getRole());
     }

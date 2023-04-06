@@ -6,6 +6,9 @@ import './app.scss';
 import Header from '../../components/header/Header';
 import Navbar from '../../components/navbar/Navbar';
 import Footer from '../../components/footer/Footer';
+import { Route, Routes } from 'react-router-dom';
+import Dashboard from '../dashboard/Dashboard';
+import Ecommerce from '../ecommerce/Ecommerce';
 
 const App = () => {
   return (
@@ -15,7 +18,12 @@ const App = () => {
       {/* <div className="container-left">
         <AppDrawer isOpen={false} />
       </div> */}
-      <div className="container-right"></div>
+      <div className="content">
+        <Routes>
+          <Route path="/dash-board" element={<Dashboard />} />
+          <Route path="/ecommerce" element={<Ecommerce />} />
+        </Routes>
+      </div>
       <Footer />
     </div>
   );
